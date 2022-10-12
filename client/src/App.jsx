@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import {
 	TextField,
@@ -22,11 +22,11 @@ function App() {
 	const PORT = 3000;
 
 	//* Get Request
-	function getInformation() {
-		Axios.get(`http://localhost:${PORT}/showemployees`).then((response) => {
-			setEmployeeList(response.data);
+	useEffect(() => {
+		Axios.get(`http://localhost:${PORT}/showemployees`).then((res) => {
+			setEmployeeList(res.data);
 		});
-	}
+	}, []);
 
 	//* Insert Employees
 	function submitForm() {
@@ -120,18 +120,30 @@ function App() {
 				/>
 
 				<button onClick={submitForm}>Insert Data</button>
-				<button onClick={getInformation}>Read Data</button>
+				{/* <button onClick={getInformation}>Read Data</button> */}
 				<table>
 					<thead>
 						<tr>
 							<td>id</td>
 							<td>First Name</td>
 							<td>LastName</td>
+							<td>Age</td>
+							<td>Sex</td>
+							<td>Phone Number</td>
 						</tr>
 					</thead>
 					<tbody>
 						{employeeList.map((value) => {
-							return console.log(value);
+							return (
+								<tr>
+									<td>{value.id}</td>
+									<td>{value.firstName}</td>
+									<td>{value.lastName}</td>
+									<td>{value.age}</td>
+									<td>{value.sex}</td>
+									<td>{value.phoneNumber}</td>
+								</tr>
+							);
 						})}
 					</tbody>
 				</table>
