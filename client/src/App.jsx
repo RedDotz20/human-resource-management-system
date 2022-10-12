@@ -1,5 +1,14 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import {
+	TextField,
+	Radio,
+	RadioGroup,
+	FormControl,
+	FormControlLabel,
+	FormLabel,
+} from "@mui/material";
+
 import "./App.css";
 
 function App() {
@@ -32,13 +41,68 @@ function App() {
 		// setEmployeeList([...employeeList], { lastName: lastName });
 	}
 
+	const style = {
+		textOverflow: "ellipsis",
+		whiteSpace: "nowrap",
+		overflow: "hidden",
+		color: "white",
+	};
+
 	return (
 		<div className="App">
-			<h1>Human Resource Management System</h1>
+			<h2>Human Resource Management System</h2>
 
 			<div className="form">
-				<label>
-					{/* First Name: {firstName} */}
+				<h4>{firstName}</h4>
+				<TextField
+					id="filled-basic"
+					label="First Name"
+					variant="standard"
+					size="small"
+					InputLabelProps={{ style }}
+					onChange={(event) => {
+						setFirstName(event.target.value);
+					}}
+				/>
+
+				<TextField
+					id="filled-basic"
+					label="Last Name"
+					variant="standard"
+					size="small"
+					InputLabelProps={{ style }}
+				/>
+
+				<TextField
+					id="filled-basic"
+					label="Age"
+					variant="standard"
+					type="number"
+					size="small"
+					InputLabelProps={{ style }}
+				/>
+
+				<FormControl>
+					<FormLabel>Sex</FormLabel>
+					<RadioGroup
+						row
+						aria-labelledby="demo-row-radio-buttons-group-label"
+						name="row-radio-buttons-group"
+					>
+						<FormControlLabel value="M" control={<Radio />} label="Male" />
+						<FormControlLabel value="F" control={<Radio />} label="Female" />
+					</RadioGroup>
+				</FormControl>
+
+				<TextField
+					id="filled-basic"
+					label="Phone Number"
+					variant="standard"
+					size="small"
+					InputLabelProps={{ style }}
+				/>
+
+				{/* <label>
 					<input
 						type="text"
 						className="first-name"
@@ -50,7 +114,6 @@ function App() {
 					/>
 				</label>
 				<label>
-					{/* Last Name: {lastName} */}
 					<input
 						type="text"
 						className="last-name"
@@ -62,7 +125,6 @@ function App() {
 					/>
 				</label>
 				<label>
-					{/* Age: {age} */}
 					<input
 						type="number"
 						className="age"
@@ -74,7 +136,6 @@ function App() {
 					/>
 				</label>
 				<label>
-					{/* Sex: {sex} */}
 					<input
 						type="text"
 						className="sex"
@@ -86,7 +147,6 @@ function App() {
 					/>
 				</label>
 				<label>
-					{/* Phone Number: {phoneNumber} */}
 					<input
 						type="number"
 						className="phone-number"
@@ -96,7 +156,8 @@ function App() {
 						}}
 						value={phoneNumber}
 					/>
-				</label>
+				</label> */}
+
 				<button onClick={submitForm}>Insert Data</button>
 				<button onClick={getInformation}>Read Data</button>
 				<table>
