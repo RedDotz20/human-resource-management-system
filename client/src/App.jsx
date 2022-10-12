@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import Axios from "axios";
 import "./App.css";
 
 function App() {
@@ -9,17 +10,18 @@ function App() {
 	const [phoneNumber, setPhoneNumber] = useState(0);
 
 	const [employeeList, setEmployeeList] = useState([]);
+	const PORT = 3000;
 
 	//* Get Request
 	function getInformation() {
-		Axios.get("http://localhost:5000/showemployees").then((response) => {
+		Axios.get(`http://localhost:${PORT}/showemployees`).then((response) => {
 			setEmployeeList(response.data);
 		});
 	}
 
 	//* Insert Employees
-	const submitForm = () => {
-		Axios.post("http://localhost:5000/insert", {
+	function submitForm() {
+		Axios.post(`http://localhost:${PORT}/insert`, {
 			firstName: firstName,
 			lastName: lastName,
 			age: age,
@@ -27,8 +29,8 @@ function App() {
 			phoneNumber: phoneNumber,
 		});
 
-		setEmployeeList([...employeeList], { lastName: lastName });
-	};
+		// setEmployeeList([...employeeList], { lastName: lastName });
+	}
 
 	return (
 		<div className="App">
@@ -36,7 +38,7 @@ function App() {
 
 			<div className="form">
 				<label>
-					First Name: {firstName}
+					{/* First Name: {firstName} */}
 					<input
 						type="text"
 						className="first-name"
@@ -47,9 +49,8 @@ function App() {
 						value={firstName}
 					/>
 				</label>
-
 				<label>
-					Last Name: {lastName}
+					{/* Last Name: {lastName} */}
 					<input
 						type="text"
 						className="last-name"
@@ -60,9 +61,8 @@ function App() {
 						value={lastName}
 					/>
 				</label>
-
 				<label>
-					Age: {age}
+					{/* Age: {age} */}
 					<input
 						type="number"
 						className="age"
@@ -73,9 +73,8 @@ function App() {
 						value={age}
 					/>
 				</label>
-
 				<label>
-					Sex: {sex}
+					{/* Sex: {sex} */}
 					<input
 						type="text"
 						className="sex"
@@ -86,9 +85,8 @@ function App() {
 						value={sex}
 					/>
 				</label>
-
 				<label>
-					Phone Number: {phoneNumber}
+					{/* Phone Number: {phoneNumber} */}
 					<input
 						type="number"
 						className="phone-number"
@@ -99,14 +97,30 @@ function App() {
 						value={phoneNumber}
 					/>
 				</label>
-
 				<button onClick={submitForm}>Insert Data</button>
-
 				<button onClick={getInformation}>Read Data</button>
+				<table>
+					<thead>
+						<tr>
+							<td>id</td>
+							<td>First Name</td>
+							<td>LastName</td>
+						</tr>
+					</thead>
+					<tbody>
+						{employeeList.map((value) => {
+							return console.log(value);
+						})}
 
-				{employeeList.map((value) => {
-					return <h2>LastName: {value.lastName}</h2>;
-				})}
+						{/* {employeeList.map((value) => {
+							return <td>{value.firstName}</td>;
+						})}
+
+						{employeeList.map((value) => {
+							return <td>{value.lastName}</td>;
+						})} */}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
