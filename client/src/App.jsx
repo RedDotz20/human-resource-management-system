@@ -65,14 +65,19 @@ function App() {
 					}}
 				/>
 
+				<h4>{lastName}</h4>
 				<TextField
 					id="filled-basic"
 					label="Last Name"
 					variant="standard"
 					size="small"
 					InputLabelProps={{ style }}
+					onChange={(event) => {
+						setLastName(event.target.value);
+					}}
 				/>
 
+				<h4>{age}</h4>
 				<TextField
 					id="filled-basic"
 					label="Age"
@@ -80,83 +85,39 @@ function App() {
 					type="number"
 					size="small"
 					InputLabelProps={{ style }}
+					onChange={(event) => {
+						setAge(event.target.value);
+					}}
 				/>
 
+				<h4>{sex}</h4>
 				<FormControl>
-					<FormLabel>Sex</FormLabel>
+					<FormLabel>Sex </FormLabel>
 					<RadioGroup
 						row
 						aria-labelledby="demo-row-radio-buttons-group-label"
 						name="row-radio-buttons-group"
+						onChange={(event) => {
+							setSex(event.target.value);
+						}}
 					>
 						<FormControlLabel value="M" control={<Radio />} label="Male" />
 						<FormControlLabel value="F" control={<Radio />} label="Female" />
 					</RadioGroup>
 				</FormControl>
 
+				<h4>{phoneNumber}</h4>
 				<TextField
 					id="filled-basic"
 					label="Phone Number"
+					r
 					variant="standard"
 					size="small"
 					InputLabelProps={{ style }}
+					onChange={(event) => {
+						setPhoneNumber(event.target.value);
+					}}
 				/>
-
-				{/* <label>
-					<input
-						type="text"
-						className="first-name"
-						placeholder="First Name"
-						onChange={(event) => {
-							setFirstName(event.target.value);
-						}}
-						value={firstName}
-					/>
-				</label>
-				<label>
-					<input
-						type="text"
-						className="last-name"
-						placeholder="Last Name"
-						onChange={(event) => {
-							setLastName(event.target.value);
-						}}
-						value={lastName}
-					/>
-				</label>
-				<label>
-					<input
-						type="number"
-						className="age"
-						placeholder="Age"
-						onChange={(event) => {
-							setAge(event.target.value);
-						}}
-						value={age}
-					/>
-				</label>
-				<label>
-					<input
-						type="text"
-						className="sex"
-						placeholder="Sex"
-						onChange={(event) => {
-							setSex(event.target.value);
-						}}
-						value={sex}
-					/>
-				</label>
-				<label>
-					<input
-						type="number"
-						className="phone-number"
-						placeholder="Phone Number"
-						onChange={(event) => {
-							setPhoneNumber(event.target.value);
-						}}
-						value={phoneNumber}
-					/>
-				</label> */}
 
 				<button onClick={submitForm}>Insert Data</button>
 				<button onClick={getInformation}>Read Data</button>
@@ -172,14 +133,6 @@ function App() {
 						{employeeList.map((value) => {
 							return console.log(value);
 						})}
-
-						{/* {employeeList.map((value) => {
-							return <td>{value.firstName}</td>;
-						})}
-
-						{employeeList.map((value) => {
-							return <td>{value.lastName}</td>;
-						})} */}
 					</tbody>
 				</table>
 			</div>
