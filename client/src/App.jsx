@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import "./App.css";
+import GetReq from "./components/GetReq";
 
 function App() {
 	const [firstName, setFirstName] = useState("");
@@ -18,7 +19,6 @@ function App() {
 	const [sex, setSex] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState(0);
 
-	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
 
 	//* Get Request
@@ -45,7 +45,7 @@ function App() {
 		textOverflow: "ellipsis",
 		whiteSpace: "nowrap",
 		overflow: "hidden",
-		color: "white",
+		// color: "white",
 	};
 
 	return (
@@ -121,32 +121,8 @@ function App() {
 
 				<button onClick={submitForm}>Insert Data</button>
 				{/* <button onClick={getInformation}>Read Data</button> */}
-				<table>
-					<thead>
-						<tr>
-							<td>id</td>
-							<td>First Name</td>
-							<td>LastName</td>
-							<td>Age</td>
-							<td>Sex</td>
-							<td>Phone Number</td>
-						</tr>
-					</thead>
-					<tbody>
-						{employeeList.map((value) => {
-							return (
-								<tr>
-									<td>{value.id}</td>
-									<td>{value.firstName}</td>
-									<td>{value.lastName}</td>
-									<td>{value.age}</td>
-									<td>{value.sex}</td>
-									<td>{value.phoneNumber}</td>
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+
+				<GetReq />
 			</div>
 		</div>
 	);
