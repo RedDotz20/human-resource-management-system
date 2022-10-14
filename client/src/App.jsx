@@ -23,20 +23,18 @@ function App() {
 	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
 
+	//* Dynamic Rendering (delete)
 	const [deleteData, setDeleteData] = useState(false);
 
-	//* Get Request
+	//* Load All Data (page refresh)
+	useEffect(getDataFromServer, [deleteData]);
 
+	//* Get Request
 	function getDataFromServer() {
 		Axios.get(`http://localhost:${PORT}/showemployees`).then((res) => {
 			setEmployeeList(() => res.data);
 		});
 	}
-
-	// employeeList
-
-	useEffect(getDataFromServer, [deleteData]);
-	// console.log(employeeList);
 
 	//* Insert Employees
 	function submitForm() {
@@ -47,10 +45,9 @@ function App() {
 			sex: sex,
 			phoneNumber: phoneNumber,
 		});
-
-		// setEmployeeList([...employeeList], { lastName: lastName });
 	}
 
+	//* Delete Employee from state
 	function deleteEmployeeFromState(fNameValue) {
 		employeeList.filter((employee) => {
 			if (employee.firstName != fNameValue) {
@@ -59,6 +56,7 @@ function App() {
 		});
 	}
 
+	//* Delete Employee from Database
 	function deleteEmployeeFromServer(fNameValue) {
 		Axios.delete(`http://localhost:${PORT}/delete/${fNameValue}`);
 		deleteEmployeeFromState();
@@ -68,7 +66,6 @@ function App() {
 		textOverflow: "ellipsis",
 		whiteSpace: "nowrap",
 		overflow: "hidden",
-		// color: "white",
 	};
 
 	const employeeListComponents = employeeList.map((value) => {
@@ -98,8 +95,6 @@ function App() {
 	});
 
 	function handleChange(event) {
-		// console.log(event);
-		// console.log(name, value);
 		const { name, value } = event.target;
 		name == "firstName" && setFirstName(() => value);
 		name == "lastName" && setLastName(() => value);
@@ -121,7 +116,7 @@ function App() {
 					size="small"
 					name="firstName"
 					InputLabelProps={{ style }}
-					onChange={() => handleChange(event)}
+					onChange={handleChange}
 				/>
 
 				<h4>{lastName}</h4>
@@ -132,7 +127,7 @@ function App() {
 					variant="standard"
 					size="small"
 					InputLabelProps={{ style }}
-					onChange={() => handleChange(event)}
+					onChange={handleChange}
 				/>
 
 				<h4>{age}</h4>
@@ -144,7 +139,7 @@ function App() {
 					type="number"
 					size="small"
 					InputLabelProps={{ style }}
-					onChange={() => handleChange(event)}
+					onChange={handleChange}
 				/>
 
 				<h4>{sex}</h4>
@@ -169,7 +164,7 @@ function App() {
 					name="phoneNum"
 					size="small"
 					InputLabelProps={{ style }}
-					onChange={() => handleChange(event)}
+					onChange={handleChange}
 				/>
 
 				<button onClick={submitForm}>Insert Data</button>
