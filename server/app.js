@@ -20,6 +20,7 @@ app.get("/showemployees", (req, res) => {
 	const sql = "SELECT * FROM employees";
 	con.query(sql, (err, rows) => {
 		if (err) throw err;
+		console.log("Data loaded Successfully");
 		res.send(rows);
 	});
 });
@@ -38,6 +39,7 @@ app.post("/insert", (req, res) => {
 		[firstName, lastName, age, sex, phoneNumber],
 		(err, result) => {
 			if (err) throw err;
+			console.log("Inserted Successfully");
 			res.send("Inserted Successfully");
 		}
 	);
@@ -48,9 +50,17 @@ app.delete("/delete/:firstName", (req, res) => {
 	const sql = "DELETE FROM employees WHERE firstName=?";
 	con.query(sql, firstName, (err, result) => {
 		if (err) throw err;
+		console.log("Data Deleted Successfully");
 		res.send("Data Deleted Successfully");
 	});
 });
+
+//TODO: update credentials ------------------
+app.put("/update", (req, res) => {
+	const firstName = req.params.firstName;
+	const sql = "UPDATE employees SET firstName=? WHERE firstName=?";
+});
+//TODO: update credentials ------------------
 
 const PORT = 3000;
 app.listen(PORT, () => {
