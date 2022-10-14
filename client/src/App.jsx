@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 
 import "./App.css";
-import GetReq from "./components/GetReq";
+import "./components/getReq.css";
+// import GetReq from "./components/GetReq";
 
 function App() {
 	const [firstName, setFirstName] = useState("");
@@ -19,7 +20,14 @@ function App() {
 	const [sex, setSex] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState(0);
 
+	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
+
+	useEffect(() => {
+		Axios.get(`http://localhost:${PORT}/showemployees`).then((res) => {
+			setEmployeeList(res.data);
+		});
+	}, []);
 
 	//* Get Request
 	useEffect(() => {
@@ -110,7 +118,6 @@ function App() {
 				<TextField
 					id="filled-basic"
 					label="Phone Number"
-					r
 					variant="standard"
 					size="small"
 					InputLabelProps={{ style }}
@@ -122,7 +129,34 @@ function App() {
 				<button onClick={submitForm}>Insert Data</button>
 				{/* <button onClick={getInformation}>Read Data</button> */}
 
-				<GetReq />
+				{/* <GetReq /> */}
+
+				<table className="content-table">
+					<thead>
+						<tr>
+							<td>id</td>
+							<td>FIRST NAME</td>
+							<td>LAST NAME</td>
+							<td>AGE</td>
+							<td>SEX</td>
+							<td>PHONE NUMBER</td>
+						</tr>
+					</thead>
+					<tbody>
+						{employeeList.map((value) => {
+							return (
+								<tr key={value.id}>
+									<td>{value.id}</td>
+									<td>{value.firstName}</td>
+									<td>{value.lastName}</td>
+									<td className="td-center">{value.age}</td>
+									<td className="td-center">{value.sex}</td>
+									<td className="td-center">{value.phoneNumber}</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
