@@ -43,6 +43,15 @@ app.post("/insert", (req, res) => {
 	);
 });
 
+app.delete("/delete/:firstName", (req, res) => {
+	const firstName = req.params.firstName;
+	const sql = "DELETE FROM employees WHERE firstName=?";
+	con.query(sql, firstName, (err, result) => {
+		if (err) throw err;
+		res.send("Data Deleted Successfully");
+	});
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
 	console.log(`runniing on http://localhost:${PORT}`);

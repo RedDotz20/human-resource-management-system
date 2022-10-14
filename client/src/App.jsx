@@ -23,12 +23,6 @@ function App() {
 	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
 
-	useEffect(() => {
-		Axios.get(`http://localhost:${PORT}/showemployees`).then((res) => {
-			setEmployeeList(res.data);
-		});
-	}, []);
-
 	//* Get Request
 	useEffect(() => {
 		Axios.get(`http://localhost:${PORT}/showemployees`).then((res) => {
@@ -47,6 +41,10 @@ function App() {
 		});
 
 		// setEmployeeList([...employeeList], { lastName: lastName });
+	}
+
+	function deleteEmployee(fNameValue) {
+		Axios.delete(`http://localhost:${PORT}/delete/${fNameValue}`);
 	}
 
 	const style = {
@@ -128,7 +126,6 @@ function App() {
 
 				<button onClick={submitForm}>Insert Data</button>
 				{/* <button onClick={getInformation}>Read Data</button> */}
-
 				{/* <GetReq /> */}
 
 				<table className="content-table">
@@ -140,6 +137,8 @@ function App() {
 							<td>AGE</td>
 							<td>SEX</td>
 							<td>PHONE NUMBER</td>
+							<td></td>
+							<td></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -152,6 +151,18 @@ function App() {
 									<td className="td-center">{value.age}</td>
 									<td className="td-center">{value.sex}</td>
 									<td className="td-center">{value.phoneNumber}</td>
+									<td>
+										<button>Edit</button>
+									</td>
+									<td>
+										<button
+											onClick={() => {
+												deleteEmployee(value.firstName);
+											}}
+										>
+											Delete
+										</button>
+									</td>
 								</tr>
 							);
 						})}
