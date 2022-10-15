@@ -17,8 +17,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/showemployees", (req, res) => {
-	const sql = "SELECT * FROM employees";
-	con.query(sql, (err, rows) => {
+	con.query("SELECT * FROM employees", (err, rows) => {
 		if (err) throw err;
 		console.log("Data loaded Successfully");
 		res.send(rows);
@@ -26,30 +25,27 @@ app.get("/showemployees", (req, res) => {
 });
 
 app.post("/insert", (req, res) => {
-	const firstName = req.body.firstName;
-	const lastName = req.body.lastName;
-	const age = req.body.age;
-	const sex = req.body.sex;
-	const phoneNumber = req.body.phoneNumber;
+	const data = [
+		req.body.firstName,
+		req.body.lastName,
+		req.body.age,
+		req.body.sex,
+		req.body.phoneNumber,
+	];
 
 	const sql =
 		"INSERT INTO employees(firstName,lastName,age,sex,phoneNumber) VALUES(?,?,?,?,?)";
-	con.query(
-		sql,
-		[firstName, lastName, age, sex, phoneNumber],
-		(err, result) => {
-			if (err) throw err;
-			console.log("Inserted Successfully");
-			res.send("Inserted Successfully");
-		}
-	);
+	con.query(sql, [...data], (error) => {
+		if (error) throw error;
+		console.log("Inserted Successfully");
+		res.send("Inserted Successfully");
+	});
 });
 
-app.delete("/delete/:firstName", (req, res) => {
-	const firstName = req.params.firstName;
-	const sql = "DELETE FROM employees WHERE firstName=?";
-	con.query(sql, firstName, (err, result) => {
-		if (err) throw err;
+app.delete("/delete/:id", (req, res) => {
+	const sql = "DELETE FROM employees WHERE id=?";
+	con.query(sql, req.params.id, (error) => {
+		if (error) throw error;
 		console.log("Data Deleted Successfully");
 		res.send("Data Deleted Successfully");
 	});
