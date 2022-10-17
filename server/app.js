@@ -53,7 +53,7 @@ app.delete("/delete/:id", (req, res) => {
 
 //TODO: update credentials ------------------
 app.put("/update", (req, res) => {
-	const firstName = req.params.firstName;
+	const id = req.body.firstName;
 	const sql = "UPDATE employees SET firstName=? WHERE firstName=?";
 });
 //TODO: update credentials ------------------

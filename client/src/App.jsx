@@ -11,6 +11,7 @@ import {
 
 import "./App.css";
 import "./components/getReq.css";
+import GetReq from "./components/GetReq";
 // import GetReq from "./components/GetReq";
 
 function App() {
