@@ -3,6 +3,7 @@
 	margin: 2rem 0;
 	font-size: 1em;
 	min-width: 400px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 }
 
 .content-table thead tr {

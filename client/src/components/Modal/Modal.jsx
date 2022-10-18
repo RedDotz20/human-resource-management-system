@@ -1,26 +1,23 @@
 import React from "react";
 import "./Modal.css";
+import CloseIcon from "@mui/icons-material/Close";
 
-export default function Modal({setOpenModal}) {
+export default function Modal({ setOpenModal }) {
 	return (
 		<div className="modalBackground">
 			<div className="modalContainer">
-				<div className="titleCloseBtn">
-					<button
-						onClick={() => {
-							setOpenModal(false);
-						}}
-					>
-						X
-					</button>
-				</div>
-				<div className="title">
-					<h1>Are You Sure You Want to Continue?</h1>
-				</div>
-				<div className="body">
-					<p>The next page looks amazing. Hope you want to go there!</p>
-				</div>
-				<div className="footer">
+				<CloseIcon
+					className="titleCloseBtn"
+					onClick={() => {
+						setOpenModal(false);
+					}}
+				/>
+
+				<h1 className="title">Insert</h1>
+				<p className="body">
+					The next page looks amazing. Hope you want to go there!
+				</p>
+				<footer className="footer">
 					<button
 						onClick={() => {
 							setOpenModal(false);
@@ -30,7 +27,7 @@ export default function Modal({setOpenModal}) {
 						Cancel
 					</button>
 					<button>Continue</button>
-				</div>
+				</footer>
 			</div>
 		</div>
 	);

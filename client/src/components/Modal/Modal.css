@@ -10,31 +10,27 @@
 }
 
 .modalContainer {
-	width: 500px;
+	position: relative;
+	width: 800px;
 	height: 500px;
 	border-radius: 12px;
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	display: flex;
 	flex-direction: column;
-	padding: 25px;
+	padding: 1.75rem;
 }
 
 .modalContainer .title {
 	display: inline-block;
-	text-align: center;
-	margin-top: 10px;
+	margin-top: 0.75rem;
 }
 
 .titleCloseBtn {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.titleCloseBtn button {
-	background-color: transparent;
-	border: none;
-	font-size: 25px;
+	position: absolute;
+	right: 1.5rem;
+	top: 1.5rem;
+	color: red;
 	cursor: pointer;
 }
 
