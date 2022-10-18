@@ -112,88 +112,90 @@ export default function App() {
 
 			<h2 className="header">Human Resource Management System</h2>
 
-			<div className="form">
-				<SearchBar />
+			<div className="App-container">
+				<div className="form">
+					<SearchBar />
 
-				<Stack direction="row" spacing={2}>
-					<Button
-						className="openModalBtn"
-						variant="contained"
-						startIcon={<Add />}
+					<Stack direction="row" spacing={2}>
+						<Button
+							className="openModalBtn"
+							variant="contained"
+							startIcon={<Add />}
+							onClick={() => {
+								setModalOpen(true);
+							}}
+						>
+							Insert
+						</Button>
+					</Stack>
+
+					<TextField
+						label="First Name"
+						variant="standard"
+						size="small"
+						name="firstName"
+						onChange={handleChange}
+					/>
+
+					<TextField
+						label="Last Name"
+						name="lastName"
+						variant="standard"
+						size="small"
+						onChange={handleChange}
+					/>
+
+					<TextField
+						label="Age"
+						variant="standard"
+						name="age"
+						type="number"
+						size="small"
+						onChange={handleChange}
+					/>
+
+					<FormControl>
+						<FormLabel>Sex </FormLabel>
+						<RadioGroup row name="sex" onChange={handleChange}>
+							<FormControlLabel label="Male" value="M" control={<Radio />} />
+							<FormControlLabel label="Female" value="F" control={<Radio />} />
+						</RadioGroup>
+					</FormControl>
+
+					<TextField
+						label="Phone Number"
+						variant="standard"
+						name="phoneNumber"
+						size="small"
+						onChange={handleChange}
+					/>
+
+					<button
+						className="insert-form"
 						onClick={() => {
-							setModalOpen(true);
+							submitForm();
+							setRefresh(!refresh);
 						}}
 					>
-						Insert
-					</Button>
-				</Stack>
+						Insert Data
+					</button>
 
-				<TextField
-					label="First Name"
-					variant="standard"
-					size="small"
-					name="firstName"
-					onChange={handleChange}
-				/>
-
-				<TextField
-					label="Last Name"
-					name="lastName"
-					variant="standard"
-					size="small"
-					onChange={handleChange}
-				/>
-
-				<TextField
-					label="Age"
-					variant="standard"
-					name="age"
-					type="number"
-					size="small"
-					onChange={handleChange}
-				/>
-
-				<FormControl>
-					<FormLabel>Sex </FormLabel>
-					<RadioGroup row name="sex" onChange={handleChange}>
-						<FormControlLabel label="Male" value="M" control={<Radio />} />
-						<FormControlLabel label="Female" value="F" control={<Radio />} />
-					</RadioGroup>
-				</FormControl>
-
-				<TextField
-					label="Phone Number"
-					variant="standard"
-					name="phoneNumber"
-					size="small"
-					onChange={handleChange}
-				/>
-
-				<button
-					className="insert-form"
-					onClick={() => {
-						submitForm();
-						setRefresh(!refresh);
-					}}
-				>
-					Insert Data
-				</button>
-
-				<table className="content-table">
-					<thead>
-						<tr>
-							<td>id</td>
-							<td>FIRST NAME</td>
-							<td>LAST NAME</td>
-							<td>AGE</td>
-							<td>SEX</td>
-							<td>PHONE NUMBER</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>{employeeListComponents}</tbody>
-				</table>
+					<table className="content-table">
+						<thead>
+							<tr>
+								<td>id</td>
+								<td>FIRST NAME</td>
+								<td>LAST NAME</td>
+								<td>AGE</td>
+								<td>SEX</td>
+								<td>PHONE NUMBER</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>{employeeListComponents}</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	);

@@ -1,10 +1,15 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+.App-container {
+	background-color: whitesmoke;
+	padding: 1rem;
+	margin: 0 5rem;
+	border-radius: 20px;
 }
 
 .header {
+	font-size: 2rem;
+	padding: 2rem;
+	font-weight: 600;
+	color: white;
 	text-align: center;
 }
 
