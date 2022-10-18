@@ -25,6 +25,7 @@ export default function InsertData({ setRefresh, setOpenModal }) {
 			phoneNumber: phoneNumber,
 		});
 	}
+
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [age, setAge] = useState(0);
@@ -92,16 +93,6 @@ export default function InsertData({ setRefresh, setOpenModal }) {
 					size="small"
 					onChange={handleChange}
 				/>
-
-				{/* <button
-					className="insert-form"
-					onClick={() => {
-						SubmitData();
-						setRefresh(!refresh);
-					}}
-				>
-					Insert Data
-				</button> */}
 
 				<Button
 					className="insert-form"
