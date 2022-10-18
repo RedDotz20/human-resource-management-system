@@ -3,6 +3,7 @@ import Axios from "axios";
 import "./App.css";
 import "./components/getReq.css";
 import {
+	Stack,
 	Button,
 	TextField,
 	Radio,
@@ -11,7 +12,9 @@ import {
 	FormControlLabel,
 	FormLabel,
 } from "@mui/material";
+import Add from "@mui/icons-material/Add";
 import Modal from "./components/Modal/Modal";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 export default function App() {
 	//* Refresh Table onChange event
@@ -105,22 +108,26 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<h1>Hey, click on the button to open the modal.</h1>
-			<button
-				className="openModalBtn"
-				onClick={() => {
-					setModalOpen(true);
-				}}
-			>
-				Open
-			</button>
-
 			{modalOpen && <Modal setOpenModal={setModalOpen} />}
 
-			{/* MODAL */}
 			<h2 className="header">Human Resource Management System</h2>
 
 			<div className="form">
+				<SearchBar />
+
+				<Stack direction="row" spacing={2}>
+					<Button
+						className="openModalBtn"
+						variant="contained"
+						startIcon={<Add />}
+						onClick={() => {
+							setModalOpen(true);
+						}}
+					>
+						Insert
+					</Button>
+				</Stack>
+
 				<TextField
 					label="First Name"
 					variant="standard"
