@@ -15,6 +15,7 @@ import {
 import Add from "@mui/icons-material/Add";
 import Modal from "./components/Modal/Modal";
 import SearchBar from "./components/SearchBar/SearchBar";
+import InsertData from "./components/InsertForm/InsertData";
 
 export default function App() {
 	//* Refresh Table onChange event
@@ -108,7 +109,9 @@ export default function App() {
 
 	return (
 		<div className="App">
-			{modalOpen && <Modal setOpenModal={setModalOpen} />}
+			{modalOpen && (
+				<InsertData setRefresh={setRefresh} setOpenModal={setModalOpen} />
+			)}
 
 			<h1 className="header">Human Resource Management System</h1>
 			<div className="App-container">
@@ -128,57 +131,6 @@ export default function App() {
 							</Button>
 						</Stack>
 					</div>
-
-					<TextField
-						label="First Name"
-						variant="standard"
-						size="small"
-						name="firstName"
-						onChange={handleChange}
-					/>
-
-					<TextField
-						label="Last Name"
-						name="lastName"
-						variant="standard"
-						size="small"
-						onChange={handleChange}
-					/>
-
-					<TextField
-						label="Age"
-						variant="standard"
-						name="age"
-						type="number"
-						size="small"
-						onChange={handleChange}
-					/>
-
-					<FormControl>
-						<FormLabel>Sex </FormLabel>
-						<RadioGroup row name="sex" onChange={handleChange}>
-							<FormControlLabel label="Male" value="M" control={<Radio />} />
-							<FormControlLabel label="Female" value="F" control={<Radio />} />
-						</RadioGroup>
-					</FormControl>
-
-					<TextField
-						label="Phone Number"
-						variant="standard"
-						name="phoneNumber"
-						size="small"
-						onChange={handleChange}
-					/>
-
-					<button
-						className="insert-form"
-						onClick={() => {
-							submitForm();
-							setRefresh(!refresh);
-						}}
-					>
-						Insert Data
-					</button>
 
 					<table className="content-table">
 						<thead>
