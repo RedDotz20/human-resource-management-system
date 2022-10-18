@@ -3,6 +3,7 @@ import Axios from "axios";
 import "./App.css";
 import "./components/getReq.css";
 import {
+	Button,
 	TextField,
 	Radio,
 	RadioGroup,
@@ -10,6 +11,7 @@ import {
 	FormControlLabel,
 	FormLabel,
 } from "@mui/material";
+import Modal from "./components/Modal/Modal";
 
 export default function App() {
 	//* Refresh Table onChange event
@@ -76,26 +78,47 @@ export default function App() {
 				<td className="td-center">{value.sex}</td>
 				<td className="td-center">{value.phoneNumber}</td>
 				<td>
-					<button className="edit-btn">Edit</button>
+					<Button className="edit-btn" variant="contained" size="small">
+						Edit
+					</Button>
 				</td>
 				<td>
-					<button
+					<Button
 						className="delete-btn"
+						variant="contained"
+						size="small"
+						color="error"
 						onClick={() => {
 							deleteEmployeeFromServer(value.id);
 							setRefresh(!refresh);
 						}}
 					>
 						Delete
-					</button>
+					</Button>
 				</td>
 			</tr>
 		);
 	});
 
+	//* Open/Close Modal onChange event
+	const [modalOpen, setModalOpen] = useState(false);
+
 	return (
 		<div className="App">
-			<h2>Human Resource Management System</h2>
+			<h1>Hey, click on the button to open the modal.</h1>
+			<button
+				className="openModalBtn"
+				onClick={() => {
+					setModalOpen(true);
+				}}
+			>
+				Open
+			</button>
+
+			{modalOpen && <Modal setOpenModal={setModalOpen} />}
+
+			{/* MODAL */}
+			<h2 className="header">Human Resource Management System</h2>
 
 			<div className="form">
 				<TextField

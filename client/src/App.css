@@ -8,6 +8,10 @@
 	margin: 1.5rem;
 }
 
+.header {
+	text-align: center;
+}
+
 .form {
 	display: flex;
 	flex-direction: column;
