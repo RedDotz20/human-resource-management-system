@@ -59,6 +59,7 @@ export default function App() {
 						onClick={() => {
 							deleteEmployeeFromServer(value.id);
 							setRefresh(!refresh);
+							console.log(refresh);
 						}}
 					>
 						Delete
@@ -74,7 +75,11 @@ export default function App() {
 	return (
 		<div className="App">
 			{modalOpen && (
-				<InsertData setRefresh={setRefresh} setOpenModal={setModalOpen} />
+				<InsertData
+					refresh={refresh}
+					setRefresh={setRefresh}
+					setOpenModal={setModalOpen}
+				/>
 			)}
 
 			<h1 className="header">Human Resource Management System</h1>

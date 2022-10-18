@@ -15,31 +15,28 @@ import {
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
-export default function InsertData({ setRefresh, setOpenModal }) {
+export default function InsertData({ refresh, setRefresh, setOpenModal }) {
 	function SubmitData() {
 		Axios.post(`${URL}/insert`, {
-			firstName: firstName,
-			lastName: lastName,
-			age: age,
-			sex: sex,
-			phoneNumber: phoneNumber,
+			firstName: values.firstName,
+			lastName: values.lastName,
+			age: values.age,
+			sex: values.sex,
+			phoneNumber: values.phoneNumber,
 		});
 	}
 
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [age, setAge] = useState(0);
-	const [sex, setSex] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState(0);
+	const [values, setValues] = useState({
+		firstName: "",
+		lastName: "",
+		age: 0,
+		sex: "",
+		phoneNumber: 0,
+	});
 
-	function handleChange(event) {
-		const { name, value } = event.target;
-		name == "firstName" && setFirstName(() => value);
-		name == "lastName" && setLastName(() => value);
-		name == "age" && setAge(() => value);
-		name == "sex" && setSex(() => value);
-		name == "phoneNumber" && setPhoneNumber(() => value);
-	}
+	const handleChange = (props) => (event) => {
+		setValues({ ...values, [props]: event.target.value });
+	};
 
 	return (
 		<div className="modalBackground">
@@ -48,17 +45,17 @@ export default function InsertData({ setRefresh, setOpenModal }) {
 					className="titleCloseBtn"
 					onClick={() => {
 						setOpenModal(false);
-						console.log("closed");
 					}}
 				/>
 
 				<h1>Insert Employee</h1>
+				<div className="insertForm"></div>
 				<TextField
 					label="First Name"
 					variant="standard"
 					size="small"
 					name="firstName"
-					onChange={handleChange}
+					onChange={handleChange("firstName")}
 				/>
 
 				<TextField
@@ -66,7 +63,7 @@ export default function InsertData({ setRefresh, setOpenModal }) {
 					name="lastName"
 					variant="standard"
 					size="small"
-					onChange={handleChange}
+					onChange={handleChange("lastName")}
 				/>
 
 				<TextField
@@ -75,12 +72,12 @@ export default function InsertData({ setRefresh, setOpenModal }) {
 					name="age"
 					type="number"
 					size="small"
-					onChange={handleChange}
+					onChange={handleChange("age")}
 				/>
 
 				<FormControl>
-					<FormLabel>Sex </FormLabel>
-					<RadioGroup row name="sex" onChange={handleChange}>
+					<FormLabel>Sex</FormLabel>
+					<RadioGroup row name="sex" onChange={handleChange("sex")}>
 						<FormControlLabel label="Male" value="M" control={<Radio />} />
 						<FormControlLabel label="Female" value="F" control={<Radio />} />
 					</RadioGroup>
@@ -91,20 +88,33 @@ export default function InsertData({ setRefresh, setOpenModal }) {
 					variant="standard"
 					name="phoneNumber"
 					size="small"
-					onChange={handleChange}
+					onChange={handleChange("phoneNumber")}
 				/>
 
-				<Button
-					className="insert-form"
-					variant="contained"
-					size="small"
-					onClick={() => {
-						SubmitData();
-						setRefresh(!setRefresh);
-					}}
-				>
-					Confirm
-				</Button>
+				<footer>
+					<Button
+						className="cancel-btn"
+						variant="contained"
+						size="small"
+						onClick={() => {
+							setOpenModal(false);
+						}}
+					>
+						Cancel
+					</Button>
+					<Button
+						className="confirm-btn"
+						variant="contained"
+						size="small"
+						onClick={() => {
+							SubmitData();
+							setOpenModal(false);
+							setRefresh(!refresh);
+						}}
+					>
+						Confirm
+					</Button>
+				</footer>
 			</div>
 		</div>
 	);
