@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import "./App.css";
+import "./components/getReq.css";
 import {
 	TextField,
 	Radio,
@@ -9,12 +11,10 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import "./App.css";
-import "./components/getReq.css";
-import GetReq from "./components/GetReq";
-// import GetReq from "./components/GetReq";
+export default function App() {
+	//* Refresh Table onChange event
+	const [refresh, setRefresh] = useState(false);
 
-function App() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [age, setAge] = useState(0);
@@ -24,9 +24,6 @@ function App() {
 	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
 	const URL = `http://localhost:${PORT}`;
-
-	//* refresh all infomation
-	const [refresh, setRefresh] = useState(false);
 
 	//* Load All Data (page refresh)
 	useEffect(getDataFromServer, [refresh]);
@@ -49,31 +46,16 @@ function App() {
 		});
 	}
 
-	//* Delete Employee from state
-	// function deleteEmployeeFromState(fNameValue) {
-	// 	employeeList.filter((employee) => {
-	// 		if (employee.firstName != fNameValue) {
-	// 			return employee;
-	// 		}
-	// 	});
-	// }
-
 	//* Delete Employee from Database
 	function deleteEmployeeFromServer(idValue) {
 		Axios.delete(`${URL}/delete/${idValue}`);
-		// deleteEmployeeFromState();
 	}
 
 	//TODO--- Update Employee from Database ---
 	function UppdateEmployeeFromServer(idValue) {
 		Axios.put(`${URL}/update/:id`, {});
 	}
-
-	const style = {
-		textOverflow: "ellipsis",
-		whiteSpace: "nowrap",
-		overflow: "hidden",
-	};
+	//TODO--- Update Employee from Database ---
 
 	function handleChange(event) {
 		const { name, value } = event.target;
@@ -83,23 +65,6 @@ function App() {
 		name == "sex" && setSex(() => value);
 		name == "phoneNumber" && setPhoneNumber(() => value);
 	}
-
-	// const [details, setDetails] = useState({
-	// 	firstName: "",
-	// 	lastName: "",
-	// 	age: 0,
-	// 	sex: "",
-	// 	phoneNumber: 0,
-	// });
-
-	// const handleChange2 = (e) => {
-	// 	const { name, value } = e.target;
-	// 	setDetails((prev) => {
-	// 		return { ...prev, [name]: value };
-	// 	});
-	// };
-
-	// console.log(details);
 
 	const employeeListComponents = employeeList.map((value) => {
 		return (
@@ -111,10 +76,11 @@ function App() {
 				<td className="td-center">{value.sex}</td>
 				<td className="td-center">{value.phoneNumber}</td>
 				<td>
-					<button>Edit</button>
+					<button className="edit-btn">Edit</button>
 				</td>
 				<td>
 					<button
+						className="delete-btn"
 						onClick={() => {
 							deleteEmployeeFromServer(value.id);
 							setRefresh(!refresh);
@@ -132,66 +98,49 @@ function App() {
 			<h2>Human Resource Management System</h2>
 
 			<div className="form">
-				<h4>{firstName}</h4>
 				<TextField
-					// id="filled-basic"
 					label="First Name"
 					variant="standard"
 					size="small"
 					name="firstName"
-					InputLabelProps={{ style }}
 					onChange={handleChange}
 				/>
 
-				<h4>{lastName}</h4>
 				<TextField
-					// id="filled-basic"
 					label="Last Name"
 					name="lastName"
 					variant="standard"
 					size="small"
-					InputLabelProps={{ style }}
 					onChange={handleChange}
 				/>
 
-				<h4>{age}</h4>
 				<TextField
-					// id="filled-basic"
 					label="Age"
 					variant="standard"
 					name="age"
 					type="number"
 					size="small"
-					InputLabelProps={{ style }}
 					onChange={handleChange}
 				/>
 
-				<h4>{sex}</h4>
 				<FormControl>
 					<FormLabel>Sex </FormLabel>
-					<RadioGroup
-						row
-						aria-labelledby="demo-row-radio-buttons-group-label"
-						name="sex"
-						onChange={handleChange}
-					>
-						<FormControlLabel value="M" control={<Radio />} label="Male" />
-						<FormControlLabel value="F" control={<Radio />} label="Female" />
+					<RadioGroup row name="sex" onChange={handleChange}>
+						<FormControlLabel label="Male" value="M" control={<Radio />} />
+						<FormControlLabel label="Female" value="F" control={<Radio />} />
 					</RadioGroup>
 				</FormControl>
 
-				<h4>{phoneNumber}</h4>
 				<TextField
-					// id="filled-basic"
 					label="Phone Number"
 					variant="standard"
 					name="phoneNumber"
 					size="small"
-					InputLabelProps={{ style }}
 					onChange={handleChange}
 				/>
 
 				<button
+					className="insert-form"
 					onClick={() => {
 						submitForm();
 						setRefresh(!refresh);
@@ -199,8 +148,6 @@ function App() {
 				>
 					Insert Data
 				</button>
-				{/* <button onClick={getInformation}>Read Data</button> */}
-				{/* <GetReq /> */}
 
 				<table className="content-table">
 					<thead>
@@ -221,5 +168,3 @@ function App() {
 		</div>
 	);
 }
-
-export default App;
