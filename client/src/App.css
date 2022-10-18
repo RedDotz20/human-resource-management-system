@@ -13,6 +13,17 @@
 	text-align: center;
 }
 
+.search-insert {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.insert-btn,
+.searchbar {
+	margin: 0 1rem;
+}
+
 .form {
 	display: flex;
 	flex-direction: column;

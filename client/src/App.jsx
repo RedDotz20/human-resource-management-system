@@ -110,24 +110,24 @@ export default function App() {
 		<div className="App">
 			{modalOpen && <Modal setOpenModal={setModalOpen} />}
 
-			<h2 className="header">Human Resource Management System</h2>
-
+			<h1 className="header">Human Resource Management System</h1>
 			<div className="App-container">
 				<div className="form">
-					<SearchBar />
-
-					<Stack direction="row" spacing={2}>
-						<Button
-							className="openModalBtn"
-							variant="contained"
-							startIcon={<Add />}
-							onClick={() => {
-								setModalOpen(true);
-							}}
-						>
-							Insert
-						</Button>
-					</Stack>
+					<div className="search-insert">
+						<SearchBar />
+						<Stack className="insert-btn" direction="row" spacing={2}>
+							<Button
+								className="openModalBtn"
+								variant="contained"
+								startIcon={<Add />}
+								onClick={() => {
+									setModalOpen(true);
+								}}
+							>
+								Insert
+							</Button>
+						</Stack>
+					</div>
 
 					<TextField
 						label="First Name"

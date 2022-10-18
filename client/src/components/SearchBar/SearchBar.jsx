@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import "./SearchBar.css";
 import {
 	InputAdornment,
 	FormControl,
@@ -32,8 +33,12 @@ export default function SearchBar() {
 	};
 
 	return (
-		<div>
-			<FormControl variant="outlined" size="small">
+		<div className="searchbar">
+			<FormControl
+				sx={{ width: { sm: "100%" } }}
+				variant="outlined"
+				size="small"
+			>
 				<InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
 				<OutlinedInput
 					id="outlined-adornment-password"
