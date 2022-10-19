@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "./getReq.css";
+// import "./getReq.css";
 
 export default function GetReq() {
 	const [employeeList, setEmployeeList] = useState([]);

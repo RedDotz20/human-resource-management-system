@@ -4,9 +4,8 @@ import { Stack, Button } from "@mui/material";
 import Add from "@mui/icons-material/Add";
 import SearchBar from "./components/SearchBar/SearchBar";
 import InsertData from "./components/InsertForm/InsertData";
-// import Modal from "./components/Modal/Modal";
-import "./App.css";
-import "./components/getReq.css";
+import "./styles/App.css";
+import "./styles/tableStyle.css";
 
 export default function App() {
 	//* Refresh Table onChange event

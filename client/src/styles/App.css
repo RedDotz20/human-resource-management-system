@@ -1,8 +1,10 @@
 .App-container {
 	background-color: whitesmoke;
 	padding: 1rem;
-	margin: 0 5rem;
+	margin: 0 auto;
 	border-radius: 20px;
+	min-width: 920px;
+	max-width: 920px;
 }
 
 .header {

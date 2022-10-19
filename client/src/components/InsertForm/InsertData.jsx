@@ -48,34 +48,37 @@ export default function InsertData({ refresh, setRefresh, setOpenModal }) {
 					}}
 				/>
 
-				<h1>Insert Employee</h1>
-				<div className="insertForm"></div>
+				<h1 className="title">Insert Employee</h1>
+
 				<TextField
+					sx={{ my: 1 }}
 					label="First Name"
-					variant="standard"
+					variant="outlined"
 					size="small"
 					name="firstName"
 					onChange={handleChange("firstName")}
 				/>
 
 				<TextField
+					sx={{ my: 1 }}
 					label="Last Name"
 					name="lastName"
-					variant="standard"
+					variant="outlined"
 					size="small"
 					onChange={handleChange("lastName")}
 				/>
 
 				<TextField
+					sx={{ my: 1 }}
 					label="Age"
-					variant="standard"
+					variant="outlined"
 					name="age"
 					type="number"
 					size="small"
 					onChange={handleChange("age")}
 				/>
 
-				<FormControl>
+				<FormControl sx={{ my: 1 }}>
 					<FormLabel>Sex</FormLabel>
 					<RadioGroup row name="sex" onChange={handleChange("sex")}>
 						<FormControlLabel label="Male" value="M" control={<Radio />} />
@@ -84,8 +87,9 @@ export default function InsertData({ refresh, setRefresh, setOpenModal }) {
 				</FormControl>
 
 				<TextField
+					sx={{ my: 1 }}
 					label="Phone Number"
-					variant="standard"
+					variant="outlined"
 					name="phoneNumber"
 					size="small"
 					onChange={handleChange("phoneNumber")}
