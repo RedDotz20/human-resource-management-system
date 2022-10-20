@@ -15,7 +15,7 @@ import {
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
-export default function InsertData({ refresh, setRefresh, setOpenModal }) {
+function InsertData({ refresh, setRefresh, setOpenModal }) {
 	function SubmitData() {
 		Axios.post(`${URL}/insert`, {
 			firstName: values.firstName,
@@ -123,3 +123,5 @@ export default function InsertData({ refresh, setRefresh, setOpenModal }) {
 		</div>
 	);
 }
+
+export default InsertData;
