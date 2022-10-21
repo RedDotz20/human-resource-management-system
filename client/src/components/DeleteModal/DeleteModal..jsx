@@ -3,7 +3,7 @@ import Axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "@mui/material";
 
-function DeleteModal({ refresh, setRefresh, setOpenModal }) {
+function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 	function deleteEmployeeFromServer(idValue) {
 		Axios.delete(`${URL}/delete/${idValue}`);
 	}
@@ -14,7 +14,7 @@ function DeleteModal({ refresh, setRefresh, setOpenModal }) {
 				<CloseIcon
 					className="titleCloseBtn"
 					onClick={() => {
-						setOpenModal(false);
+						setDeleteModal(false);
 					}}
 				/>
 
@@ -27,7 +27,7 @@ function DeleteModal({ refresh, setRefresh, setOpenModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							setOpenModal(false);
+							setDeleteModal(false);
 						}}
 					>
 						Cancel
@@ -37,7 +37,8 @@ function DeleteModal({ refresh, setRefresh, setOpenModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							setOpenModal(false);
+							deleteEmployeeFromServer(id);
+							setDeleteModal(false);
 							setRefresh(!refresh);
 						}}
 					>
