@@ -112,7 +112,6 @@ function InsertData({ refresh, setRefresh, setOpenModal }) {
 						size="small"
 						onClick={() => {
 							SubmitData();
-							console.log(values);
 							setOpenModal(false);
 							setRefresh(() => !refresh);
 						}}
