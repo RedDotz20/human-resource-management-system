@@ -51,12 +51,23 @@ app.delete("/delete/:id", (req, res) => {
 	});
 });
 
-//TODO: update credentials ------------------
 app.put("/update", (req, res) => {
-	const id = req.body.id;
-	const sql = "UPDATE employees SET firstName=? WHERE firstName=?";
+	const data = [
+		req.body.firstName,
+		req.body.lastName,
+		req.body.age,
+		req.body.sex,
+		req.body.phoneNumber,
+		req.body.id,
+	];
+	const sql =
+		"UPDATE employees SET firstName=?,lastName=?,age=?,sex=?,phoneNumber=? WHERE id=?";
+	con.query(sql, [...data], (error) => {
+		if (error) throw error;
+		console.log("Data Updated Successfully");
+		res.send("Data Updated Successfully");
+	});
 });
-//TODO: update credentials ------------------
 
 const PORT = 3000;
 app.listen(PORT, () => {
