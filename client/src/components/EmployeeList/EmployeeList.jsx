@@ -1,5 +1,7 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function EmployeeDataList({ employees }) {
 	return (
@@ -12,10 +14,10 @@ export default function EmployeeDataList({ employees }) {
 					<td>AGE</td>
 					<td>SEX</td>
 					<td>PHONE NUMBER</td>
-					<td></td>
-					<td></td>
+					<td>ACTIONS</td>
 				</tr>
 			</thead>
+
 			<tbody>
 				{employees.map((values) => {
 					return (
@@ -27,12 +29,29 @@ export default function EmployeeDataList({ employees }) {
 							<td className="td-center">{values.sex}</td>
 							<td className="td-center">{values.phoneNumber}</td>
 							<td>
-								<Button className="edit-btn" variant="contained" size="small">
+								{/* <Button className="edit-btn" variant="contained" size="small">
 									Edit
-								</Button>
-							</td>
-							<td>
-								<Button
+								</Button> */}
+
+								<IconButton>
+									<EditIcon />
+								</IconButton>
+
+								<IconButton
+									className="delete-btn"
+									variant="contained"
+									size="small"
+									color="error"
+									onClick={() => {
+										deleteEmployeeFromServer(value.id);
+										setRefresh(!refresh);
+										console.log(refresh);
+									}}
+								>
+									<DeleteIcon />
+								</IconButton>
+
+								{/* <Button
 									className="delete-btn"
 									variant="contained"
 									size="small"
@@ -44,7 +63,7 @@ export default function EmployeeDataList({ employees }) {
 									}}
 								>
 									Delete
-								</Button>
+								</Button> */}
 							</td>
 						</tr>
 					);

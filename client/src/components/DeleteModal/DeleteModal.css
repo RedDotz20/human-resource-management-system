@@ -1,0 +1,64 @@
+.modalBackground {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modalContainer {
+	position: relative;
+	width: 420px;
+	height: 500px;
+	border-radius: 12px;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	display: flex;
+	flex-direction: column;
+	padding: 1.75rem;
+}
+
+.modalContainer .title {
+	display: inline-block;
+	margin: 0 0 1rem 0;
+}
+
+.inputField {
+	display: block;
+	margin: 50px;
+}
+
+.titleCloseBtn {
+	position: absolute;
+	z-index: 5;
+	right: 1.5rem;
+	top: 1.5rem;
+	color: red;
+	cursor: pointer;
+}
+
+.modalContainer .footer {
+	flex: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+footer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: auto;
+}
+
+footer button {
+	width: 49%;
+	height: 35px;
+	border: none;
+	color: white;
+	border-radius: 8px;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
