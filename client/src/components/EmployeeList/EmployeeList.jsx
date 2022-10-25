@@ -2,6 +2,7 @@ import React from "react";
 import { Button, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import "./EmployeeList.css";
 
 export default function EmployeeDataList({ employees }) {
 	return (
@@ -14,7 +15,7 @@ export default function EmployeeDataList({ employees }) {
 					<td>AGE</td>
 					<td>SEX</td>
 					<td>PHONE NUMBER</td>
-					<td>ACTIONS</td>
+					<td className="no-padding">ACTIONS</td>
 				</tr>
 			</thead>
 

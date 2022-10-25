@@ -7,7 +7,6 @@ import InsertData from "./components/InsertForm/InsertData";
 import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
-import "./styles/tableStyle.css";
 
 export default function App() {
 	const [refresh, setRefresh] = useState(false);
