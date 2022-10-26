@@ -14,12 +14,15 @@ export default function App() {
 	const PORT = 3000;
 	const URL = `http://localhost:${PORT}`;
 
-	useEffect(getDataFromServer, [refresh]);
+	useEffect(loadDataTable, [refresh]);
 
-	function getDataFromServer() {
-		Axios.get(`${URL}/showemployees`).then((res) => {
-			setEmployeeList(() => res.data);
-		});
+	function loadDataTable() {
+		async function fetchData() {
+			await Axios.get(`${URL}/showemployees`).then((res) => {
+				setEmployeeList(() => res.data);
+			});
+		}
+		fetchData();
 	}
 
 	//* Delete Employee from Database
