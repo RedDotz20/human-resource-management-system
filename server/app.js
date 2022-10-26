@@ -3,14 +3,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const mysql = require("mysql2");
-const { request } = require("http");
-
-const con = mysql.createPool({
-	host: "localhost",
-	user: "root",
-	password: "admin",
-	database: "hrms_system",
-});
+const con = require("./dbConnection");
+require("dotenv").config();
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -69,7 +64,6 @@ app.put("/update", (req, res) => {
 	});
 });
 
-const PORT = 3000;
 app.listen(PORT, () => {
-	console.log(`runniing on http://localhost:${PORT}`);
+	console.log(`Runniing on http://localhost:${PORT}`);
 });
