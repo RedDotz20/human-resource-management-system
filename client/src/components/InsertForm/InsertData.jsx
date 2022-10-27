@@ -15,7 +15,7 @@ import {
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
-function InsertData({ refresh, setRefresh, setOpenModal }) {
+function InsertData({ refresh, setRefresh, setInsertModal }) {
 	function SubmitData() {
 		Axios.post(`${URL}/insert`, {
 			firstName: values.firstName,
@@ -44,7 +44,7 @@ function InsertData({ refresh, setRefresh, setOpenModal }) {
 				<CloseIcon
 					className="titleCloseBtn"
 					onClick={() => {
-						setOpenModal(false);
+						setInsertModal(false);
 					}}
 				/>
 
@@ -101,7 +101,7 @@ function InsertData({ refresh, setRefresh, setOpenModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							setOpenModal(false);
+							setInsertModal(false);
 						}}
 					>
 						Cancel
@@ -112,7 +112,7 @@ function InsertData({ refresh, setRefresh, setOpenModal }) {
 						size="small"
 						onClick={() => {
 							SubmitData();
-							setOpenModal(false);
+							setInsertModal(false);
 							setRefresh(() => !refresh);
 						}}
 					>

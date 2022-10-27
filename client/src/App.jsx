@@ -37,7 +37,8 @@ export default function App() {
 	//TODO--- Update Employee from Database ---
 
 	//* Open/Close Modal onChange event
-	const [modalOpen, setModalOpen] = useState(false);
+	// const [modalOpen, setModalOpen] = useState(false);
+	const [insertModal, setInsertModal] = useState(false);
 	const [deleteModal, setDeleteModal] = useState(false);
 
 	//* Temporary State
@@ -45,11 +46,11 @@ export default function App() {
 
 	return (
 		<div className="App">
-			{modalOpen && (
+			{insertModal && (
 				<InsertData
 					refresh={refresh}
 					setRefresh={setRefresh}
-					setOpenModal={setModalOpen}
+					setInsertModal={setInsertModal}
 				/>
 			)}
 
@@ -72,7 +73,7 @@ export default function App() {
 								variant="contained"
 								startIcon={<Add />}
 								onClick={() => {
-									setModalOpen(true);
+									setInsertModal(true);
 								}}
 							>
 								Insert
