@@ -1,7 +1,9 @@
 import React from "react";
 import Axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Button } from "@mui/material";
+import "./DeleteModal.css";
 
 function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 	function deleteEmployee(idValue) {
@@ -9,8 +11,11 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 	}
 
 	return (
-		<div className="modalBackground">
-			<div className="modalContainer">
+		<div className="deleteModalBg">
+			<div className="deleteIconCon">
+				<DeleteForeverIcon className="deleteIcon" />
+			</div>
+			<div className="deleteModalCon">
 				<CloseIcon
 					className="titleCloseBtn"
 					onClick={() => {
@@ -19,7 +24,9 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 				/>
 
 				<h1 className="title">Delete Curent Row</h1>
-				<p className="title">Are you sue you want to delete the curent row?</p>
+				<p className="subtitle">
+					Are you sue you want to delete the curent row?
+				</p>
 
 				<footer>
 					<Button
@@ -36,6 +43,7 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 						className="confirm-btn"
 						variant="contained"
 						size="small"
+						color="error"
 						onClick={() => {
 							deleteEmployee(id);
 							setRefresh(!refresh);

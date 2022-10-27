@@ -1,4 +1,4 @@
-.modalBackground {
+.deleteModalBg {
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
@@ -9,10 +9,10 @@
 	align-items: center;
 }
 
-.modalContainer {
+.deleteModalCon {
 	position: relative;
 	width: 420px;
-	height: 500px;
+	height: 200px;
 	border-radius: 12px;
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -21,15 +21,22 @@
 	padding: 1.75rem;
 }
 
-.modalContainer .title {
+.deleteModalCon .title {
 	display: inline-block;
-	margin: 0 0 1rem 0;
+	margin-bottom: 0.75rem;
 }
 
-.inputField {
-	display: block;
-	margin: 50px;
+.subtitle {
+	text-align: center;
+	margin: auto 0;
 }
+
+/* .deleteIconCon {
+	position: absolute;
+	top: 0;
+	right: 50%;
+	transform: translateX(50%);
+} */
 
 .titleCloseBtn {
 	position: absolute;
