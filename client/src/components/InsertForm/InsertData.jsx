@@ -113,7 +113,7 @@ function InsertData({ refresh, setRefresh, setInsertModal }) {
 						onClick={() => {
 							SubmitData();
 							setInsertModal(false);
-							setRefresh(() => !refresh);
+							setRefresh((prev) => !prev);
 						}}
 					>
 						Confirm

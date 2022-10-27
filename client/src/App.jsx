@@ -10,6 +10,7 @@ import "./styles/App.css";
 
 export default function App() {
 	const [refresh, setRefresh] = useState(false);
+	console.log(refresh);
 	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
 	const URL = `http://localhost:${PORT}`;
@@ -42,7 +43,7 @@ export default function App() {
 	const [deleteModal, setDeleteModal] = useState(false);
 
 	//* Temporary State
-	// const [deleteId, setDeleteId] = useState(0);
+	const [deleteId, setDeleteId] = useState(0);
 
 	return (
 		<div className="App">
@@ -56,9 +57,9 @@ export default function App() {
 
 			{deleteModal && (
 				<DeleteModal
-					refresh={refresh}
+					id={deleteId}
+					setDeleteModal={setDeleteModal}
 					setRefresh={setRefresh}
-					deleteModal={setDeleteModal}
 				/>
 			)}
 
@@ -81,7 +82,11 @@ export default function App() {
 						</Stack>
 					</div>
 
-					<EmployeeDataList employees={employeeList} />
+					<EmployeeDataList
+						employees={employeeList}
+						setDeleteId={setDeleteId}
+						setDeleteModal={setDeleteModal}
+					/>
 				</div>
 			</div>
 		</div>

@@ -4,7 +4,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import "./EmployeeList.css";
 
-export default function EmployeeDataList({ employees }) {
+export default function EmployeeDataList({
+	employees,
+	deleteId,
+	setDeleteId,
+	setDeleteModal,
+}) {
 	return (
 		<table className="content-table">
 			<thead>
@@ -44,9 +49,11 @@ export default function EmployeeDataList({ employees }) {
 									size="small"
 									color="error"
 									onClick={() => {
-										deleteEmployeeFromServer(value.id);
-										setRefresh(!refresh);
-										console.log(refresh);
+										setDeleteModal(true);
+										setDeleteId(values.id);
+										// deleteEmployee(value.id);
+										// setRefresh(!refresh);
+										// console.log(refresh);
 									}}
 								>
 									<DeleteIcon />

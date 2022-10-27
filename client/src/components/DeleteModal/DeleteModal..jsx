@@ -4,8 +4,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "@mui/material";
 
 function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
-	function deleteEmployeeFromServer(idValue) {
-		Axios.delete(`${URL}/delete/${idValue}`);
+	function deleteEmployee(idValue) {
+		Axios.delete(`http://localhost:3000/delete/${idValue}`);
 	}
 
 	return (
@@ -37,9 +37,9 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							deleteEmployeeFromServer(id);
-							setDeleteModal(false);
+							deleteEmployee(id);
 							setRefresh(!refresh);
+							setDeleteModal(false);
 						}}
 					>
 						Yes, Delete
