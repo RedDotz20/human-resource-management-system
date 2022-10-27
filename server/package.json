@@ -2,9 +2,9 @@
 	"name": "server",
 	"version": "1.0.0",
 	"description": "",
-	"main": "app.js",
+	"main": "server.js",
 	"scripts": {
-		"server": "nodemon app.js"
+		"server": "nodemon server.js"
 	},
 	"keywords": [],
 	"author": "Carlos Tabangay",
