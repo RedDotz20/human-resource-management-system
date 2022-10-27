@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
-import "./UpdateForm.css";
+import "./UpdateData.css";
 import {
 	Button,
 	TextField,
@@ -12,17 +12,21 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-const PORT = 3000;
-const URL = `http://localhost:${PORT}`;
+function UpdateData({ id, refresh, setRefresh, setUpdateModal }) {
+	// function UppdateEmployeeFromServer(idValue) {
+	// 	Axios.put(`${URL}/update/:id`, {});
+	// }
+	const PORT = 3000;
+	const URL = `http://localhost:${PORT}`;
 
-function UpdateData({ refresh, setRefresh, setOpenModal }) {
 	function UpdateRequest() {
-		Axios.put(`${URL}/insert`, {
+		Axios.put(`${URL}/update`, {
 			firstName: values.firstName,
 			lastName: values.lastName,
 			age: values.age,
 			sex: values.sex,
 			phoneNumber: values.phoneNumber,
+			id: id,
 		});
 	}
 
@@ -44,11 +48,11 @@ function UpdateData({ refresh, setRefresh, setOpenModal }) {
 				<CloseIcon
 					className="titleCloseBtn"
 					onClick={() => {
-						setOpenModal(false);
+						setUpdateModal(false);
 					}}
 				/>
 
-				<h1 className="title">Insert Employee</h1>
+				<h1 className="title">Update Employee</h1>
 
 				<TextField
 					sx={{ my: 1 }}
@@ -101,7 +105,7 @@ function UpdateData({ refresh, setRefresh, setOpenModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							setOpenModal(false);
+							setUpdateModal(false);
 						}}
 					>
 						Cancel
@@ -111,9 +115,9 @@ function UpdateData({ refresh, setRefresh, setOpenModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							SubmitData();
-							setOpenModal(false);
-							setRefresh(() => !refresh);
+							UpdateRequest();
+							setUpdateModal(false);
+							setRefresh(!refresh);
 						}}
 					>
 						Confirm
@@ -124,4 +128,4 @@ function UpdateData({ refresh, setRefresh, setOpenModal }) {
 	);
 }
 
-export default InsertData;
+export default UpdateData;

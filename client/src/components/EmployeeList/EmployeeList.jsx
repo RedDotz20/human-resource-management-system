@@ -6,9 +6,12 @@ import "./EmployeeList.css";
 
 export default function EmployeeDataList({
 	employees,
-	deleteId,
+	//* Delete Modal
 	setDeleteId,
 	setDeleteModal,
+	//* Update Modal
+	setUpdateId,
+	setUpdateModal,
 }) {
 	return (
 		<table className="content-table">
@@ -35,11 +38,15 @@ export default function EmployeeDataList({
 							<td className="td-center">{values.sex}</td>
 							<td className="td-center">{values.phoneNumber}</td>
 							<td>
-								{/* <Button className="edit-btn" variant="contained" size="small">
-									Edit
-								</Button> */}
-
-								<IconButton>
+								<IconButton
+									className="edit-btn"
+									variant="contained"
+									size="small"
+									onClick={() => {
+										setUpdateModal(true);
+										setUpdateId(values.id);
+									}}
+								>
 									<EditIcon />
 								</IconButton>
 
@@ -51,27 +58,10 @@ export default function EmployeeDataList({
 									onClick={() => {
 										setDeleteModal(true);
 										setDeleteId(values.id);
-										// deleteEmployee(value.id);
-										// setRefresh(!refresh);
-										// console.log(refresh);
 									}}
 								>
 									<DeleteIcon />
 								</IconButton>
-
-								{/* <Button
-									className="delete-btn"
-									variant="contained"
-									size="small"
-									color="error"
-									onClick={() => {
-										deleteEmployeeFromServer(value.id);
-										setRefresh(!refresh);
-										console.log(refresh);
-									}}
-								>
-									Delete
-								</Button> */}
 							</td>
 						</tr>
 					);

@@ -4,13 +4,13 @@ import Axios from "axios";
 import Add from "@mui/icons-material/Add";
 import SearchBar from "./components/SearchBar/SearchBar";
 import InsertData from "./components/InsertForm/InsertData";
+import UpdateData from "./components/UpdateForm/UpdateData";
 import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
 
 export default function App() {
 	const [refresh, setRefresh] = useState(false);
-	console.log(refresh);
 	const [employeeList, setEmployeeList] = useState([]);
 	const PORT = 3000;
 	const URL = `http://localhost:${PORT}`;
@@ -26,24 +26,14 @@ export default function App() {
 		fetchData();
 	}
 
-	//* Delete Employee from Database
-	function deleteEmployeeFromServer(idValue) {
-		Axios.delete(`${URL}/delete/${idValue}`);
-	}
-
-	//TODO--- Update Employee from Database ---
-	function UppdateEmployeeFromServer(idValue) {
-		Axios.put(`${URL}/update/:id`, {});
-	}
-	//TODO--- Update Employee from Database ---
-
 	//* Open/Close Modal onChange event
-	// const [modalOpen, setModalOpen] = useState(false);
 	const [insertModal, setInsertModal] = useState(false);
 	const [deleteModal, setDeleteModal] = useState(false);
+	const [updateModal, setUpdateModal] = useState(false);
 
 	//* Temporary State
 	const [deleteId, setDeleteId] = useState(0);
+	const [updateId, setUpdateId] = useState(0);
 
 	return (
 		<div className="App">
@@ -59,6 +49,14 @@ export default function App() {
 				<DeleteModal
 					id={deleteId}
 					setDeleteModal={setDeleteModal}
+					setRefresh={setRefresh}
+				/>
+			)}
+
+			{updateModal && (
+				<UpdateData
+					id={updateId}
+					setUpdateModal={setUpdateModal}
 					setRefresh={setRefresh}
 				/>
 			)}
@@ -86,6 +84,8 @@ export default function App() {
 						employees={employeeList}
 						setDeleteId={setDeleteId}
 						setDeleteModal={setDeleteModal}
+						setUpdateId={setUpdateId}
+						setUpdateModal={setUpdateModal}
 					/>
 				</div>
 			</div>
