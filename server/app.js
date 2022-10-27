@@ -1,9 +1,11 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const app = express();
-const mysql = require("mysql2");
-const con = require("./dbConnection");
+const { notFound, errorHandler } = require("./middleware/index"),
+	con = require("./database/connection"),
+	bodyParser = require("body-parser"),
+	express = require("express"),
+	mysql = require("mysql2"),
+	cors = require("cors"),
+	app = express();
+
 require("dotenv").config();
 const PORT = process.env.PORT;
 
@@ -11,58 +13,13 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/showemployees", (req, res) => {
-	con.query("SELECT * FROM employees", (err, rows) => {
-		if (err) throw err;
-		console.log("Data loaded Successfully");
-		res.send(rows);
-	});
-});
+app.use(require("./routes/read")); //? Show Employees
+app.use(require("./routes/insert")); //? Insert Employee
+app.use(require("./routes/update")); //? Update Employee
+app.use(require("./routes/delete")); //? Delete Employee
 
-app.post("/insert", (req, res) => {
-	const data = [
-		req.body.firstName,
-		req.body.lastName,
-		req.body.age,
-		req.body.sex,
-		req.body.phoneNumber,
-	];
-
-	const sql =
-		"INSERT INTO employees(firstName,lastName,age,sex,phoneNumber) VALUES(?,?,?,?,?)";
-	con.query(sql, [...data], (error) => {
-		if (error) throw error;
-		console.log("Inserted Successfully");
-		res.send("Inserted Successfully");
-	});
-});
-
-app.delete("/delete/:id", (req, res) => {
-	const sql = "DELETE FROM employees WHERE id=?";
-	con.query(sql, req.params.id, (error) => {
-		if (error) throw error;
-		console.log("Data Deleted Successfully");
-		res.send("Data Deleted Successfully");
-	});
-});
-
-app.put("/update", (req, res) => {
-	const data = [
-		req.body.firstName,
-		req.body.lastName,
-		req.body.age,
-		req.body.sex,
-		req.body.phoneNumber,
-		req.body.id,
-	];
-	const sql =
-		"UPDATE employees SET firstName=?,lastName=?,age=?,sex=?,phoneNumber=? WHERE id=?";
-	con.query(sql, [...data], (error) => {
-		if (error) throw error;
-		console.log("Data Updated Successfully");
-		res.send("Data Updated Successfully");
-	});
-});
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
 	console.log(`Runniing on http://localhost:${PORT}`);
