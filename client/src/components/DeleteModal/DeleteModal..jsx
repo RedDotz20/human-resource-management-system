@@ -12,9 +12,9 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 
 	return (
 		<div className="deleteModalBg">
-			<div className="deleteIconCon">
+			{/* <div className="deleteIconCon">
 				<DeleteForeverIcon className="deleteIcon" />
-			</div>
+			</div> */}
 			<div className="deleteModalCon">
 				<CloseIcon
 					className="titleCloseBtn"
@@ -46,7 +46,9 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 						color="error"
 						onClick={() => {
 							deleteEmployee(id);
-							setRefresh(!refresh);
+							setRefresh((prev) => {
+								!prev;
+							});
 							setDeleteModal(false);
 						}}
 					>

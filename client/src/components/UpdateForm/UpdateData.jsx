@@ -117,7 +117,9 @@ function UpdateData({ id, refresh, setRefresh, setUpdateModal }) {
 						onClick={() => {
 							UpdateRequest();
 							setUpdateModal(false);
-							setRefresh(!refresh);
+							setRefresh((prev) => {
+								!prev;
+							});
 						}}
 					>
 						Confirm

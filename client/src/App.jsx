@@ -12,6 +12,11 @@ import "./styles/App.css";
 export default function App() {
 	const [refresh, setRefresh] = useState(false);
 	const [employeeList, setEmployeeList] = useState([]);
+
+	const refreshState = () => {
+		setRefresh((current) => !current);
+	};
+
 	const PORT = 3000;
 	const URL = `http://localhost:${PORT}`;
 
