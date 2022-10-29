@@ -8,6 +8,7 @@ import UpdateData from "./components/UpdateForm/UpdateData";
 import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
+import axios from "axios";
 
 export default function App() {
 	const [refresh, setRefresh] = useState(false);
@@ -40,6 +41,17 @@ export default function App() {
 	const [deleteId, setDeleteId] = useState(0);
 	const [updateId, setUpdateId] = useState(0);
 
+	//*test
+	// const [queries, setQueries] = useState([]);
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		await Axios.get(`${URL}/searchquery`).then((res) => {
+	// 			setQueries(() => res.data);
+	// 		});
+	// 	}
+	// 	console.log(fetchData());
+	// }, []);
+
 	return (
 		<div className="App">
 			{insertModal && (
@@ -70,7 +82,7 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
-						<SearchBar />
+						{/* <SearchBar /> */}
 						<Stack className="insert-btn" direction="row" spacing={2}>
 							<Button
 								className="openModalBtn"

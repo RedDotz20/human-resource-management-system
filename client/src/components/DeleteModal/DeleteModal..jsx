@@ -7,7 +7,11 @@ import "./DeleteModal.css";
 
 function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 	function deleteEmployee(idValue) {
-		Axios.delete(`http://localhost:3000/delete/${idValue}`);
+		try {
+			Axios.delete(`http://localhost:3000/delete/${idValue}`);
+		} catch (error) {
+			throw error;
+		}
 	}
 
 	return (

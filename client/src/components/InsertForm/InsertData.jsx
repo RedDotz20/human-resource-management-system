@@ -17,13 +17,17 @@ const URL = `http://localhost:${PORT}`;
 
 function InsertData({ refresh, setRefresh, setInsertModal }) {
 	function SubmitData() {
-		Axios.post(`${URL}/insert`, {
-			firstName: values.firstName,
-			lastName: values.lastName,
-			age: values.age,
-			sex: values.sex,
-			phoneNumber: values.phoneNumber,
-		});
+		try {
+			Axios.post(`${URL}/insert`, {
+				firstName: values.firstName,
+				lastName: values.lastName,
+				age: values.age,
+				sex: values.sex,
+				phoneNumber: values.phoneNumber,
+			});
+		} catch (error) {
+			throw error;
+		}
 	}
 
 	const [values, setValues] = useState({

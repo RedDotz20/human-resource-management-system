@@ -13,6 +13,8 @@ app.use(require("./routes/insert")); //? Insert Employee
 app.use(require("./routes/update")); //? Update Employee
 app.use(require("./routes/delete")); //? Delete Employee
 
+app.use(require("./routes/query"));
+
 app.use(notFound);
 app.use(errorHandler);
 

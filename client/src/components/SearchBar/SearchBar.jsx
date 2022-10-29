@@ -1,64 +1,27 @@
-import React, { useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import "./SearchBar.css";
-import {
-	InputAdornment,
-	FormControl,
-	InputLabel,
-	OutlinedInput,
-	IconButton,
-} from "@mui/material";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 
-export default function SearchBar() {
-	const [values, setValues] = useState({
-		amount: "",
-		password: "",
-		weight: "",
-		weightRange: "",
-	});
-
-	const handleChange = (prop) => (event) => {
-		setValues({ ...values, [prop]: event.target.value });
-	};
-
-	const handleClickShowPassword = () => {
-		setValues({
-			...values,
-			showPassword: !values.showPassword,
-		});
-	};
-
-	const handleMouseDownPassword = (event) => {
-		event.preventDefault();
-	};
-
+export default function FreeSolo() {
 	return (
-		<div className="searchbar">
-			<FormControl
-				sx={{ width: { sm: "100%" } }}
-				variant="outlined"
-				size="small"
-			>
-				<InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
-				<OutlinedInput
-					id="outlined-adornment-password"
-					type="text"
-					value={values.password}
-					onChange={handleChange("password")}
-					endAdornment={
-						<InputAdornment position="end">
-							<IconButton
-								onClick={handleClickShowPassword}
-								onMouseDown={handleMouseDownPassword}
-								edge="end"
-							>
-								<SearchIcon />
-							</IconButton>
-						</InputAdornment>
-					}
-					label="Search"
-				/>
-			</FormControl>
-		</div>
+		<Stack sx={{ width: 500 }}>
+			<Autocomplete
+				freeSolo
+				id="free-solo-2-demo"
+				disableClearable
+				// options={top100Films.map((option) => option.title)}
+				renderInput={(params) => (
+					<TextField
+						{...params}
+						label="Search input"
+						InputProps={{
+							...params.InputProps,
+							type: "search",
+						}}
+					/>
+				)}
+			/>
+		</Stack>
 	);
 }
