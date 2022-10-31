@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Stack, Button } from "@mui/material";
 import Axios from "axios";
 import Add from "@mui/icons-material/Add";
-import SearchBar from "./components/SearchBar/SearchBar";
+// import SearchBar from "./components/SearchBar/SearchBar";
 import InsertData from "./components/InsertForm/InsertData";
 import UpdateData from "./components/UpdateForm/UpdateData";
 import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
-import axios from "axios";
 
 export default function App() {
 	const [refresh, setRefresh] = useState(false);
@@ -42,15 +41,14 @@ export default function App() {
 	const [updateId, setUpdateId] = useState(0);
 
 	//*test
-	// const [queries, setQueries] = useState([]);
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		await Axios.get(`${URL}/searchquery`).then((res) => {
-	// 			setQueries(() => res.data);
-	// 		});
-	// 	}
-	// 	console.log(fetchData());
-	// }, []);
+	const [queries, setQueries] = useState([]);
+	function getSearchQueries() {
+		Axios.get(`${URL}/searchquery`).then((res) => {
+			setQueries(() =>
+				res.data.map((val) => `${val.firstName} ${val.LastName}`)
+			);
+		});
+	}
 
 	return (
 		<div className="App">
@@ -61,7 +59,6 @@ export default function App() {
 					setInsertModal={setInsertModal}
 				/>
 			)}
-
 			{deleteModal && (
 				<DeleteModal
 					id={deleteId}
@@ -69,7 +66,6 @@ export default function App() {
 					setRefresh={setRefresh}
 				/>
 			)}
-
 			{updateModal && (
 				<UpdateData
 					id={updateId}
@@ -82,6 +78,7 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
+						<button onClick={getSearchQueries}>GET QUERIES TEST</button>
 						{/* <SearchBar /> */}
 						<Stack className="insert-btn" direction="row" spacing={2}>
 							<Button

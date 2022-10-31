@@ -3,12 +3,12 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function FreeSolo() {
+export default function SearchBar() {
 	return (
 		<Stack sx={{ width: 500 }}>
 			<Autocomplete
 				freeSolo
-				id="free-solo-2-demo"
+				id="searchbar"
 				disableClearable
 				// options={top100Films.map((option) => option.title)}
 				renderInput={(params) => (
