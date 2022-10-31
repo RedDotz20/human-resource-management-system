@@ -12,7 +12,7 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-function UpdateData({ id, refresh, setRefresh, setUpdateModal }) {
+function UpdateData({ id, refreshState, setUpdateModal }) {
 	const [values, setValues] = useState({
 		firstName: "",
 		lastName: "",
@@ -99,11 +99,8 @@ function UpdateData({ id, refresh, setRefresh, setUpdateModal }) {
 						size="small"
 						onClick={() => {
 							UpdateQuery(values, id);
-							// UpdateRequest();
+							refreshState();
 							setUpdateModal(false);
-							setRefresh((prev) => {
-								!prev;
-							});
 						}}
 					>
 						Confirm

@@ -5,7 +5,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Button } from "@mui/material";
 import "./DeleteModal.css";
 
-function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
+function DeleteModal({ id, refreshState, setDeleteModal }) {
 	return (
 		<div className="deleteModalBg">
 			{/* <div className="deleteIconCon">
@@ -42,10 +42,8 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 						color="error"
 						onClick={() => {
 							DeleteQuery(id);
-							// setRefresh((prev) => {
-							// 	!prev;
-							// });
-							setRefresh(!refresh);
+							refreshState();
+							// setRefresh(!refresh);
 							setDeleteModal(false);
 						}}
 					>

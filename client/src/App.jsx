@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { ReadQuery, InsertQuery, UpdateQuery, DeleteQuery } from "./data/Data";
 import { Stack, Button } from "@mui/material";
 import Axios from "axios";
 import Add from "@mui/icons-material/Add";
@@ -9,23 +10,18 @@ import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
 
-import { ReadQuery } from "./data/Data";
+import getSearchQueries from "./data/SearchQuery";
 
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]);
 	const [refresh, setRefresh] = useState(false);
-	// const toggleRefresh = useCallback(() => setRefresh(!refresh));
-	// const refreshState = () => {
-	// 	setRefresh((current) => !current);
-	// };
-	console.log("the type is " + typeof refresh, refresh);
 
-	const PORT = 3000;
-	const URL = `http://localhost:${PORT}`;
+	const refreshState = () => {
+		setRefresh((current) => !current);
+	};
 
 	useEffect(() => {
 		ReadQuery(setEmployeeList);
-		// loadDataTable();
 	}, [refresh]);
 
 	//* Open/Close Modal onChange event
@@ -40,38 +36,32 @@ export default function App() {
 	//*test
 	const [queries, setQueries] = useState([]);
 
-	function getSearchQueries() {
-		Axios.get(`${URL}/searchquery`).then((res) => {
-			setQueries(() =>
-				res.data.map((val) => `${val.firstName} ${val.LastName}`)
-			);
-		});
-		console.log(queries);
-	}
-
-	useEffect(getSearchQueries, []);
+	// useEffect(() => {
+	// 	getSearchQueries(setQueries);
+	// }, []);
 
 	return (
 		<div className="App">
 			{insertModal && (
 				<InsertData
-					refresh={refresh}
-					setRefresh={setRefresh}
+					refreshState={refreshState}
 					setInsertModal={setInsertModal}
 				/>
 			)}
+
 			{deleteModal && (
 				<DeleteModal
 					id={deleteId}
+					refreshState={refreshState}
 					setDeleteModal={setDeleteModal}
-					setRefresh={setRefresh}
 				/>
 			)}
+
 			{updateModal && (
 				<UpdateData
 					id={updateId}
+					refreshState={refreshState}
 					setUpdateModal={setUpdateModal}
-					setRefresh={setRefresh}
 				/>
 			)}
 
@@ -79,7 +69,15 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
-						<button onClick={() => getSearchQueries()}>GET QUERIES TEST</button>
+						<button
+							onClick={() => {
+								getSearchQueries(setQueries);
+								console.log(queries);
+							}}
+						>
+							GET QUERIES TEST
+						</button>
+
 						{/* <SearchBar /> */}
 						<Stack className="insert-btn" direction="row" spacing={2}>
 							<Button

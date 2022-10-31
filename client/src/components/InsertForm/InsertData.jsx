@@ -12,7 +12,7 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-function InsertData({ refresh, setRefresh, setInsertModal }) {
+function InsertData({ refreshState, setInsertModal }) {
 	const [values, setValues] = useState({
 		firstName: "",
 		lastName: "",
@@ -97,11 +97,10 @@ function InsertData({ refresh, setRefresh, setInsertModal }) {
 						className="confirm-btn"
 						variant="contained"
 						size="small"
+						color="success"
 						onClick={() => {
 							InsertQuery(values);
-							setRefresh((prev) => {
-								!prev;
-							});
+							refreshState();
 							setInsertModal(false);
 						}}
 					>
