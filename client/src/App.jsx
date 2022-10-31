@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Stack, Button } from "@mui/material";
 import Axios from "axios";
 import Add from "@mui/icons-material/Add";
@@ -9,27 +9,24 @@ import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
 
-export default function App() {
-	const [refresh, setRefresh] = useState(false);
-	const [employeeList, setEmployeeList] = useState([]);
+import { ReadQuery } from "./data/Data";
 
-	const refreshState = () => {
-		setRefresh((current) => !current);
-	};
+export default function App() {
+	const [employeeList, setEmployeeList] = useState([]);
+	const [refresh, setRefresh] = useState(false);
+	// const toggleRefresh = useCallback(() => setRefresh(!refresh));
+	// const refreshState = () => {
+	// 	setRefresh((current) => !current);
+	// };
+	console.log("the type is " + typeof refresh, refresh);
 
 	const PORT = 3000;
 	const URL = `http://localhost:${PORT}`;
 
-	useEffect(loadDataTable, [refresh]);
-
-	function loadDataTable() {
-		async function fetchData() {
-			await Axios.get(`${URL}/showemployees`).then((res) => {
-				setEmployeeList(() => res.data);
-			});
-		}
-		fetchData();
-	}
+	useEffect(() => {
+		ReadQuery(setEmployeeList);
+		// loadDataTable();
+	}, [refresh]);
 
 	//* Open/Close Modal onChange event
 	const [insertModal, setInsertModal] = useState(false);
@@ -42,13 +39,17 @@ export default function App() {
 
 	//*test
 	const [queries, setQueries] = useState([]);
+
 	function getSearchQueries() {
 		Axios.get(`${URL}/searchquery`).then((res) => {
 			setQueries(() =>
 				res.data.map((val) => `${val.firstName} ${val.LastName}`)
 			);
 		});
+		console.log(queries);
 	}
+
+	useEffect(getSearchQueries, []);
 
 	return (
 		<div className="App">
@@ -78,7 +79,7 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
-						<button onClick={getSearchQueries}>GET QUERIES TEST</button>
+						<button onClick={() => getSearchQueries()}>GET QUERIES TEST</button>
 						{/* <SearchBar /> */}
 						<Stack className="insert-btn" direction="row" spacing={2}>
 							<Button

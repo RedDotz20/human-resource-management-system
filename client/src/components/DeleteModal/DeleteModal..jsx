@@ -1,19 +1,11 @@
 import React from "react";
-import Axios from "axios";
+import { DeleteQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Button } from "@mui/material";
 import "./DeleteModal.css";
 
 function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
-	function deleteEmployee(idValue) {
-		try {
-			Axios.delete(`http://localhost:3000/delete/${idValue}`);
-		} catch (error) {
-			throw error;
-		}
-	}
-
 	return (
 		<div className="deleteModalBg">
 			{/* <div className="deleteIconCon">
@@ -49,10 +41,11 @@ function DeleteModal({ id, refresh, setRefresh, setDeleteModal }) {
 						size="small"
 						color="error"
 						onClick={() => {
-							deleteEmployee(id);
-							setRefresh((prev) => {
-								!prev;
-							});
+							DeleteQuery(id);
+							// setRefresh((prev) => {
+							// 	!prev;
+							// });
+							setRefresh(!refresh);
 							setDeleteModal(false);
 						}}
 					>

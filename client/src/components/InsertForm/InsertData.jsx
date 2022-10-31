@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import "./InsertData.css";
 import {
@@ -12,24 +12,7 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-const PORT = 3000;
-const URL = `http://localhost:${PORT}`;
-
 function InsertData({ refresh, setRefresh, setInsertModal }) {
-	function SubmitData() {
-		try {
-			Axios.post(`${URL}/insert`, {
-				firstName: values.firstName,
-				lastName: values.lastName,
-				age: values.age,
-				sex: values.sex,
-				phoneNumber: values.phoneNumber,
-			});
-		} catch (error) {
-			throw error;
-		}
-	}
-
 	const [values, setValues] = useState({
 		firstName: "",
 		lastName: "",
@@ -115,7 +98,7 @@ function InsertData({ refresh, setRefresh, setInsertModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							SubmitData();
+							InsertQuery(values);
 							setRefresh((prev) => {
 								!prev;
 							});

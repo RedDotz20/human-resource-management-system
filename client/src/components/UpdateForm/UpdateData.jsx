@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import { UpdateQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import "./UpdateData.css";
 import {
@@ -13,23 +13,6 @@ import {
 } from "@mui/material";
 
 function UpdateData({ id, refresh, setRefresh, setUpdateModal }) {
-	// function UppdateEmployeeFromServer(idValue) {
-	// 	Axios.put(`${URL}/update/:id`, {});
-	// }
-	const PORT = 3000;
-	const URL = `http://localhost:${PORT}`;
-
-	function UpdateRequest() {
-		Axios.put(`${URL}/update`, {
-			firstName: values.firstName,
-			lastName: values.lastName,
-			age: values.age,
-			sex: values.sex,
-			phoneNumber: values.phoneNumber,
-			id: id,
-		});
-	}
-
 	const [values, setValues] = useState({
 		firstName: "",
 		lastName: "",
@@ -115,7 +98,8 @@ function UpdateData({ id, refresh, setRefresh, setUpdateModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							UpdateRequest();
+							UpdateQuery(values, id);
+							// UpdateRequest();
 							setUpdateModal(false);
 							setRefresh((prev) => {
 								!prev;
