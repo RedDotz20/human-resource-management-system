@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -28,44 +28,52 @@ export default function EmployeeDataList({
 			</thead>
 
 			<tbody>
-				{employees.map((values) => {
-					return (
-						<tr key={values.id}>
-							<td>{values.id}</td>
-							<td>{values.firstName}</td>
-							<td>{values.lastName}</td>
-							<td className="td-center">{values.age}</td>
-							<td className="td-center">{values.sex}</td>
-							<td className="td-center">{values.phoneNumber}</td>
-							<td>
-								<IconButton
-									className="edit-btn"
-									variant="contained"
-									size="small"
-									onClick={() => {
-										setUpdateModal(true);
-										setUpdateId(values.id);
-									}}
-								>
-									<EditIcon />
-								</IconButton>
+				{employees.length <= 0 ? (
+					<tr>
+						<td colSpan={"7"} className="td-center empty">
+							EMPTY TABLE
+						</td>
+					</tr>
+				) : (
+					employees.map((values) => {
+						return (
+							<tr key={values.id}>
+								<td>{values.id}</td>
+								<td>{values.firstName}</td>
+								<td>{values.lastName}</td>
+								<td className="td-center">{values.age}</td>
+								<td className="td-center">{values.sex}</td>
+								<td className="td-center">{values.phoneNumber}</td>
+								<td>
+									<IconButton
+										className="edit-btn"
+										variant="contained"
+										size="small"
+										onClick={() => {
+											setUpdateModal(true);
+											setUpdateId(values.id);
+										}}
+									>
+										<EditIcon />
+									</IconButton>
 
-								<IconButton
-									className="delete-btn"
-									variant="contained"
-									size="small"
-									color="error"
-									onClick={() => {
-										setDeleteModal(true);
-										setDeleteId(values.id);
-									}}
-								>
-									<DeleteIcon />
-								</IconButton>
-							</td>
-						</tr>
-					);
-				})}
+									<IconButton
+										className="delete-btn"
+										variant="contained"
+										size="small"
+										color="error"
+										onClick={() => {
+											setDeleteModal(true);
+											setDeleteId(values.id);
+										}}
+									>
+										<DeleteIcon />
+									</IconButton>
+								</td>
+							</tr>
+						);
+					})
+				)}
 			</tbody>
 		</table>
 	);
