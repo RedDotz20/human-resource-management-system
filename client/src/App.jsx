@@ -60,6 +60,7 @@ export default function App() {
 			{updateModal && (
 				<UpdateData
 					id={updateId}
+					employeeList={employeeList}
 					refreshState={refreshState}
 					setUpdateModal={setUpdateModal}
 				/>
@@ -76,6 +77,20 @@ export default function App() {
 							}}
 						>
 							GET QUERIES TEST
+						</button>
+
+						<button
+							onClick={() => {
+								const info = employeeList
+									.map((values) => values.id)
+									.indexOf(124);
+
+								console.log(
+									employeeList.map((values) => values.firstName)[info]
+								);
+							}}
+						>
+							TEST ARRAY
 						</button>
 
 						{/* <SearchBar /> */}

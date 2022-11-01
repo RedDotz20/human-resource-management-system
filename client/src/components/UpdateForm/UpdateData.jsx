@@ -12,14 +12,15 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-function UpdateData({ id, refreshState, setUpdateModal }) {
-	const [values, setValues] = useState({
-		firstName: "",
-		lastName: "",
-		age: 0,
-		sex: "",
-		phoneNumber: 0,
-	});
+function UpdateData({ id, employeeList, refreshState, setUpdateModal }) {
+	const indexId = employeeList.map((values) => values.id).indexOf(id),
+		[values, setValues] = useState({
+			firstName: employeeList[indexId].firstName,
+			lastName: employeeList[indexId].lastName,
+			age: employeeList[indexId].age,
+			sex: employeeList[indexId].sex,
+			phoneNumber: employeeList[indexId].phoneNumber,
+		});
 
 	const handleChange = (props) => (event) => {
 		setValues({ ...values, [props]: event.target.value });
@@ -43,6 +44,7 @@ function UpdateData({ id, refreshState, setUpdateModal }) {
 					variant="outlined"
 					size="small"
 					name="firstName"
+					defaultValue={employeeList[indexId].firstName}
 					onChange={handleChange("firstName")}
 				/>
 
@@ -52,6 +54,7 @@ function UpdateData({ id, refreshState, setUpdateModal }) {
 					name="lastName"
 					variant="outlined"
 					size="small"
+					defaultValue={employeeList[indexId].lastName}
 					onChange={handleChange("lastName")}
 				/>
 
@@ -62,12 +65,18 @@ function UpdateData({ id, refreshState, setUpdateModal }) {
 					name="age"
 					type="number"
 					size="small"
+					defaultValue={employeeList[indexId].age}
 					onChange={handleChange("age")}
 				/>
 
 				<FormControl sx={{ my: 1 }}>
 					<FormLabel>Sex</FormLabel>
-					<RadioGroup row name="sex" onChange={handleChange("sex")}>
+					<RadioGroup
+						row
+						name="sex"
+						defaultValue={employeeList[indexId].sex}
+						onChange={handleChange("sex")}
+					>
 						<FormControlLabel label="Male" value="M" control={<Radio />} />
 						<FormControlLabel label="Female" value="F" control={<Radio />} />
 					</RadioGroup>
@@ -79,6 +88,7 @@ function UpdateData({ id, refreshState, setUpdateModal }) {
 					variant="outlined"
 					name="phoneNumber"
 					size="small"
+					defaultValue={employeeList[indexId].phoneNumber}
 					onChange={handleChange("phoneNumber")}
 				/>
 
