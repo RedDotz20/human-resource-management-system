@@ -1,3 +1,4 @@
+import { formatPascalCase } from "../utilities/formatString";
 import Axios from "axios";
 const PORT = 3000;
 
@@ -16,8 +17,8 @@ export function ReadQuery(setEmployeeList) {
 //* Create/Insert Query Function
 export function InsertQuery(values) {
 	Axios.post(`http://localhost:${PORT}/insert`, {
-		firstName: values.firstName,
-		lastName: values.lastName,
+		firstName: formatPascalCase(values.firstName),
+		lastName: formatPascalCase(values.lastName),
 		age: values.age,
 		sex: values.sex,
 		phoneNumber: values.phoneNumber,
