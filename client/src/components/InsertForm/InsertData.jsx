@@ -62,6 +62,7 @@ function InsertData({ refreshState, setInsertModal }) {
 					name="age"
 					type="number"
 					size="small"
+					InputProps={{ inputProps: { min: 1, max: 99 } }}
 					onChange={handleChange("age")}
 				/>
 
