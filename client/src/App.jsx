@@ -1,28 +1,31 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { ReadQuery, InsertQuery, UpdateQuery, DeleteQuery } from "./data/Data";
-import { Stack, Button } from "@mui/material";
-import Axios from "axios";
-import Add from "@mui/icons-material/Add";
+import React, { useEffect, useState } from "react";
+import { ReadQuery } from "./data/Data";
 // import SearchBar from "./components/SearchBar/SearchBar";
+import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import InsertData from "./components/InsertForm/InsertData";
 import UpdateData from "./components/UpdateForm/UpdateData";
 import DeleteModal from "./components/DeleteModal/DeleteModal.";
-import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import "./styles/App.css";
 
+import { sortTable } from "./data/Sort";
+import { InsertBtn } from "./components/Button/InsertBtn";
+import { SortBtn } from "./components/Button/SortSelect";
 import getSearchQueries from "./data/SearchQuery";
 
 export default function App() {
-	const [employeeList, setEmployeeList] = useState([]);
-	const [refresh, setRefresh] = useState(false);
+	const [employeeList, setEmployeeList] = useState([]),
+		[sortOptions, setSortOptions] = useState(""),
+		[refresh, setRefresh] = useState(false);
 
 	const refreshState = () => {
 		setRefresh((current) => !current);
 	};
 
 	useEffect(() => {
-		ReadQuery(setEmployeeList);
-	}, [refresh]);
+		sortOptions === ""
+			? ReadQuery(setEmployeeList)
+			: sortTable(sortOptions, setEmployeeList);
+	}, [refresh, sortOptions]);
 
 	//* Open/Close Modal onChange event
 	const [insertModal, setInsertModal] = useState(false);
@@ -70,16 +73,18 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
-						<button
+						<SortBtn setSortOptions={setSortOptions} />
+
+						{/* <button
 							onClick={() => {
 								getSearchQueries(setQueries);
 								console.log(queries);
 							}}
 						>
 							GET QUERIES TEST
-						</button>
+						</button> */}
 
-						<button
+						{/* <button
 							onClick={() => {
 								const info = employeeList
 									.map((values) => values.id)
@@ -91,21 +96,10 @@ export default function App() {
 							}}
 						>
 							TEST ARRAY
-						</button>
+						</button> */}
 
 						{/* <SearchBar /> */}
-						<Stack className="insert-btn" direction="row" spacing={2}>
-							<Button
-								className="openModalBtn"
-								variant="contained"
-								startIcon={<Add />}
-								onClick={() => {
-									setInsertModal(true);
-								}}
-							>
-								Insert
-							</Button>
-						</Stack>
+						<InsertBtn setInsertModal={setInsertModal} />
 					</div>
 
 					<EmployeeDataList
