@@ -38,6 +38,7 @@ function InsertData({ refreshState, setInsertModal }) {
 				<h1 className="title">Insert Employee</h1>
 
 				<TextField
+					autoFocus
 					sx={{ my: 1 }}
 					label="First Name"
 					variant="outlined"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ReadQuery } from "./data/Data";
-// import SearchBar from "./components/SearchBar/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import InsertData from "./components/InsertForm/InsertData";
 import UpdateData from "./components/UpdateForm/UpdateData";
@@ -9,8 +9,8 @@ import "./styles/App.css";
 
 import { sortTable } from "./data/Sort";
 import { InsertBtn } from "./components/Button/InsertBtn";
-import { SortBtn } from "./components/Button/SortSelect";
 import getSearchQueries from "./data/SearchQuery";
+import SortMenuBtn from "./components/Button/SortMenu";
 
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]),
@@ -37,8 +37,7 @@ export default function App() {
 	const [updateId, setUpdateId] = useState(0);
 
 	//*test
-	const [queries, setQueries] = useState([]);
-
+	// const [queries, setQueries] = useState([]);
 	// useEffect(() => {
 	// 	getSearchQueries(setQueries);
 	// }, []);
@@ -73,7 +72,9 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
-						<SortBtn setSortOptions={setSortOptions} />
+						{/* <SortBtn setSortOptions={setSortOptions} /> */}
+
+						<SortMenuBtn setSortOptions={setSortOptions} />
 
 						{/* <button
 							onClick={() => {
