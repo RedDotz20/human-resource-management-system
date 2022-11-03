@@ -3,22 +3,21 @@
 	margin: 2rem auto;
 	font-size: 1em;
 	min-width: 780px;
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
 }
 
 .content-table thead tr {
 	background-color: #089879;
 	color: #fff;
-	text-align: left;
-	font-weight: bold;
+	font-weight: 700;
+	text-align: center;
 }
 
-.content-table th,
-.content-table td {
+.content-table td,
+.content-table th {
 	padding: 0.25rem 1rem;
 }
 
-.content-table thead tr,
 .td-center {
 	text-align: center;
 }

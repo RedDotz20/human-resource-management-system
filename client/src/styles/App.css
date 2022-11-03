@@ -1,5 +1,5 @@
 .App-container {
-	background-color: whitesmoke;
+	background-color: #f5f5f5;
 	padding: 2rem 4rem;
 	margin: 0 auto;
 	border-radius: 20px;
@@ -11,7 +11,7 @@
 	font-size: 2rem;
 	padding: 2rem;
 	font-weight: 600;
-	color: white;
+	color: #fff;
 	text-align: center;
 }
 

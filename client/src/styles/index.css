@@ -1,6 +1,6 @@
 *,
-*::before,
-*::after {
+::after,
+::before {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -16,6 +16,7 @@
 	text-rendering: optimizeLegibility;
 }
 
+body,
 html {
 	height: 100%;
 	width: 100%;
@@ -24,10 +25,6 @@ html {
 }
 
 body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background: linear-gradient(145deg, #0093e9 18%, #80d0c7 80%);

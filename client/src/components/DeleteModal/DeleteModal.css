@@ -14,8 +14,8 @@
 	width: 420px;
 	height: 200px;
 	border-radius: 12px;
-	background-color: white;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 	display: flex;
 	flex-direction: column;
 	padding: 1.75rem;
@@ -30,13 +30,6 @@
 	text-align: center;
 	margin: auto 0;
 }
-
-/* .deleteIconCon {
-	position: absolute;
-	top: 0;
-	right: 50%;
-	transform: translateX(50%);
-} */
 
 .titleCloseBtn {
 	position: absolute;
@@ -63,8 +56,8 @@ footer {
 footer button {
 	width: 49%;
 	height: 35px;
-	border: none;
-	color: white;
+	border: 0;
+	color: #fff;
 	border-radius: 8px;
 	font-size: 1.5rem;
 	cursor: pointer;
