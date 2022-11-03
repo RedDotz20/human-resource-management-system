@@ -3,7 +3,7 @@ import Axios from "axios";
 const PORT = 3000;
 
 //* Read/Select Table Query Function
-export function ReadQuery(setEmployeeList) {
+export default function ReadQuery(setEmployeeList) {
 	async function fetchData() {
 		await Axios.get(`http://localhost:${PORT}/showemployees`)
 			.then((response) => {

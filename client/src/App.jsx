@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ReadQuery } from "./data/Data";
+import ReadQuery from "./data/Data";
 import SearchBar from "./components/SearchBar/SearchBar";
+import SortMenuBtn from "./components/Button/SortMenu";
+
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import InsertData from "./components/InsertForm/InsertData";
 import UpdateData from "./components/UpdateForm/UpdateData";
@@ -9,23 +11,23 @@ import "./styles/App.css";
 
 import { sortTable } from "./data/Sort";
 import { InsertBtn } from "./components/Button/InsertBtn";
-import getSearchQueries from "./data/SearchQuery";
-import SortMenuBtn from "./components/Button/SortMenu";
+import fetchQuery from "./data/SearchQuery";
 
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]),
 		[sortOptions, setSortOptions] = useState(""),
+		[searchQuery, setSearchQuery] = useState(null),
 		[refresh, setRefresh] = useState(false);
 
-	const refreshState = () => {
-		setRefresh((current) => !current);
-	};
+	const refreshState = () => setRefresh((current) => !current);
 
 	useEffect(() => {
-		sortOptions === ""
-			? ReadQuery(setEmployeeList)
-			: sortTable(sortOptions, setEmployeeList);
-	}, [refresh, sortOptions]);
+		if (searchQuery !== null) {
+			fetchQuery(searchQuery, setEmployeeList);
+		} else if (sortOptions !== "") {
+			sortTable(sortOptions, setEmployeeList);
+		} else ReadQuery(setEmployeeList);
+	}, [refresh, sortOptions, searchQuery]);
 
 	//* Open/Close Modal onChange event
 	const [insertModal, setInsertModal] = useState(false);
@@ -35,12 +37,6 @@ export default function App() {
 	//* Temporary State
 	const [deleteId, setDeleteId] = useState(0);
 	const [updateId, setUpdateId] = useState(0);
-
-	//*test
-	// const [queries, setQueries] = useState([]);
-	// useEffect(() => {
-	// 	getSearchQueries(setQueries);
-	// }, []);
 
 	return (
 		<div className="App">
@@ -72,34 +68,11 @@ export default function App() {
 			<div className="App-container">
 				<div className="form">
 					<div className="search-insert">
-						{/* <SortBtn setSortOptions={setSortOptions} /> */}
-
 						<SortMenuBtn setSortOptions={setSortOptions} />
-
-						{/* <button
-							onClick={() => {
-								getSearchQueries(setQueries);
-								console.log(queries);
-							}}
-						>
-							GET QUERIES TEST
-						</button> */}
-
-						{/* <button
-							onClick={() => {
-								const info = employeeList
-									.map((values) => values.id)
-									.indexOf(124);
-
-								console.log(
-									employeeList.map((values) => values.firstName)[info]
-								);
-							}}
-						>
-							TEST ARRAY
-						</button> */}
-
-						{/* <SearchBar /> */}
+						<SearchBar
+							employeeList={employeeList}
+							setSearchQuery={setSearchQuery}
+						/>
 						<InsertBtn setInsertModal={setInsertModal} />
 					</div>
 
