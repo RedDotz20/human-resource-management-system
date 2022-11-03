@@ -11,8 +11,9 @@ export default function SortMenuBtn({ sortOptions, setSortOptions }) {
 	const handleClick = (e) => setAnchorEl(e.currentTarget);
 
 	const handleClose = (event) => {
+		const sortValue = event.target.getAttribute("value");
+		sortValue !== null ? setSortOptions(sortValue) : null;
 		setAnchorEl(null);
-		setSortOptions(event.target.getAttribute("value"));
 	};
 
 	return (
