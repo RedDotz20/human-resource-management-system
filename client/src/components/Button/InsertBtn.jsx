@@ -1,13 +1,6 @@
 import React from "react";
-import {
-	Stack,
-	Button,
-	InputLabel,
-	MenuItem,
-	FormControl,
-	Select,
-} from "@mui/material";
 import Add from "@mui/icons-material/Add";
+import { Button } from "@mui/material";
 
 export function InsertBtn({ setInsertModal }) {
 	return (

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import SortIcon from "@mui/icons-material/Sort";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { Button, Menu, MenuItem } from "@mui/material";
 
-export default function SortMenuBtn({ sortOptions, setSortOptions }) {
+export default function SortMenuBtn({ setSortOptions }) {
 	const [anchorEl, setAnchorEl] = useState(null),
 		open = Boolean(anchorEl);
 

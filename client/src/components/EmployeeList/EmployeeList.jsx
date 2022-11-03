@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -6,10 +6,8 @@ import "./EmployeeList.css";
 
 export default function EmployeeDataList({
 	employees,
-	//* Delete Modal
 	setDeleteId,
 	setDeleteModal,
-	//* Update Modal
 	setUpdateId,
 	setUpdateModal,
 }) {
@@ -17,7 +15,7 @@ export default function EmployeeDataList({
 		<table className="content-table">
 			<thead>
 				<tr>
-					<td>id</td>
+					<td>ID</td>
 					<td>FIRST NAME</td>
 					<td>LAST NAME</td>
 					<td>AGE</td>

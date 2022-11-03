@@ -1,16 +1,12 @@
 import React from "react";
 import { DeleteQuery } from "../../data/Data";
-import CloseIcon from "@mui/icons-material/Close";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import "./DeleteModal.css";
 
 function DeleteModal({ id, refreshState, setDeleteModal }) {
 	return (
 		<div className="deleteModalBg">
-			{/* <div className="deleteIconCon">
-				<DeleteForeverIcon className="deleteIcon" />
-			</div> */}
 			<div className="deleteModalCon">
 				<CloseIcon
 					className="titleCloseBtn"
