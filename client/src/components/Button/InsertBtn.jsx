@@ -11,19 +11,17 @@ import Add from "@mui/icons-material/Add";
 
 export function InsertBtn({ setInsertModal }) {
 	return (
-		<>
-			<Stack className="insert-btn" direction="row" spacing={2}>
-				<Button
-					className="openModalBtn"
-					variant="contained"
-					startIcon={<Add />}
-					onClick={() => {
-						setInsertModal(true);
-					}}
-				>
-					Insert
-				</Button>
-			</Stack>
-		</>
+		<Button
+			sx={{ width: 150, padding: 1 }}
+			direction="row"
+			className="insert-btn openModalBtn"
+			variant="contained"
+			startIcon={<Add />}
+			onClick={() => {
+				setInsertModal(true);
+			}}
+		>
+			Insert
+		</Button>
 	);
 }

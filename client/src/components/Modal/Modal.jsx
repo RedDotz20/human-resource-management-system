@@ -1,6 +1,5 @@
 import React from "react";
 
-//TODO: REFACTOR MODAL COMPONENT --------------------------
 export default function Modal() {
 	//* Open/Close Modal onChange event
 	const [insertModal, setInsertModal] = useState(false);

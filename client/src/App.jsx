@@ -13,6 +13,8 @@ import { sortTable } from "./data/Sort";
 import { InsertBtn } from "./components/Button/InsertBtn";
 import fetchQuery from "./data/SearchQuery";
 
+import TestComponent from "./__test__/testComponent";
+
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]),
 		[sortOptions, setSortOptions] = useState(""),
@@ -40,6 +42,8 @@ export default function App() {
 
 	return (
 		<div className="App">
+			<TestComponent />
+
 			{insertModal && (
 				<InsertData
 					refreshState={refreshState}

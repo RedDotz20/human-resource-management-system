@@ -14,7 +14,7 @@ export default function SearchBar({ employeeList, setSearchQuery }) {
 	};
 
 	return (
-		<Stack spacing={1} sx={{ width: 300 }}>
+		<Stack spacing={1} sx={{ width: 500 }}>
 			<Autocomplete
 				autoComplete
 				includeInputInList

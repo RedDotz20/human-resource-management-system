@@ -1,6 +1,6 @@
 .App-container {
 	background-color: whitesmoke;
-	padding: 1rem;
+	padding: 2rem 4rem;
 	margin: 0 auto;
 	border-radius: 20px;
 	min-width: 920px;
@@ -18,21 +18,25 @@
 .search-insert {
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 
-.insert-btn,
-.searchbar {
+.search-insert > * {
 	margin: 0 1rem;
 }
 
-.form {
+/* .insert-btn,
+.searchbar {
+	margin: 0 1rem;
+} */
+
+/* .form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin: 1rem auto;
-}
+	margin: 0 auto;
+} */
 
 .form label {
 	font-size: 1.25rem;

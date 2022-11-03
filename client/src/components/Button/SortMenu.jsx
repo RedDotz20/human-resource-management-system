@@ -19,6 +19,7 @@ export default function SortMenuBtn({ sortOptions, setSortOptions }) {
 	return (
 		<>
 			<Button
+				sx={{ width: 150, padding: 1 }}
 				id="basic-button"
 				startIcon={<SortIcon />}
 				variant="contained"

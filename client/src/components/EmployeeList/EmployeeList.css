@@ -1,8 +1,8 @@
 .content-table {
 	border-collapse: collapse;
-	margin: 2rem 0;
+	margin: 2rem auto;
 	font-size: 1em;
-	min-width: 400px;
+	min-width: 780px;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 }
 
