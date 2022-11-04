@@ -1,6 +1,9 @@
 import React from "react";
+import InsertData from "../InsertForm/InsertData";
+import DeleteModal from "../DeleteModal/DeleteModal.";
+import UpdateData from "../UpdateForm/UpdateData";
 
-export default function Modal() {
+export default function Modal(refreshState) {
 	//* Open/Close Modal onChange event
 	const [insertModal, setInsertModal] = useState(false);
 	const [deleteModal, setDeleteModal] = useState(false);
