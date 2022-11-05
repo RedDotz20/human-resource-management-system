@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { UpdateQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import "./UpdateData.css";
@@ -12,8 +12,11 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-function UpdateData({ id, employeeList, refreshState, setUpdateModal }) {
-	const indexId = employeeList.map((values) => values.id).indexOf(id),
+import { GetValueContext } from "../../contexts/Contexts";
+
+function UpdateData({ employeeList, refreshState, setUpdateModal }) {
+	const { updateId } = useContext(GetValueContext),
+		indexId = employeeList.map((values) => values.id).indexOf(updateId),
 		[values, setValues] = useState({
 			firstName: employeeList[indexId].firstName,
 			lastName: employeeList[indexId].lastName,
@@ -108,7 +111,7 @@ function UpdateData({ id, employeeList, refreshState, setUpdateModal }) {
 						variant="contained"
 						size="small"
 						onClick={() => {
-							UpdateQuery(values, id);
+							UpdateQuery(values, updateId);
 							refreshState();
 							setUpdateModal(false);
 						}}

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DeleteQuery } from "../../data/Data";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "./DeleteModal.css";
 
-function DeleteModal({ id, refreshState, setDeleteModal }) {
+import { GetValueContext } from "../../contexts/Contexts";
+
+function DeleteModal({ refreshState, setDeleteModal }) {
+	const { deleteId } = useContext(GetValueContext);
 	return (
 		<div className="deleteModalBg">
 			<div className="deleteModalCon">
@@ -37,9 +40,8 @@ function DeleteModal({ id, refreshState, setDeleteModal }) {
 						size="small"
 						color="error"
 						onClick={() => {
-							DeleteQuery(id);
+							DeleteQuery(deleteId);
 							refreshState();
-							// setRefresh(!refresh);
 							setDeleteModal(false);
 						}}
 					>

@@ -12,6 +12,9 @@ import "./styles/App.css";
 import { sortTable } from "./data/Sort";
 import { InsertBtn } from "./components/Button/InsertBtn";
 import fetchQuery from "./data/SearchQuery";
+// import Modal from "./components/Modal/Modal";
+
+import { GetValueContext } from "./contexts/Contexts";
 
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]),
@@ -34,35 +37,36 @@ export default function App() {
 	const [deleteModal, setDeleteModal] = useState(false);
 	const [updateModal, setUpdateModal] = useState(false);
 
-	//* Temporary State
+	//* ID States
 	const [deleteId, setDeleteId] = useState(0);
 	const [updateId, setUpdateId] = useState(0);
 
 	return (
 		<div className="App">
-			{insertModal && (
-				<InsertData
-					refreshState={refreshState}
-					setInsertModal={setInsertModal}
-				/>
-			)}
+			{/* <Modal refreshState={refreshState} setDeleteId={setDeleteId} /> */}
+			<GetValueContext.Provider value={{ deleteId, updateId }}>
+				{insertModal && (
+					<InsertData
+						refreshState={refreshState}
+						setInsertModal={setInsertModal}
+					/>
+				)}
 
-			{deleteModal && (
-				<DeleteModal
-					id={deleteId}
-					refreshState={refreshState}
-					setDeleteModal={setDeleteModal}
-				/>
-			)}
+				{deleteModal && (
+					<DeleteModal
+						refreshState={refreshState}
+						setDeleteModal={setDeleteModal}
+					/>
+				)}
 
-			{updateModal && (
-				<UpdateData
-					id={updateId}
-					employeeList={employeeList}
-					refreshState={refreshState}
-					setUpdateModal={setUpdateModal}
-				/>
-			)}
+				{updateModal && (
+					<UpdateData
+						employeeList={employeeList}
+						refreshState={refreshState}
+						setUpdateModal={setUpdateModal}
+					/>
+				)}
+			</GetValueContext.Provider>
 
 			<h1 className="header">Human Resource Management System</h1>
 			<div className="App-container">
