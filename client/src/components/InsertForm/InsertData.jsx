@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import "./InsertData.css";
@@ -13,24 +14,25 @@ import {
 } from "@mui/material";
 
 function InsertData({ refreshState, setInsertModal }) {
-	const [values, setValues] = useState({
-		firstName: "",
-		lastName: "",
-		age: 0,
-		sex: "",
-		phoneNumber: 0,
-	});
+	const { register, handleSubmit, errors } = useForm();
 
-	const handleChange = (props) => (event) => {
-		setValues({ ...values, [props]: event.target.value });
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		InsertQuery(values);
+	const onSubmit = (data) => {
+		InsertQuery(data);
 		refreshState();
 		setInsertModal(false);
 	};
+
+	// const [values, setValues] = useState({
+	// 	firstName: null,
+	// 	lastName: null,
+	// 	age: null,
+	// 	sex: null,
+	// 	phoneNumber: null,
+	// });
+
+	// const handleChange = (props) => (event) => {
+	// 	setValues({ ...values, [props]: event.target.value });
+	// };
 
 	// const error = values.firstName === "";
 
@@ -46,53 +48,54 @@ function InsertData({ refreshState, setInsertModal }) {
 
 				<h1 className="title">Insert Employee</h1>
 
-				<form className="insertForm" onSubmit={handleSubmit}>
+				<form className="insertForm" onSubmit={handleSubmit(onSubmit)}>
 					<TextField
+						{...register("firstName", { required: true })}
+						name="firstName"
 						autoFocus
-						required
-						// helperText={error ? "Input is Empty" : "Perfect!"}
-						// error={error}
 						sx={{ my: 1 }}
 						label="First Name"
 						variant="outlined"
 						size="small"
-						name="firstName"
-						onChange={handleChange("firstName")}
+						// onChange={handleChange("firstName")}
 					/>
 
 					<TextField
-						required
+						name="lastName"
+						{...register("lastName", { required: true })}
 						sx={{ my: 1 }}
 						label="Last Name"
-						name="lastName"
 						variant="outlined"
 						size="small"
-						onChange={handleChange("lastName")}
+						// onChange={handleChange("lastName")}
 					/>
 
 					<TextField
-						required
+						name="age"
+						{...register("age", { required: true })}
 						sx={{ my: 1 }}
 						label="Age"
 						variant="outlined"
-						name="age"
 						type="number"
 						size="small"
 						InputProps={{ inputProps: { min: 1, max: 99 } }}
-						onChange={handleChange("age")}
+						// onChange={handleChange("age")}
 					/>
 
 					<FormControl sx={{ my: 1 }}>
 						<FormLabel required>Sex</FormLabel>
-						<RadioGroup row name="sex" onChange={handleChange("sex")}>
+						<RadioGroup
+							name="sex"
+							{...register("sex", { required: true })}
+							row
+							// onChange={handleChange("sex")}
+						>
 							<FormControlLabel
-								required
 								label="Male"
 								value="M"
 								control={<Radio required={true} />}
 							/>
 							<FormControlLabel
-								required
 								label="Female"
 								value="F"
 								control={<Radio required={true} />}
@@ -101,12 +104,13 @@ function InsertData({ refreshState, setInsertModal }) {
 					</FormControl>
 
 					<TextField
+						{...register("phoneNumber", { required: true })}
+						name="phoneNumber"
 						sx={{ my: 1 }}
 						label="Phone Number"
 						variant="outlined"
-						name="phoneNumber"
 						size="small"
-						onChange={handleChange("phoneNumber")}
+						// onChange={handleChange("phoneNumber")}
 					/>
 
 					<footer>
