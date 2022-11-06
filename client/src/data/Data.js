@@ -19,9 +19,9 @@ export function InsertQuery(values) {
 	Axios.post(`http://localhost:${PORT}/insert`, {
 		firstName: formatPascalCase(values.firstName),
 		lastName: formatPascalCase(values.lastName),
-		age: values.age,
+		age: parseInt(values.age),
 		sex: values.sex,
-		phoneNumber: values.phoneNumber,
+		phoneNumber: parseInt(values.phoneNumber),
 	}).catch((error) => console.log(error));
 }
 

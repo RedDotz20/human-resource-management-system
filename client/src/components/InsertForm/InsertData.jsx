@@ -22,19 +22,17 @@ function InsertData({ refreshState, setInsertModal }) {
 		setInsertModal(false);
 	};
 
-	// const [values, setValues] = useState({
-	// 	firstName: null,
-	// 	lastName: null,
-	// 	age: null,
-	// 	sex: null,
-	// 	phoneNumber: null,
-	// });
+	const [values, setValues] = useState({
+		firstName: "",
+		lastName: "",
+		age: "",
+		sex: "",
+		phoneNumber: "",
+	});
 
-	// const handleChange = (props) => (event) => {
-	// 	setValues({ ...values, [props]: event.target.value });
-	// };
-
-	// const error = values.firstName === "";
+	const handleChange = (props) => (event) => {
+		setValues({ ...values, [props]: event.target.value });
+	};
 
 	return (
 		<div className="modalBackground">
@@ -50,36 +48,42 @@ function InsertData({ refreshState, setInsertModal }) {
 
 				<form className="insertForm" onSubmit={handleSubmit(onSubmit)}>
 					<TextField
-						{...register("firstName", { required: true })}
+						required
+						{...register("firstName")}
 						name="firstName"
 						autoFocus
+						autoComplete="off"
 						sx={{ my: 1 }}
 						label="First Name"
 						variant="outlined"
 						size="small"
-						// onChange={handleChange("firstName")}
+						onChange={handleChange("firstName")}
 					/>
 
 					<TextField
+						required
 						name="lastName"
 						{...register("lastName", { required: true })}
 						sx={{ my: 1 }}
 						label="Last Name"
+						autoComplete="off"
 						variant="outlined"
 						size="small"
-						// onChange={handleChange("lastName")}
+						onChange={handleChange("lastName")}
 					/>
 
 					<TextField
+						required
 						name="age"
 						{...register("age", { required: true })}
 						sx={{ my: 1 }}
 						label="Age"
 						variant="outlined"
+						autoComplete="off"
 						type="number"
 						size="small"
 						InputProps={{ inputProps: { min: 1, max: 99 } }}
-						// onChange={handleChange("age")}
+						onChange={handleChange("age")}
 					/>
 
 					<FormControl sx={{ my: 1 }}>
@@ -88,7 +92,7 @@ function InsertData({ refreshState, setInsertModal }) {
 							name="sex"
 							{...register("sex", { required: true })}
 							row
-							// onChange={handleChange("sex")}
+							onChange={handleChange("sex")}
 						>
 							<FormControlLabel
 								label="Male"
@@ -104,13 +108,15 @@ function InsertData({ refreshState, setInsertModal }) {
 					</FormControl>
 
 					<TextField
+						required
 						{...register("phoneNumber", { required: true })}
 						name="phoneNumber"
 						sx={{ my: 1 }}
 						label="Phone Number"
+						autoComplete="off"
 						variant="outlined"
 						size="small"
-						// onChange={handleChange("phoneNumber")}
+						onChange={handleChange("phoneNumber")}
 					/>
 
 					<footer>
@@ -130,6 +136,7 @@ function InsertData({ refreshState, setInsertModal }) {
 							size="small"
 							color="success"
 							type="submit"
+							disabled={Object.values(values).includes("")}
 						>
 							Confirm
 						</Button>
