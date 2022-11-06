@@ -1,3 +1,23 @@
+@keyframes animateBgModal {
+	0% {
+		background-color: transparent;
+	}
+	to {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}
+
+@keyframes animateConModal {
+	0% {
+		scale: 0.8;
+		opacity: 0;
+	}
+	to {
+		scale: 1;
+		opacity: 100%;
+	}
+}
+
 .modalBackground {
 	width: 100vw;
 	height: 100vh;
@@ -7,6 +27,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	animation: animateBgModal 200ms ease-out;
 }
 
 .modalContainer {
@@ -16,9 +37,8 @@
 	border-radius: 12px;
 	background-color: #fff;
 	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-	display: flex;
-	flex-direction: column;
 	padding: 1.75rem;
+	animation: animateConModal 100ms ease-in;
 }
 
 .modalContainer .title {
@@ -26,9 +46,13 @@
 	margin: 0 0 1rem;
 }
 
-.insertForm {
+.insertForm,
+.modalContainer {
 	display: flex;
 	flex-direction: column;
+}
+
+.insertForm {
 	height: 100%;
 }
 
