@@ -26,6 +26,12 @@
 	margin: 0 0 1rem;
 }
 
+.insertForm {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
 .inputField {
 	display: block;
 	margin: 50px;
