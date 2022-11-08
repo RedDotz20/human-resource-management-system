@@ -1,11 +1,9 @@
 import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
 
-export default function Confirm() {
+export default function Confirm({ message }) {
 	return (
-		<>
-			<CloseIcon className="closeBtn" />
-			Confirm
-		</>
+		<div className="confirm-div">
+			<p>{message}</p>
+		</div>
 	);
 }
