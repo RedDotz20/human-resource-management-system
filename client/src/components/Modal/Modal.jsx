@@ -16,13 +16,15 @@ export default function Modal({ refreshState, setDeleteId }) {
 
 	return (
 		<>
+			//TODO: Confirm Message
+			{/* <Confirm message={"Data Successfully Inserted"} /> */}
+			//TODO: Modal Component
 			{/* {insertModal && (
 				<InsertData
 					refreshState={refreshState}
 					setInsertModal={setInsertModal}
 				/>
 			)} */}
-
 			{deleteModal && (
 				<DeleteModal
 					// id={deleteId}
@@ -30,7 +32,6 @@ export default function Modal({ refreshState, setDeleteId }) {
 					setDeleteModal={setDeleteModal}
 				/>
 			)}
-
 			{/* {updateModal && (
 				<UpdateData
 					id={updateId}
