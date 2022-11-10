@@ -47,6 +47,7 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 					variant="outlined"
 					size="small"
 					name="firstName"
+					autoComplete="off"
 					defaultValue={employeeList[indexId].firstName}
 					onChange={handleChange("firstName")}
 				/>
@@ -57,6 +58,7 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 					name="lastName"
 					variant="outlined"
 					size="small"
+					autoComplete="off"
 					defaultValue={employeeList[indexId].lastName}
 					onChange={handleChange("lastName")}
 				/>
@@ -68,6 +70,7 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 					name="age"
 					type="number"
 					size="small"
+					autoComplete="off"
 					defaultValue={employeeList[indexId].age}
 					onChange={handleChange("age")}
 				/>
@@ -91,6 +94,7 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 					variant="outlined"
 					name="phoneNumber"
 					size="small"
+					autoComplete="off"
 					defaultValue={employeeList[indexId].phoneNumber}
 					onChange={handleChange("phoneNumber")}
 				/>

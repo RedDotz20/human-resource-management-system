@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
@@ -14,7 +14,10 @@ import {
 } from "@mui/material";
 
 function InsertData({ refreshState, setInsertModal }) {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit, errors } = useForm(),
+		[fNameError, setfNameError] = useState(null),
+		[lNameError, setLNameError] = useState(null),
+		[phoneNumError, setPhoneNumError] = useState(null);
 
 	const onSubmit = (data) => {
 		InsertQuery(data);
@@ -29,10 +32,36 @@ function InsertData({ refreshState, setInsertModal }) {
 		sex: "",
 		phoneNumber: "",
 	});
+	console.log(...values.keys());
+	console.log(lNameError);
 
 	const handleChange = (props) => (event) => {
 		setValues({ ...values, [props]: event.target.value });
 	};
+
+	useEffect(() => {
+		if (values.firstName.length > 40) {
+			setfNameError("Invalid Input: Characters must not exceed up to 40");
+		} else {
+			setfNameError(null);
+		}
+	}, [values.firstName, fNameError]);
+
+	useEffect(() => {
+		if (values.lastName.length > 40) {
+			setLNameError("Invalid Input: Characters must not exceed up to 40");
+		} else {
+			setLNameError(null);
+		}
+	}, [values.lastName, lNameError]);
+
+	useEffect(() => {
+		if (values.phoneNumber.length > 11) {
+			setPhoneNumError("Input must not exceed up to 11 digits");
+		} else {
+			setPhoneNumError(null);
+		}
+	}, [values.phoneNumber, phoneNumError]);
 
 	return (
 		<div className="modalBackground">
@@ -50,6 +79,8 @@ function InsertData({ refreshState, setInsertModal }) {
 					<TextField
 						required
 						{...register("firstName")}
+						error={values.firstName.length > 40}
+						helperText={fNameError}
 						name="firstName"
 						autoFocus
 						autoComplete="off"
@@ -61,9 +92,11 @@ function InsertData({ refreshState, setInsertModal }) {
 					/>
 
 					<TextField
+						{...register("lastName", { required: true })}
+						error={values.lastName.length > 40}
+						helperText={lNameError}
 						required
 						name="lastName"
-						{...register("lastName", { required: true })}
 						sx={{ my: 1 }}
 						label="Last Name"
 						autoComplete="off"
@@ -110,6 +143,8 @@ function InsertData({ refreshState, setInsertModal }) {
 					<TextField
 						required
 						{...register("phoneNumber", { required: true })}
+						error={values.phoneNumber.length > 11}
+						helperText={phoneNumError}
 						name="phoneNumber"
 						sx={{ my: 1 }}
 						label="Phone Number"
