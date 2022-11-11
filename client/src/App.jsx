@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Background from "./components/BackgroundImage/Background";
 import ReadQuery from "./data/Data";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SortMenuBtn from "./components/Button/SortMenu";
@@ -42,53 +43,56 @@ export default function App() {
 	const [updateId, setUpdateId] = useState(0);
 
 	return (
-		<div className="App">
-			{/* <Modal refreshState={refreshState} setDeleteId={setDeleteId} /> */}
-			<GetValueContext.Provider value={{ deleteId, updateId }}>
-				{insertModal && (
-					<InsertData
-						refreshState={refreshState}
-						setInsertModal={setInsertModal}
-					/>
-				)}
-
-				{deleteModal && (
-					<DeleteModal
-						refreshState={refreshState}
-						setDeleteModal={setDeleteModal}
-					/>
-				)}
-
-				{updateModal && (
-					<UpdateData
-						employeeList={employeeList}
-						refreshState={refreshState}
-						setUpdateModal={setUpdateModal}
-					/>
-				)}
-			</GetValueContext.Provider>
-
-			<h1 className="header">Human Resource Management System</h1>
-			<div className="App-container">
-				<div className="form">
-					<div className="search-insert">
-						<SortMenuBtn setSortOptions={setSortOptions} />
-						<SearchBar
-							employeeList={employeeList}
-							setSearchQuery={setSearchQuery}
+		<>
+			<Background />
+			<div className="App">
+				{/* <Modal refreshState={refreshState} setDeleteId={setDeleteId} /> */}
+				<GetValueContext.Provider value={{ deleteId, updateId }}>
+					{insertModal && (
+						<InsertData
+							refreshState={refreshState}
+							setInsertModal={setInsertModal}
 						/>
-						<InsertBtn setInsertModal={setInsertModal} />
-					</div>
+					)}
 
-					<EmployeeDataList
-						employees={employeeList}
-						setDeleteId={setDeleteId}
-						setDeleteModal={setDeleteModal}
-						setUpdateId={setUpdateId}
-						setUpdateModal={setUpdateModal}
-					/>
+					{deleteModal && (
+						<DeleteModal
+							refreshState={refreshState}
+							setDeleteModal={setDeleteModal}
+						/>
+					)}
+
+					{updateModal && (
+						<UpdateData
+							employeeList={employeeList}
+							refreshState={refreshState}
+							setUpdateModal={setUpdateModal}
+						/>
+					)}
+				</GetValueContext.Provider>
+
+				<h1 className="header">Human Resource Management System</h1>
+				<div className="App-container">
+					<div className="form">
+						<div className="search-insert">
+							<SortMenuBtn setSortOptions={setSortOptions} />
+							<SearchBar
+								employeeList={employeeList}
+								setSearchQuery={setSearchQuery}
+							/>
+							<InsertBtn setInsertModal={setInsertModal} />
+						</div>
+
+						<EmployeeDataList
+							employees={employeeList}
+							setDeleteId={setDeleteId}
+							setDeleteModal={setDeleteModal}
+							setUpdateId={setUpdateId}
+							setUpdateModal={setUpdateModal}
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
