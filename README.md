@@ -16,17 +16,18 @@ or
 
 Click `Clone or download` and `Download ZIP` to get this repo.
 
-<!--
 ## Create / Select MySQL Database
+
 ```
 CREATE DATABASE databasename;
 USE databasename;
 ```
 
 ## Create employees Table
+
 ```
 CREATE TABLE employees (
-  id DECIMAL(10,0) NOT NULL,
+  id INT NOT NULL,
   first_name VARCHAR(45) NULL,
   last_name VARCHAR(45) NULL,
   age INT NULL,
@@ -36,24 +37,48 @@ CREATE TABLE employees (
 );
 ```
 
-## Create your Environment Variable
+## Create `.env` File
 
 ```console
+cd client
 touch .env
 ```
 
+```console
+cd server
+touch .env
+```
+
+#### .env file config
+
+- **`Client`**
+  - VITE*PORT=\_PORT*
+- **`Server`**
+  - PORT=_PORT_
+  - HOST=_HOST_
+  - USER=_USER_
+  - PASSWORD=_PASSWORD_
+  - DATABASE=_DATABASE_
+
 ## Install Dependencies
 
-Open a terminal then go to `root` folder then run `npm install`
+Open a terminal then go to `client` and `server` folder then run `npm install`
 
 ```console
-cd root
 npm install
 ```
 
 ## Run the Server
 
+#### Development Server
+
 ```console
 npm run dev
 ```
--->
+
+#### Preview Server
+
+```console
+npm run build
+npm run preview
+```
