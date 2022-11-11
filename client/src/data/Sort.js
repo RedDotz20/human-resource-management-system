@@ -1,5 +1,5 @@
 import Axios from "axios";
-const PORT = 3000;
+const PORT = import.meta.env.VITE_PORT;
 
 export function sortTable(sortOption, setEmployeeList) {
 	async function fetchData() {

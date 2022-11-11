@@ -1,5 +1,5 @@
 import Axios from "axios";
-const PORT = 3000;
+const PORT = import.meta.env.VITE_PORT;
 
 export default function fetchQuery(query, setEmployeeList) {
 	Axios.get(`http://localhost:${PORT}/searchquery`, {
