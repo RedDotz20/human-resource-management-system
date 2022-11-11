@@ -4,6 +4,11 @@ import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import "./InsertData.css";
 import {
+	validateString,
+	validateAge,
+	validateNumber,
+} from "../../utilities/validateString";
+import {
 	Button,
 	TextField,
 	Radio,
@@ -17,6 +22,7 @@ function InsertData({ refreshState, setInsertModal }) {
 	const { register, handleSubmit, errors } = useForm(),
 		[fNameError, setfNameError] = useState(null),
 		[lNameError, setLNameError] = useState(null),
+		[ageError, setAgeError] = useState(null),
 		[phoneNumError, setPhoneNumError] = useState(null);
 
 	const onSubmit = (data) => {
@@ -32,8 +38,6 @@ function InsertData({ refreshState, setInsertModal }) {
 		sex: "",
 		phoneNumber: "",
 	});
-	console.log(...values.keys());
-	console.log(lNameError);
 
 	const handleChange = (props) => (event) => {
 		setValues({ ...values, [props]: event.target.value });
@@ -42,6 +46,8 @@ function InsertData({ refreshState, setInsertModal }) {
 	useEffect(() => {
 		if (values.firstName.length > 40) {
 			setfNameError("Invalid Input: Characters must not exceed up to 40");
+		} else if (!validateString(values.firstName)) {
+			setfNameError("Invalid Characters");
 		} else {
 			setfNameError(null);
 		}
@@ -50,14 +56,26 @@ function InsertData({ refreshState, setInsertModal }) {
 	useEffect(() => {
 		if (values.lastName.length > 40) {
 			setLNameError("Invalid Input: Characters must not exceed up to 40");
+		} else if (!validateString(values.lastName)) {
+			setLNameError("Invalid Characters");
 		} else {
 			setLNameError(null);
 		}
 	}, [values.lastName, lNameError]);
 
 	useEffect(() => {
+		if (!validateAge(values.age)) {
+			setAgeError("Input Out of Range");
+		} else {
+			setAgeError(null);
+		}
+	}, [values.age, ageError]);
+
+	useEffect(() => {
 		if (values.phoneNumber.length > 11) {
 			setPhoneNumError("Input must not exceed up to 11 digits");
+		} else if (!validateNumber(values.phoneNumber)) {
+			setPhoneNumError("Numbers only");
 		} else {
 			setPhoneNumError(null);
 		}
@@ -79,7 +97,9 @@ function InsertData({ refreshState, setInsertModal }) {
 					<TextField
 						required
 						{...register("firstName")}
-						error={values.firstName.length > 40}
+						error={
+							values.firstName.length > 40 || !validateString(values.firstName)
+						}
 						helperText={fNameError}
 						name="firstName"
 						autoFocus
@@ -93,7 +113,9 @@ function InsertData({ refreshState, setInsertModal }) {
 
 					<TextField
 						{...register("lastName", { required: true })}
-						error={values.lastName.length > 40}
+						error={
+							values.firstName.length > 40 || !validateString(values.lastName)
+						}
 						helperText={lNameError}
 						required
 						name="lastName"
@@ -109,13 +131,14 @@ function InsertData({ refreshState, setInsertModal }) {
 						required
 						name="age"
 						{...register("age", { required: true })}
+						error={!validateAge(values.age)}
+						helperText={ageError}
 						sx={{ my: 1 }}
 						label="Age"
 						variant="outlined"
 						autoComplete="off"
-						type="number"
 						size="small"
-						InputProps={{ inputProps: { min: 1, max: 99 } }}
+						// InputProps={{ inputProps: { min: 1, max: 99 } }}
 						onChange={handleChange("age")}
 					/>
 
@@ -143,7 +166,10 @@ function InsertData({ refreshState, setInsertModal }) {
 					<TextField
 						required
 						{...register("phoneNumber", { required: true })}
-						error={values.phoneNumber.length > 11}
+						error={
+							values.phoneNumber.length > 11 ||
+							!validateNumber(values.phoneNumber)
+						}
 						helperText={phoneNumError}
 						name="phoneNumber"
 						sx={{ my: 1 }}
@@ -171,7 +197,10 @@ function InsertData({ refreshState, setInsertModal }) {
 							size="small"
 							color="success"
 							type="submit"
-							disabled={Object.values(values).includes("")}
+							disabled={
+								Object.values(values).includes("") ||
+								(fNameError || lNameError || phoneNumError) !== null
+							}
 						>
 							Confirm
 						</Button>

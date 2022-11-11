@@ -68,7 +68,6 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 					label="Age"
 					variant="outlined"
 					name="age"
-					type="number"
 					size="small"
 					autoComplete="off"
 					defaultValue={employeeList[indexId].age}
