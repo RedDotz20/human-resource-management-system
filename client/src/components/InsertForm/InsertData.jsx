@@ -43,6 +43,7 @@ function InsertData({ refreshState, setInsertModal }) {
 		setValues({ ...values, [props]: event.target.value });
 	};
 
+	//* Validate First Name Field
 	useEffect(() => {
 		if (values.firstName.length > 40) {
 			setfNameError("Invalid Input: Characters must not exceed up to 40");
@@ -53,6 +54,7 @@ function InsertData({ refreshState, setInsertModal }) {
 		}
 	}, [values.firstName, fNameError]);
 
+	//* Validate Last Name Field
 	useEffect(() => {
 		if (values.lastName.length > 40) {
 			setLNameError("Invalid Input: Characters must not exceed up to 40");
@@ -63,6 +65,7 @@ function InsertData({ refreshState, setInsertModal }) {
 		}
 	}, [values.lastName, lNameError]);
 
+	//* Validate Age Field
 	useEffect(() => {
 		if (!validateAge(values.age)) {
 			setAgeError("Input Out of Range");
@@ -71,6 +74,7 @@ function InsertData({ refreshState, setInsertModal }) {
 		}
 	}, [values.age, ageError]);
 
+	//* Validate Phone Number Field
 	useEffect(() => {
 		if (values.phoneNumber.length > 11) {
 			setPhoneNumError("Input must not exceed up to 11 digits");
@@ -114,7 +118,7 @@ function InsertData({ refreshState, setInsertModal }) {
 					<TextField
 						{...register("lastName", { required: true })}
 						error={
-							values.firstName.length > 40 || !validateString(values.lastName)
+							values.lastName.length > 40 || !validateString(values.lastName)
 						}
 						helperText={lNameError}
 						required
@@ -138,7 +142,6 @@ function InsertData({ refreshState, setInsertModal }) {
 						variant="outlined"
 						autoComplete="off"
 						size="small"
-						// InputProps={{ inputProps: { min: 1, max: 99 } }}
 						onChange={handleChange("age")}
 					/>
 
@@ -199,7 +202,7 @@ function InsertData({ refreshState, setInsertModal }) {
 							type="submit"
 							disabled={
 								Object.values(values).includes("") ||
-								(fNameError || lNameError || phoneNumError) !== null
+								(fNameError || lNameError || ageError || phoneNumError) !== null
 							}
 						>
 							Confirm

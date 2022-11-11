@@ -1,7 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { UpdateQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
 import "./UpdateData.css";
+import {
+	validateString,
+	validateAge,
+	validateNumber,
+} from "../../utilities/validateString";
 import {
 	Button,
 	TextField,
@@ -29,6 +34,53 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 		setValues({ ...values, [props]: event.target.value });
 	};
 
+	const [fNameError, setfNameError] = useState(null);
+	const [lNameError, setLNameError] = useState(null);
+	const [ageError, setAgeError] = useState(null);
+	const [phoneNumError, setPhoneNumError] = useState(null);
+
+	//* Validate First Name Field
+	useEffect(() => {
+		if (values.firstName.length > 40) {
+			setfNameError("Invalid Input: Characters must not exceed up to 40");
+		} else if (!validateString(values.firstName)) {
+			setfNameError("Invalid Characters");
+		} else {
+			setfNameError(null);
+		}
+	}, [values.firstName, fNameError]);
+
+	//* Validate Last Name Field
+	useEffect(() => {
+		if (values.lastName.length > 40) {
+			setLNameError("Invalid Input: Characters must not exceed up to 40");
+		} else if (!validateString(values.lastName)) {
+			setLNameError("Invalid Characters");
+		} else {
+			setLNameError(null);
+		}
+	}, [values.lastName, lNameError]);
+
+	//* Validate Age Field
+	useEffect(() => {
+		if (!validateAge(values.age)) {
+			setAgeError("Input Out of Range");
+		} else {
+			setAgeError(null);
+		}
+	}, [values.age, ageError]);
+
+	//* Validate Phone Number Field
+	useEffect(() => {
+		if (values.phoneNumber.length > 11) {
+			setPhoneNumError("Input must not exceed up to 11 digits");
+		} else if (!validateNumber(values.phoneNumber)) {
+			setPhoneNumError("Numbers only");
+		} else {
+			setPhoneNumError(null);
+		}
+	}, [values.phoneNumber, phoneNumError]);
+
 	return (
 		<div className="modalBackground">
 			<div className="modalContainer">
@@ -43,6 +95,10 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 
 				<TextField
 					sx={{ my: 1 }}
+					error={
+						values.firstName.length > 40 || !validateString(values.firstName)
+					}
+					helperText={fNameError}
 					label="First Name"
 					variant="outlined"
 					size="small"
@@ -54,6 +110,10 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 
 				<TextField
 					sx={{ my: 1 }}
+					error={
+						values.lastName.length > 40 || !validateString(values.lastName)
+					}
+					helperText={lNameError}
 					label="Last Name"
 					name="lastName"
 					variant="outlined"
@@ -65,6 +125,8 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 
 				<TextField
 					sx={{ my: 1 }}
+					error={!validateAge(values.age)}
+					helperText={ageError}
 					label="Age"
 					variant="outlined"
 					name="age"
@@ -89,6 +151,11 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 
 				<TextField
 					sx={{ my: 1 }}
+					error={
+						values.phoneNumber.length > 11 ||
+						!validateNumber(values.phoneNumber)
+					}
+					helperText={phoneNumError}
 					label="Phone Number"
 					variant="outlined"
 					name="phoneNumber"
@@ -113,6 +180,11 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 						className="confirm-btn"
 						variant="contained"
 						size="small"
+						color="success"
+						disabled={
+							Object.values(values).includes("") ||
+							(fNameError || lNameError || ageError || phoneNumError) !== null
+						}
 						onClick={() => {
 							UpdateQuery(values, updateId);
 							refreshState();
