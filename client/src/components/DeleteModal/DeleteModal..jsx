@@ -9,21 +9,23 @@ import { GetValueContext } from "../../contexts/Contexts";
 function DeleteModal({ refreshState, setDeleteModal }) {
 	const { deleteId } = useContext(GetValueContext);
 	return (
-		<div className="deleteModalBg">
-			<div className="deleteModalCon">
+		<div className="fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50 ">
+			<div className=" bg-slate-50 relative flex flex-col p-7 w-96 h-48 rounded-xl shadow-2xl">
 				<CloseIcon
-					className="titleCloseBtn"
+					className="text-red-600 absolute z-10 right-6 top-6 cursor-pointer"
 					onClick={() => {
 						setDeleteModal(false);
 					}}
 				/>
 
-				<h1 className="title">Delete Curent Row</h1>
-				<p className="subtitle">
-					Are you sue you want to delete the curent row?
+				<h1 className="text-xl font-semibold inline-block mb-3">
+					Delete Curent Row
+				</h1>
+				<p className="text-lg font-medium text-center my-auto mx-0">
+					Do you want to delete the curent row?
 				</p>
 
-				<footer>
+				<footer className="flex justify-around items-center ">
 					<Button
 						className="cancel-btn"
 						variant="contained"
