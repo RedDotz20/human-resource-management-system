@@ -71,10 +71,12 @@ export default function App() {
 					)}
 				</GetValueContext.Provider>
 
-				<h1 className="header">Human Resource Management System</h1>
-				<div className="App-container">
+				<h1 className="App-container text-white text-center text-3xl p-8 font-semibold">
+					Human Resource Management System
+				</h1>
+				<div className=" bg-slate-50 p-8 my-0 mx-auto rounded-2xl max-w-screen-lg">
 					<div className="form">
-						<div className="search-insert">
+						<div className="search-insert w-full flex justify-between">
 							<SortMenuBtn setSortOptions={setSortOptions} />
 							<SearchBar
 								employeeList={employeeList}
