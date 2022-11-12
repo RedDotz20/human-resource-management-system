@@ -76,7 +76,7 @@ export default function App() {
 				</h1>
 				<div className=" bg-slate-50 p-8 my-0 mx-auto rounded-2xl max-w-screen-lg">
 					<div className="form">
-						<div className="search-insert w-full flex justify-between">
+						<div className="child:mx-4 w-full flex justify-between ">
 							<SortMenuBtn setSortOptions={setSortOptions} />
 							<SearchBar
 								employeeList={employeeList}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
-import "./UpdateData.css";
 import {
 	validateString,
 	validateAge,
