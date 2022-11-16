@@ -1,10 +1,10 @@
 import Axios from "axios";
-const PORT = import.meta.env.VITE_PORT;
-// const PORT = 3000;
+const PORT = 3000;
+const URL = `http://localhost:${PORT}`;
 
 export function sortTable(sortOption, setEmployeeList) {
 	async function fetchData() {
-		await Axios.get(`http://localhost:${PORT}/${sortOption}`)
+		await Axios.get(`${URL}/${sortOption}`)
 			.then((response) => {
 				setEmployeeList(() => response.data);
 			})

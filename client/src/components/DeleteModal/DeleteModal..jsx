@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { DeleteQuery } from "../../data/Data";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import "./DeleteModal.css";
 
 import { GetValueContext } from "../../contexts/Contexts";
 
