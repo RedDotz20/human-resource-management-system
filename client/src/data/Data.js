@@ -17,7 +17,7 @@ export default function ReadQuery(setEmployeeList) {
 
 //* Create/Insert Query Function
 export function InsertQuery(values) {
-	Axios.post(`${baseURL}${PORT}/insert`, {
+	Axios.post(`${URL}/insert`, {
 		firstName: formatPascalCase(values.firstName),
 		lastName: formatPascalCase(values.lastName),
 		age: parseInt(values.age),
@@ -28,7 +28,7 @@ export function InsertQuery(values) {
 
 //* Update Query Function
 export function UpdateQuery(values, id) {
-	Axios.put(`${baseURL}${PORT}/update`, {
+	Axios.put(`${URL}/update`, {
 		firstName: values.firstName,
 		lastName: values.lastName,
 		age: values.age,
@@ -40,7 +40,5 @@ export function UpdateQuery(values, id) {
 
 //* Delete Query Function
 export function DeleteQuery(id) {
-	Axios.delete(`${baseURL}${PORT}/delete/${id}`).catch((error) =>
-		console.log(error)
-	);
+	Axios.delete(`${URL}/delete/${id}`).catch((error) => console.log(error));
 }
