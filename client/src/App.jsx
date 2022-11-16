@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Background from "./components/BackgroundImage/Background";
-import ReadQuery from "./data/Data";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SortMenuBtn from "./components/Button/SortMenu";
 
@@ -10,9 +9,8 @@ import UpdateData from "./components/UpdateForm/UpdateData";
 import DeleteModal from "./components/DeleteModal/DeleteModal.";
 import "./styles/App.css";
 
-import { sortTable } from "./data/Sort";
 import { InsertBtn } from "./components/Button/InsertBtn";
-import fetchQuery from "./data/SearchQuery";
+import { ReadQuery, fetchQuery, sortTable } from "./data/Data";
 // import Modal from "./components/Modal/Modal";
 
 import { GetValueContext } from "./contexts/Contexts";

@@ -4,7 +4,7 @@ const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
 //* Read/Select Table Query Function
-export default function ReadQuery(setEmployeeList) {
+export function ReadQuery(setEmployeeList) {
 	async function fetchData() {
 		await Axios.get(`${URL}/showemployees`)
 			.then((response) => {
@@ -41,4 +41,27 @@ export function UpdateQuery(values, id) {
 //* Delete Query Function
 export function DeleteQuery(id) {
 	Axios.delete(`${URL}/delete/${id}`).catch((error) => console.log(error));
+}
+
+//* Fetch Query Function
+export function fetchQuery(query, setEmployeeList) {
+	Axios.get(`${URL}/searchquery`, {
+		params: {
+			value: query,
+		},
+	})
+		.then((response) => setEmployeeList(() => response.data))
+		.catch((error) => console.log(error));
+}
+
+//* Sort Query Function
+export function sortTable(sortOption, setEmployeeList) {
+	async function fetchData() {
+		await Axios.get(`${URL}/${sortOption}`)
+			.then((response) => {
+				setEmployeeList(() => response.data);
+			})
+			.catch((error) => console.log(error));
+	}
+	fetchData();
 }
