@@ -28,11 +28,11 @@ USE databasename;
 ```
 CREATE TABLE employees (
   id INT NOT NULL,
-  first_name VARCHAR(45) NULL,
-  last_name VARCHAR(45) NULL,
+  firstName VARCHAR(45) NULL,
+  lastName VARCHAR(45) NULL,
   age INT NULL,
   sex VARCHAR(1) NULL,
-  phone_number INT NULL,
+  phoneNumber INT NULL,
   PRIMARY KEY (id)
 );
 ```
