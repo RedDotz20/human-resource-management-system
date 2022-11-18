@@ -2,7 +2,6 @@ import React from "react";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import "./EmployeeList.css";
 
 export default function EmployeeDataList({
 	employees,
