@@ -12,36 +12,40 @@ export default function EmployeeDataList({
 	setUpdateModal,
 }) {
 	return (
-		<table className="content-table">
+		<table className="border-collapse my-8 mx-auto text-base min-w-fit shadow-xl child-th:py-1 child-th:px-4">
 			<thead>
-				<tr>
+				<tr className="child-td:py-1 child-td:px-4 bg-[#089879] text-white font-bold text-center">
 					<td>ID</td>
 					<td>FIRST NAME</td>
 					<td>LAST NAME</td>
 					<td>AGE</td>
 					<td>SEX</td>
 					<td>PHONE NUMBER</td>
-					<td className="no-padding">ACTIONS</td>
+					<td>ACTIONS</td>
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody className="b-bottom  b-color-even b-color-last">
 				{employees.length <= 0 ? (
-					<tr>
-						<td colSpan={"7"} className="td-center empty">
+					<tr className="child-td:py-1 child-td:px-4">
+						<td colSpan={"7"} className="text-center h-20">
 							EMPTY TABLE
 						</td>
 					</tr>
 				) : (
 					employees.map((values) => {
+						const { id, firstName, lastName, age, sex, phoneNumber } = values;
 						return (
-							<tr key={values.id}>
-								<td>{values.id}</td>
-								<td>{values.firstName}</td>
-								<td>{values.lastName}</td>
-								<td className="td-center">{values.age}</td>
-								<td className="td-center">{values.sex}</td>
-								<td className="td-center">{values.phoneNumber}</td>
+							<tr
+								className="child-td:py-1 child-td:px-4 child-td:text-center"
+								key={id}
+							>
+								<td>{id}</td>
+								<td>{firstName}</td>
+								<td>{lastName}</td>
+								<td>{age}</td>
+								<td>{sex}</td>
+								<td>{phoneNumber}</td>
 								<td>
 									<IconButton
 										className="edit-btn"
@@ -49,7 +53,7 @@ export default function EmployeeDataList({
 										size="small"
 										onClick={() => {
 											setUpdateModal(true);
-											setUpdateId(values.id);
+											setUpdateId(id);
 										}}
 									>
 										<EditIcon />
@@ -62,7 +66,7 @@ export default function EmployeeDataList({
 										color="error"
 										onClick={() => {
 											setDeleteModal(true);
-											setDeleteId(values.id);
+											setDeleteId(id);
 										}}
 									>
 										<DeleteIcon />

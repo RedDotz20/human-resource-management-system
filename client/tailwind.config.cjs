@@ -8,6 +8,8 @@ module.exports = {
 		function ({ addVariant }) {
 			addVariant("child", "& > *");
 			addVariant("child-hover", "& > *:hover");
+			addVariant("child-th", "& > th");
+			addVariant("child-td", "& > td");
 		},
 	],
 };
