@@ -22,7 +22,7 @@ export function InsertQuery(values) {
 		lastName: formatPascalCase(values.lastName),
 		age: parseInt(values.age),
 		sex: values.sex,
-		phoneNumber: parseInt(values.phoneNumber),
+		phoneNumber: values.phoneNumber,
 	}).catch((error) => console.log(error));
 }
 
