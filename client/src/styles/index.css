@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+	.b-bottom > tr {
+		@apply border border-solid border-slate-100;
+	}
+
+	.b-color-even > tr:nth-of-type(even) {
+		@apply bg-[#f3f3f3];
+	}
+
+	.b-color-last > tr:last-of-type {
+		@apply border-2 border-solid border-b-green-700;
+	}
+}
+
 *,
 ::after,
 ::before {
