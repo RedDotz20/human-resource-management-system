@@ -3,6 +3,32 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
+const TableHeader = () => {
+	return (
+		<thead>
+			<tr className="child-td:py-1 child-td:px-4 bg-[#089879] text-white font-bold text-center">
+				<td>ID</td>
+				<td>FIRST NAME</td>
+				<td>LAST NAME</td>
+				<td>AGE</td>
+				<td>SEX</td>
+				<td>PHONE NUMBER</td>
+				<td>ACTIONS</td>
+			</tr>
+		</thead>
+	);
+};
+
+const EmptyTable = () => {
+	return (
+		<tr className="child-td:py-1 child-td:px-4">
+			<td colSpan={"7"} className="text-center h-20">
+				EMPTY TABLE
+			</td>
+		</tr>
+	);
+};
+
 export default function EmployeeDataList({
 	employees,
 	setDeleteId,
@@ -12,25 +38,11 @@ export default function EmployeeDataList({
 }) {
 	return (
 		<table className="border-collapse my-8 mx-auto text-base min-w-fit shadow-xl child-th:py-1 child-th:px-4">
-			<thead>
-				<tr className="child-td:py-1 child-td:px-4 bg-[#089879] text-white font-bold text-center">
-					<td>ID</td>
-					<td>FIRST NAME</td>
-					<td>LAST NAME</td>
-					<td>AGE</td>
-					<td>SEX</td>
-					<td>PHONE NUMBER</td>
-					<td>ACTIONS</td>
-				</tr>
-			</thead>
+			<TableHeader />
 
 			<tbody className="b-bottom  b-color-even b-color-last">
 				{employees.length <= 0 ? (
-					<tr className="child-td:py-1 child-td:px-4">
-						<td colSpan={"7"} className="text-center h-20">
-							EMPTY TABLE
-						</td>
-					</tr>
+					<EmptyTable />
 				) : (
 					employees.map((values) => {
 						const { id, firstName, lastName, age, sex, phoneNumber } = values;
