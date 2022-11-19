@@ -5,7 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { GetValueContext } from "../../contexts/Contexts";
 
-function DeleteModal({ refreshState, setDeleteModal }) {
+function DeleteData({ refreshState, setDeleteModal }) {
 	const { deleteId } = useContext(GetValueContext);
 	return (
 		<div className="fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50 ">
@@ -54,4 +54,4 @@ function DeleteModal({ refreshState, setDeleteModal }) {
 	);
 }
 
-export default DeleteModal;
+export default DeleteData;

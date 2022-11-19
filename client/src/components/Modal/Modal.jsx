@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import InsertData from "../InsertForm/InsertData";
 // import UpdateData from "../UpdateForm/UpdateData";
-import DeleteModal from "../DeleteModal/DeleteModal.";
+import DeleteModal from "../Forms/DeleteData";
 
 export default function Modal({ refreshState, setDeleteId }) {
 	//* Open/Close Modal onChange event

@@ -6,7 +6,7 @@ import SortMenuBtn from "./components/Button/SortMenu";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import InsertData from "./components/InsertForm/InsertData";
 import UpdateData from "./components/UpdateForm/UpdateData";
-import DeleteModal from "./components/DeleteModal/DeleteModal.";
+import DeleteData from "./components/Forms/DeleteData";
 import "./styles/App.css";
 
 import { InsertBtn } from "./components/Button/InsertBtn";
@@ -54,7 +54,7 @@ export default function App() {
 					)}
 
 					{deleteModal && (
-						<DeleteModal
+						<DeleteData
 							refreshState={refreshState}
 							setDeleteModal={setDeleteModal}
 						/>
