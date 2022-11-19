@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
-import "./InsertData.css";
+import "../../styles/InsertData.css";
 import {
 	validateString,
 	validateAge,

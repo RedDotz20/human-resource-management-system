@@ -4,7 +4,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import SortMenuBtn from "./components/Button/SortMenu";
 
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
-import InsertData from "./components/InsertForm/InsertData";
+import InsertData from "./components/Forms/InsertData";
 import UpdateData from "./components/Forms/UpdateData";
 import DeleteData from "./components/Forms/DeleteData";
 import "./styles/App.css";
