@@ -1,7 +1,5 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Stack from "@mui/material/Stack";
+import { TextField, Autocomplete, Stack } from "@mui/material/";
 
 export default function SearchBar({ employeeList, setSearchQuery }) {
 	const defaultProps = {
