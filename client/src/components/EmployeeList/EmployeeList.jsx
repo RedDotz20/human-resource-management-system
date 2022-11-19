@@ -3,6 +3,8 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
+import DeleteBtn from "../Button/DeleteBtn";
+
 const TableHeader = () => {
 	return (
 		<thead>
@@ -70,18 +72,11 @@ export default function EmployeeDataList({
 										<EditIcon />
 									</IconButton>
 
-									<IconButton
-										className="delete-btn"
-										variant="contained"
-										size="small"
-										color="error"
-										onClick={() => {
-											setDeleteModal(true);
-											setDeleteId(id);
-										}}
-									>
-										<DeleteIcon />
-									</IconButton>
+									<DeleteBtn
+										setDeleteModal={setDeleteModal}
+										setDeleteId={setDeleteId}
+										deleteId={id}
+									/>
 								</td>
 							</tr>
 						);
