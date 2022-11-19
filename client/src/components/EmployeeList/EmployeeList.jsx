@@ -1,9 +1,6 @@
 import React from "react";
-import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-
 import DeleteBtn from "../Button/DeleteBtn";
+import UpdateBtn from "../Button/UpdateBtn";
 
 const TableHeader = () => {
 	return (
@@ -42,7 +39,7 @@ export default function EmployeeDataList({
 		<table className="border-collapse my-8 mx-auto text-base min-w-fit shadow-xl child-th:py-1 child-th:px-4">
 			<TableHeader />
 
-			<tbody className="b-bottom  b-color-even b-color-last">
+			<tbody className="b-bottom b-color-even b-color-last">
 				{employees.length <= 0 ? (
 					<EmptyTable />
 				) : (
@@ -60,17 +57,11 @@ export default function EmployeeDataList({
 								<td>{sex}</td>
 								<td>{phoneNumber}</td>
 								<td>
-									<IconButton
-										className="edit-btn"
-										variant="contained"
-										size="small"
-										onClick={() => {
-											setUpdateModal(true);
-											setUpdateId(id);
-										}}
-									>
-										<EditIcon />
-									</IconButton>
+									<UpdateBtn
+										setUpdateModal={setUpdateModal}
+										setUpdateId={setUpdateId}
+										updateId={id}
+									/>
 
 									<DeleteBtn
 										setDeleteModal={setDeleteModal}
