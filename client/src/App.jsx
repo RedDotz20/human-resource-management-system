@@ -5,7 +5,7 @@ import SortMenuBtn from "./components/Button/SortMenu";
 
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import InsertData from "./components/InsertForm/InsertData";
-import UpdateData from "./components/UpdateForm/UpdateData";
+import UpdateData from "./components/Forms/UpdateData";
 import DeleteData from "./components/Forms/DeleteData";
 import "./styles/App.css";
 
