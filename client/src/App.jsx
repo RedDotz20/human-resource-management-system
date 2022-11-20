@@ -72,7 +72,7 @@ export default function App() {
 				<h1 className="App-container text-white text-center text-3xl p-8 font-semibold">
 					Human Resource Management System
 				</h1>
-				<div className=" bg-slate-50 p-8 my-0 mx-auto rounded-2xl max-w-screen-lg">
+				<div className=" bg-slate-50 p-8 my-0 mx-auto rounded-2xl max-w-[920px] max-h-[28rem]">
 					<div className="form">
 						<div className="child:mx-4 w-full flex justify-between ">
 							<SortMenuBtn setSortOptions={setSortOptions} />

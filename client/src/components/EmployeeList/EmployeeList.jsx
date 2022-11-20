@@ -36,7 +36,7 @@ export default function EmployeeDataList({
 	setUpdateModal,
 }) {
 	return (
-		<table className="border-collapse my-8 mx-auto text-base min-w-fit shadow-xl child-th:py-1 child-th:px-4">
+		<table className="border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
 			<TableHeader />
 
 			<tbody className="b-bottom b-color-even b-color-last">
