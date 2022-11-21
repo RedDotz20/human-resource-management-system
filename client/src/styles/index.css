@@ -18,6 +18,10 @@
 	.b-color-last > tr:last-of-type {
 		@apply border-2 border-solid border-b-green-700;
 	}
+
+	.b-color-none > tr:last-of-type {
+		@apply border-none;
+	}
 }
 
 *,

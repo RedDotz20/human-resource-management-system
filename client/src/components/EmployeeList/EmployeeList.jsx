@@ -20,11 +20,9 @@ const TableHeader = () => {
 
 const EmptyTable = () => {
 	return (
-		<tr className="child-td:py-1 child-td:px-4">
-			<td colSpan={"7"} className="text-center h-20">
-				EMPTY TABLE
-			</td>
-		</tr>
+		<div className="text-3xl font-semibold absolute grid items-center text-center w-full h-64">
+			EMPTY TABLE
+		</div>
 	);
 };
 
@@ -40,7 +38,7 @@ export default function EmployeeDataList({
 			<table className="w-full">
 				<TableHeader />
 
-				<tbody className="b-bottom b-color-even b-color-last">
+				<tbody className="b-bottom b-color-even b-color-last relative">
 					{employees.length <= 0 ? (
 						<EmptyTable />
 					) : (
