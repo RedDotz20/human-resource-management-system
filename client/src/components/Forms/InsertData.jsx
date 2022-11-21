@@ -95,7 +95,7 @@ function InsertData({ refreshState, setInsertModal }) {
 					}}
 				/>
 
-				<h1 className="title">Insert Employee</h1>
+				<h1 className="text-xl font-semibold mb-4">Insert Employee</h1>
 
 				<form className="insertForm" onSubmit={handleSubmit(onSubmit)}>
 					<TextField

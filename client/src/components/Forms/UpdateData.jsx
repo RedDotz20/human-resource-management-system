@@ -90,7 +90,7 @@ function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 					}}
 				/>
 
-				<h1 className="title">Update Employee</h1>
+				<h1 className="text-xl font-semibold mb-4">Update Employee</h1>
 
 				<TextField
 					sx={{ my: 1 }}
