@@ -20,13 +20,15 @@ import { GetValueContext } from "../../contexts/Contexts";
 
 function UpdateData({ employeeList, refreshState, setUpdateModal }) {
 	const { updateId } = useContext(GetValueContext),
-		indexId = employeeList.map((values) => values.id).indexOf(updateId),
+		indexId = employeeList.map((values) => values.id).indexOf(updateId);
+
+	const { firstName, lastName, age, sex, phoneNumber } = employeeList[indexId],
 		[values, setValues] = useState({
-			firstName: employeeList[indexId].firstName,
-			lastName: employeeList[indexId].lastName,
-			age: employeeList[indexId].age,
-			sex: employeeList[indexId].sex,
-			phoneNumber: employeeList[indexId].phoneNumber,
+			firstName: firstName,
+			lastName: lastName,
+			age: age,
+			sex: sex,
+			phoneNumber: phoneNumber,
 		});
 
 	const handleChange = (props) => (event) => {
