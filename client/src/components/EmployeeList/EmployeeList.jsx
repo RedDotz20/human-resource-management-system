@@ -34,7 +34,7 @@ export default function EmployeeDataList({
 	setUpdateModal,
 }) {
 	return (
-		<div className="overflow-y-scroll scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
+		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
 			<table className="w-full">
 				<TableHeader />
 
