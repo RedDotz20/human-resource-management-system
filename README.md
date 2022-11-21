@@ -28,21 +28,16 @@ USE databasename;
 ```
 CREATE TABLE employees (
   id INT NOT NULL,
-  firstName VARCHAR(45) NULL,
-  lastName VARCHAR(45) NULL,
+  firstName VARCHAR(255) NULL,
+  lastName VARCHAR(255) NULL,
   age INT NULL,
   sex VARCHAR(1) NULL,
-  phoneNumber INT NULL,
+  phoneNumber VARCHAR(255) NULL,
   PRIMARY KEY (id)
 );
 ```
 
 ## Create `.env` File
-
-```console
-cd client
-touch .env
-```
 
 ```console
 cd server
@@ -51,14 +46,10 @@ touch .env
 
 #### .env file config
 
-- **`Client`**
-  - VITE*PORT=\_PORT*
-- **`Server`**
-  - PORT=_PORT_
-  - HOST=_HOST_
-  - USER=_USER_
-  - PASSWORD=_PASSWORD_
-  - DATABASE=_DATABASE_
+- HOST=_HOST_
+- USER=_USER_
+- PASSWORD=_PASSWORD_
+- DATABASE=_DATABASE_
 
 ## Install Dependencies
 
