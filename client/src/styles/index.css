@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+	.scroll-width {
+		scrollbar-width: thin;
+	}
+
 	.b-bottom > tr {
 		@apply border border-solid border-slate-100;
 	}
