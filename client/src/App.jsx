@@ -2,17 +2,13 @@ import React, { useEffect, useState } from "react";
 import Background from "./components/BackgroundImage/Background";
 import SearchBar from "./components/SearchBar/SearchBar";
 import SortMenuBtn from "./components/Button/SortMenu";
-
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import InsertData from "./components/Forms/InsertData";
 import UpdateData from "./components/Forms/UpdateData";
 import DeleteData from "./components/Forms/DeleteData";
 import "./styles/App.css";
-
 import { InsertBtn } from "./components/Button/InsertBtn";
 import { ReadQuery, fetchQuery, sortTable } from "./data/Data";
-// import Modal from "./components/Modal/Modal";
-
 import { GetValueContext } from "./contexts/Contexts";
 
 export default function App() {
@@ -21,7 +17,9 @@ export default function App() {
 		[searchQuery, setSearchQuery] = useState(null),
 		[refresh, setRefresh] = useState(false);
 
-	const refreshState = () => setRefresh((current) => !current);
+	function refreshState() {
+		setRefresh((currentState) => !currentState);
+	}
 
 	useEffect(() => {
 		if (searchQuery !== null) {
@@ -44,7 +42,6 @@ export default function App() {
 		<>
 			<Background />
 			<div className="App">
-				{/* <Modal refreshState={refreshState} setDeleteId={setDeleteId} /> */}
 				<GetValueContext.Provider value={{ deleteId, updateId }}>
 					{insertModal && (
 						<InsertData
