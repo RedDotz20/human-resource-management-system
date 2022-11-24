@@ -16,9 +16,11 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import { GetValueContext } from "../../contexts/Contexts";
+import { GetValueContext, RefreshContext } from "../../contexts/Contexts";
 
-function UpdateData({ employeeList, refreshState, setUpdateModal }) {
+function UpdateData({ employeeList, setUpdateModal }) {
+	const { refreshState } = useContext(RefreshContext);
+
 	const { updateId } = useContext(GetValueContext),
 		indexId = employeeList.map((values) => values.id).indexOf(updateId);
 
