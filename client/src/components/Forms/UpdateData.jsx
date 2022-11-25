@@ -18,8 +18,8 @@ import {
 
 import { GetValueContext } from "../../contexts/Contexts";
 
-function UpdateData({ employeeList, setUpdateModal }) {
-	const { updateId } = useContext(GetValueContext),
+function UpdateData({ employeeList }) {
+	const { updateId, setUpdateModal } = useContext(GetValueContext),
 		indexId = employeeList.map((values) => values.id).indexOf(updateId);
 
 	const { firstName, lastName, age, sex, phoneNumber } = employeeList[indexId],
