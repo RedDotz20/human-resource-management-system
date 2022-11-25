@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
@@ -18,11 +18,7 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import { RefreshContext } from "../../contexts/Contexts";
-
 function InsertData({ setInsertModal }) {
-	const { refreshState } = useContext(RefreshContext);
-
 	const { register, handleSubmit, errors } = useForm(),
 		[fNameError, setfNameError] = useState(null),
 		[lNameError, setLNameError] = useState(null),
@@ -31,7 +27,6 @@ function InsertData({ setInsertModal }) {
 
 	const onSubmit = (data) => {
 		InsertQuery(data);
-		refreshState();
 		setInsertModal(false);
 	};
 

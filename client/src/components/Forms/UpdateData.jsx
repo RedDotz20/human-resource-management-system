@@ -16,11 +16,9 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import { GetValueContext, RefreshContext } from "../../contexts/Contexts";
+import { GetValueContext } from "../../contexts/Contexts";
 
 function UpdateData({ employeeList, setUpdateModal }) {
-	const { refreshState } = useContext(RefreshContext);
-
 	const { updateId } = useContext(GetValueContext),
 		indexId = employeeList.map((values) => values.id).indexOf(updateId);
 
@@ -190,7 +188,6 @@ function UpdateData({ employeeList, setUpdateModal }) {
 						}
 						onClick={() => {
 							UpdateQuery(values, updateId);
-							refreshState();
 							setUpdateModal(false);
 						}}
 					>
