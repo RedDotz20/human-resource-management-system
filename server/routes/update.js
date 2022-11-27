@@ -12,12 +12,17 @@ router.put("/update", (req, res) => {
 		req.body.phoneNumber,
 		req.body.id,
 	];
+
 	const sql =
-		"UPDATE employees SET firstName=?,lastName=?,age=?,sex=?,phoneNumber=? WHERE id=?";
+		"UPDATE employees " +
+		"SET firstName=?,lastName=?,age=?,sex=?,phoneNumber=? " +
+		"WHERE id=?";
+
 	con.query(sql, [...data], (error) => {
 		if (error) throw error;
 		console.log("Data Updated Successfully");
 		res.send("Data Updated Successfully");
+		res.end();
 	});
 });
 

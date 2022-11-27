@@ -13,7 +13,9 @@ router.post("/insert", (req, res) => {
 	];
 
 	const sql =
-		"INSERT INTO employees(firstName,lastName,age,sex,phoneNumber) VALUES(?,?,?,?,?)";
+		"INSERT INTO employees" +
+		"(firstName,lastName,age,sex,phoneNumber) " +
+		"VALUES(?,?,?,?,?)";
 	con.query(sql, [...data], (error) => {
 		if (error) throw error;
 		console.log("Inserted Successfully");

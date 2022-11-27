@@ -17,6 +17,9 @@ export default function App() {
 	const [deleteModal, setDeleteModal] = useState(false);
 	const [updateModal, setUpdateModal] = useState(false);
 
+	const [deleteId, setDeleteId] = useState(0);
+	const [updateId, setUpdateId] = useState(0);
+
 	useEffect(() => {
 		if (searchQuery !== null) {
 			fetchQuery(searchQuery, setEmployeeList);
@@ -24,10 +27,6 @@ export default function App() {
 			sortTable(sortOptions, setEmployeeList);
 		} else ReadQuery(setEmployeeList);
 	}, [insertModal, deleteModal, updateModal, sortOptions, searchQuery]);
-
-	//* ID States
-	const [deleteId, setDeleteId] = useState(0);
-	const [updateId, setUpdateId] = useState(0);
 
 	return (
 		<>
