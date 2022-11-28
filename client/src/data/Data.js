@@ -1,5 +1,6 @@
 import { formatPascalCase } from "../utilities/formatString";
 import Axios from "axios";
+
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
@@ -29,12 +30,12 @@ export function InsertQuery(values) {
 //* Update Query Function
 export function UpdateQuery(values, id) {
 	Axios.put(`${URL}/update`, {
-		firstName: values.firstName,
-		lastName: values.lastName,
-		age: values.age,
+		firstName: formatPascalCase(values.firstName),
+		lastName: formatPascalCase(values.lastName),
+		age: parseInt(values.age),
 		sex: values.sex,
 		phoneNumber: values.phoneNumber,
-		id: id,
+		id: parseInt(id),
 	}).catch((error) => console.log(error));
 }
 
