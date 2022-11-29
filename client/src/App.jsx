@@ -31,7 +31,7 @@ export default function App() {
 	return (
 		<>
 			<Background />
-			<div className="App">
+			<div className="App h-screen">
 				<GetValueContext.Provider
 					value={{
 						deleteId,
