@@ -24,9 +24,9 @@ function DeleteData() {
 					Do you want to delete the curent row?
 				</p>
 
-				<footer className="flex justify-around items-center ">
+				<footer className="inline-flex justify-between mt-auto">
 					<Button
-						className="cancel-btn"
+						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
 						variant="contained"
 						size="small"
 						onClick={() => {
@@ -36,7 +36,7 @@ function DeleteData() {
 						Cancel
 					</Button>
 					<Button
-						className="confirm-btn"
+						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
 						variant="contained"
 						size="small"
 						color="error"

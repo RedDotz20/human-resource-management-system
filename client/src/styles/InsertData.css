@@ -19,76 +19,9 @@
 }
 
 .modalBackground {
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.5);
-	position: fixed;
-	z-index: 2;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	animation: animateBgModal 200ms ease-out;
 }
 
 .modalContainer {
-	position: relative;
-	width: 420px;
-	height: 500px;
-	border-radius: 12px;
-	background-color: #fff;
-	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-	padding: 1.75rem;
 	animation: animateConModal 100ms ease-in;
-}
-
-.modalContainer .title {
-	display: inline-block;
-	margin: 0 0 1rem;
-}
-
-.insertForm,
-.modalContainer {
-	display: flex;
-	flex-direction: column;
-}
-
-.insertForm {
-	height: 100%;
-}
-
-.inputField {
-	display: block;
-	margin: 50px;
-}
-
-.titleCloseBtn {
-	position: absolute;
-	z-index: 5;
-	right: 1.5rem;
-	top: 1.5rem;
-	color: red;
-	cursor: pointer;
-}
-
-.modalContainer .footer {
-	flex: 20%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-footer {
-	display: flex;
-	justify-content: space-between;
-	margin-top: auto;
-}
-
-footer button {
-	width: 49%;
-	height: 35px;
-	border: 0;
-	color: #fff;
-	border-radius: 8px;
-	font-size: 1.5rem;
-	cursor: pointer;
 }
