@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";
-import "../../styles/InsertData.css";
 import {
 	validateString,
 	validateAge,
@@ -88,10 +87,10 @@ function InsertData() {
 	}, [values.phoneNumber, phoneNumError]);
 
 	return (
-		<div className="modalBackground">
-			<div className="modalContainer">
+		<div className="animate-BgModal fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50">
+			<div className="animate-ConModal bg-slate-50 relative flex flex-col p-7 w-[26.25rem] h-[31.25rem] rounded-xl shadow-2xl">
 				<CloseIcon
-					className="titleCloseBtn"
+					className="absolute z-[5] right-6 top-6 text-[red] cursor-pointer"
 					onClick={() => {
 						setInsertModal(false);
 					}}
@@ -99,7 +98,10 @@ function InsertData() {
 
 				<h1 className="text-xl font-semibold mb-4">Insert Employee</h1>
 
-				<form className="insertForm" onSubmit={handleSubmit(onSubmit)}>
+				<form
+					className="flex flex-col h-full"
+					onSubmit={handleSubmit(onSubmit)}
+				>
 					<TextField
 						required
 						{...register("firstName")}
@@ -185,9 +187,9 @@ function InsertData() {
 						onChange={handleChange("phoneNumber")}
 					/>
 
-					<footer>
+					<footer className="inline-flex justify-between mt-auto">
 						<Button
-							className="cancel-btn"
+							className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer "
 							variant="contained"
 							size="small"
 							onClick={() => {
@@ -197,7 +199,7 @@ function InsertData() {
 							Cancel
 						</Button>
 						<Button
-							className="confirm-btn"
+							className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
 							variant="contained"
 							size="small"
 							color="success"

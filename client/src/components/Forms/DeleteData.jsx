@@ -8,8 +8,8 @@ import { GetValueContext } from "../../contexts/Contexts";
 function DeleteData() {
 	const { deleteId, setDeleteModal } = useContext(GetValueContext);
 	return (
-		<div className="fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50 ">
-			<div className=" bg-slate-50 relative flex flex-col p-7 w-96 h-48 rounded-xl shadow-2xl">
+		<div className="animate-BgModal fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50 ">
+			<div className="animate-ConModal bg-slate-50 relative flex flex-col p-7 w-96 h-48 rounded-xl shadow-2xl">
 				<CloseIcon
 					className="text-red-600 absolute z-10 right-6 top-6 cursor-pointer"
 					onClick={() => {
@@ -24,9 +24,9 @@ function DeleteData() {
 					Do you want to delete the curent row?
 				</p>
 
-				<footer className="flex justify-around items-center ">
+				<footer className="inline-flex justify-between mt-auto">
 					<Button
-						className="cancel-btn"
+						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
 						variant="contained"
 						size="small"
 						onClick={() => {
@@ -36,7 +36,7 @@ function DeleteData() {
 						Cancel
 					</Button>
 					<Button
-						className="confirm-btn"
+						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
 						variant="contained"
 						size="small"
 						color="error"
