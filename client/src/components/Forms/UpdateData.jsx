@@ -83,8 +83,8 @@ function UpdateData({ employeeList }) {
 	}, [values.phoneNumber, phoneNumError]);
 
 	return (
-		<div className="modalBackground fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50">
-			<div className="modalContainer bg-slate-50 relative flex flex-col p-7 w-[26.25rem] h-[31.25rem] rounded-xl shadow-2xl">
+		<div className="animate-BgModal fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50">
+			<div className="animate-ConModal bg-slate-50 relative flex flex-col p-7 w-[26.25rem] h-[31.25rem] rounded-xl shadow-2xl">
 				<CloseIcon
 					className="absolute z-[5] right-6 top-6 text-[red] cursor-pointer"
 					onClick={() => {
