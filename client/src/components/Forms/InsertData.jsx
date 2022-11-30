@@ -205,9 +205,6 @@ function InsertData() {
 								Object.values(values).includes("") ||
 								(fNameError || lNameError || ageError || phoneNumError) !== null
 							}
-							onClick={() => {
-								console.log(values);
-							}}
 						>
 							Confirm
 						</Button>
