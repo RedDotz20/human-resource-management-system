@@ -20,9 +20,9 @@ const TableHeader = () => {
 
 const EmptyTable = () => {
 	return (
-		<div className="text-3xl font-semibold absolute grid items-center text-center w-full h-64">
-			EMPTY TABLE
-		</div>
+		<tr className="text-3xl font-semibold absolute grid items-center text-center w-full h-64">
+			<td>EMPTY TABLE</td>
+		</tr>
 	);
 };
 
@@ -37,7 +37,6 @@ export default function EmployeeDataList({
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
 			<table className="w-full">
 				<TableHeader />
-
 				<tbody className="b-bottom b-color-even b-color-last relative">
 					{employees.length <= 0 ? (
 						<EmptyTable />
@@ -61,7 +60,6 @@ export default function EmployeeDataList({
 											setUpdateId={setUpdateId}
 											updateId={id}
 										/>
-
 										<DeleteBtn
 											setDeleteModal={setDeleteModal}
 											setDeleteId={setDeleteId}
