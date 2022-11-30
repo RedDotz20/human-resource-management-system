@@ -40,8 +40,6 @@ function InsertData() {
 		phoneNumber: "",
 	});
 
-	console.log(values);
-
 	const handleChange = (props) => (event) => {
 		setValues({ ...values, [props]: event.target.value });
 	};
@@ -156,14 +154,14 @@ function InsertData() {
 						<RadioGroup row>
 							<RadioGroup
 								name="sex"
-								{...register("sex")}
+								{...register("sex", { required: true })}
 								onChange={handleChange("sex")}
 							>
 								<FormControlLabel label="Male" value="M" control={<Radio />} />
 							</RadioGroup>
 							<RadioGroup
 								name="sex"
-								{...register("sex")}
+								{...register("sex", { required: true })}
 								onChange={handleChange("sex")}
 							>
 								<FormControlLabel
