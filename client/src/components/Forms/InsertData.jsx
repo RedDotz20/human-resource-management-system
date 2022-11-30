@@ -151,25 +151,19 @@ function InsertData() {
 
 					<FormControl sx={{ my: 1 }}>
 						<FormLabel required>Sex</FormLabel>
-						<RadioGroup row>
-							<RadioGroup
-								name="sex"
+						<RadioGroup row name="sex" onChange={handleChange("sex")}>
+							<FormControlLabel
 								{...register("sex", { required: true })}
-								onChange={handleChange("sex")}
-							>
-								<FormControlLabel label="Male" value="M" control={<Radio />} />
-							</RadioGroup>
-							<RadioGroup
-								name="sex"
+								label="Male"
+								value="M"
+								control={<Radio />}
+							/>
+							<FormControlLabel
 								{...register("sex", { required: true })}
-								onChange={handleChange("sex")}
-							>
-								<FormControlLabel
-									label="Female"
-									value="F"
-									control={<Radio />}
-								/>
-							</RadioGroup>
+								label="Female"
+								value="F"
+								control={<Radio />}
+							/>
 						</RadioGroup>
 					</FormControl>
 
@@ -211,6 +205,9 @@ function InsertData() {
 								Object.values(values).includes("") ||
 								(fNameError || lNameError || ageError || phoneNumError) !== null
 							}
+							onClick={() => {
+								console.log(values);
+							}}
 						>
 							Confirm
 						</Button>
