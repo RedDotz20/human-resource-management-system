@@ -10,12 +10,18 @@ import {
 import {
 	Button,
 	TextField,
-	Radio,
-	RadioGroup,
-	FormControl,
-	FormControlLabel,
-	FormLabel,
+	// Radio,
+	// RadioGroup,
+	// FormControl,
+	// FormControlLabel,
+	// FormLabel,
 } from "@mui/material";
+
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 import { GetValueContext } from "../../contexts/Contexts";
 
@@ -27,10 +33,10 @@ function InsertData() {
 		[ageError, setAgeError] = useState(null),
 		[phoneNumError, setPhoneNumError] = useState(null);
 
-	const onSubmit = (data) => {
+	function onSubmit(data) {
 		InsertQuery(data);
 		setInsertModal(false);
-	};
+	}
 
 	const [values, setValues] = useState({
 		firstName: "",
@@ -39,6 +45,8 @@ function InsertData() {
 		sex: "",
 		phoneNumber: "",
 	});
+
+	console.log(values);
 
 	const handleChange = (props) => (event) => {
 		setValues({ ...values, [props]: event.target.value });
@@ -99,8 +107,8 @@ function InsertData() {
 				<h1 className="text-xl font-semibold mb-4">Insert Employee</h1>
 
 				<form
-					className="flex flex-col h-full"
 					onSubmit={handleSubmit(onSubmit)}
+					className="flex flex-col h-full"
 				>
 					<TextField
 						required
@@ -151,22 +159,25 @@ function InsertData() {
 
 					<FormControl sx={{ my: 1 }}>
 						<FormLabel required>Sex</FormLabel>
-						<RadioGroup
-							name="sex"
-							{...register("sex", { required: true })}
-							row
-							onChange={handleChange("sex")}
-						>
-							<FormControlLabel
-								label="Male"
-								value="M"
-								control={<Radio required={true} />}
-							/>
-							<FormControlLabel
-								label="Female"
-								value="F"
-								control={<Radio required={true} />}
-							/>
+						<RadioGroup row>
+							<RadioGroup
+								name="sex"
+								{...register("sex")}
+								onChange={handleChange("sex")}
+							>
+								<FormControlLabel label="Male" value="M" control={<Radio />} />
+							</RadioGroup>
+							<RadioGroup
+								name="sex"
+								{...register("sex")}
+								onChange={handleChange("sex")}
+							>
+								<FormControlLabel
+									label="Female"
+									value="F"
+									control={<Radio />}
+								/>
+							</RadioGroup>
 						</RadioGroup>
 					</FormControl>
 
