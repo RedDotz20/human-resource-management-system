@@ -1,6 +1,9 @@
 import React from "react";
 import DeleteBtn from "../Button/DeleteBtn";
 import UpdateBtn from "../Button/UpdateBtn";
+import { useQuery } from "react-query";
+import { queryClient } from "../../main";
+import { FetchTableData } from "../../data/Data";
 
 const TableHeader = () => {
 	return (
@@ -26,6 +29,10 @@ const EmptyTable = () => {
 	);
 };
 
+export const refetchEmployees = async () => {
+	await queryClient.refetchQueries(["employees"], { active: true });
+};
+
 export default function EmployeeDataList({
 	employees,
 	setDeleteId,
@@ -33,6 +40,14 @@ export default function EmployeeDataList({
 	setUpdateId,
 	setUpdateModal,
 }) {
+	const { isFetching, isLoading, isError, data, error } = useQuery({
+		queryKey: ["employees"],
+		queryFn: FetchTableData,
+	});
+
+	if (isFetching || isLoading) return "Loading";
+	if (isError) return `An error has occurred: ${error.message}`;
+
 	return (
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
 			<table className="w-full">
@@ -43,6 +58,7 @@ export default function EmployeeDataList({
 					) : (
 						employees.map((values) => {
 							const { id, firstName, lastName, age, sex, phoneNumber } = values;
+							// const { id, firstName, lastName, age, sex, phoneNumber } = data;
 							return (
 								<tr
 									className="child-td:py-1 child-td:px-4 child-td:text-center"

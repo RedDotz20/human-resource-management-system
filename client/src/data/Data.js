@@ -4,6 +4,14 @@ import Axios from "axios";
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
+//! NEW Read Table Query Function
+export function FetchTableData() {
+	async function fetchData() {
+		await Axios.get(`${URL}/showemployees`).then((res) => res.data);
+	}
+	fetchData();
+}
+
 //* Read/Select Table Query Function
 export function ReadQuery(setEmployeeList) {
 	async function fetchData() {
