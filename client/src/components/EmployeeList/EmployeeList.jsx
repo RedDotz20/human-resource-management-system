@@ -40,13 +40,17 @@ export default function EmployeeDataList({
 	setUpdateId,
 	setUpdateModal,
 }) {
-	const { isFetching, isLoading, isError, data, error } = useQuery({
-		queryKey: ["employees"],
-		queryFn: FetchTableData,
-	});
+	const {
+		data: employeeData,
+		isFetching,
+		isLoading,
+		isError,
+		error,
+	} = useQuery(["employees"], FetchTableData);
 
 	if (isFetching || isLoading) return "Loading";
 	if (isError) return `An error has occurred: ${error.message}`;
+	console.log(employeeData);
 
 	return (
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">

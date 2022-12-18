@@ -5,11 +5,16 @@ const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
 //! NEW Read Table Query Function
-export function FetchTableData() {
-	async function fetchData() {
-		await Axios.get(`${URL}/showemployees`).then((res) => res.data);
-	}
-	fetchData();
+
+// export function FetchTableData() {
+// 	async function fetchData() {
+// 		await Axios.get(`${URL}/showemployees`).then((res) => res.data);
+// 	}
+// 	fetchData();
+// }
+
+export async function FetchTableData() {
+	return await Axios.get(`${URL}/showemployees`).then((res) => res.data);
 }
 
 //* Read/Select Table Query Function
