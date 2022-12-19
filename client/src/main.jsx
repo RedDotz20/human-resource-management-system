@@ -15,11 +15,27 @@ export const queryClient = new QueryClient({
 	},
 });
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<QueryClientProvider client={queryClient}>
-			<App />
-			<ReactQueryDevtools initialIsOpen={true} />
-		</QueryClientProvider>
-	</React.StrictMode>
-);
+let container = null;
+
+document.addEventListener("DOMContentLoaded", (event) => {
+	if (!container) {
+		container = document.getElementById("root");
+		ReactDOM.createRoot(container).render(
+			<React.StrictMode>
+				<QueryClientProvider client={queryClient}>
+					<App />
+					<ReactQueryDevtools initialIsOpen={true} />
+				</QueryClientProvider>
+			</React.StrictMode>
+		);
+	}
+});
+
+// ReactDOM.createRoot(document.getElementById("root")).render(
+// 	<React.StrictMode>
+// 		<QueryClientProvider client={queryClient}>
+// 			<App />
+// 			<ReactQueryDevtools initialIsOpen={true} />
+// 		</QueryClientProvider>
+// 	</React.StrictMode>
+// );
