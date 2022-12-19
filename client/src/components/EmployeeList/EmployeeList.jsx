@@ -42,14 +42,12 @@ export default function EmployeeDataList({
 }) {
 	const {
 		data: employeeData,
-		isFetching,
-		isLoading,
-		isError,
+		status,
 		error,
 	} = useQuery(["employees"], FetchTableData);
 
-	if (isFetching || isLoading) return "Loading";
-	if (isError) return `An error has occurred: ${error.message}`;
+	if (status === "fetching" || status === "loading") return "Loading";
+	if (status === "error") return `An error has occurred: ${error.message}`;
 	console.log(employeeData);
 
 	return (
