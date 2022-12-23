@@ -7,6 +7,7 @@ export function InsertBtn({ setInsertModal }) {
 			sx={{ width: 150, padding: 1 }}
 			direction="row"
 			className="insert-btn openModalBtn"
+			aria-label="insert-btn"
 			variant="contained"
 			startIcon={<Add />}
 			onClick={() => {

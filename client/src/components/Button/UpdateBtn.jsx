@@ -6,6 +6,7 @@ function UpdateBtn({ setUpdateModal, setUpdateId, updateId }) {
 		<IconButton
 			className="edit-btn"
 			variant="contained"
+			aria-label="edit-btn"
 			size="small"
 			onClick={() => {
 				setUpdateModal(true);

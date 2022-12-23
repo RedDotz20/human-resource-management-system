@@ -10,7 +10,8 @@ export default function SortMenuBtn({ setSortOptions }) {
 		<>
 			<Button
 				sx={{ width: 150, padding: 1 }}
-				id="basic-button"
+				id="sort-button"
+				aria-label="sort-button"
 				startIcon={<SortIcon />}
 				variant="contained"
 				aria-controls={open ? "basic-menu" : undefined}
