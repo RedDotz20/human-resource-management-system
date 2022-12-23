@@ -1,3 +1,5 @@
+import { ThemeProvider } from "@mui/material/styles";
+import muiTheme from "../../theme/theme";
 import SortIcon from "@mui/icons-material/Sort";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { useSetSort } from "../../hooks/useSetSort";
@@ -7,13 +9,14 @@ export default function SortMenuBtn({ setSortOptions }) {
 		useSetSort(setSortOptions);
 
 	return (
-		<>
+		<ThemeProvider theme={muiTheme}>
 			<Button
 				sx={{ width: 150, padding: 1 }}
 				id="sort-button"
 				aria-label="sort-button"
 				startIcon={<SortIcon />}
 				variant="contained"
+				color="primary"
 				aria-controls={open ? "basic-menu" : undefined}
 				aria-expanded={open ? "true" : undefined}
 				aria-haspopup="true"
@@ -46,6 +49,6 @@ export default function SortMenuBtn({ setSortOptions }) {
 					Age (DESC) 99-1
 				</MenuItem>
 			</Menu>
-		</>
+		</ThemeProvider>
 	);
 }

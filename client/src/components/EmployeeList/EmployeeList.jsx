@@ -7,7 +7,7 @@ import { FetchTableData } from "../../data/Data";
 const TableHeader = () => {
 	return (
 		<thead>
-			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#089879] text-white font-bold text-center">
+			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#0876b8] text-white font-extrabold text-center">
 				<td>ID</td>
 				<td>FIRST NAME</td>
 				<td>LAST NAME</td>
@@ -22,7 +22,7 @@ const TableHeader = () => {
 
 const EmptyTable = () => {
 	return (
-		<tr className="text-3xl font-semibold absolute grid items-center text-center w-full h-64">
+		<tr className="text-3xl font-extrabold absolute grid items-center text-center w-full h-64">
 			<td>EMPTY TABLE</td>
 		</tr>
 	);
@@ -46,9 +46,8 @@ export default function EmployeeDataList({
 	} = useQuery(["employees"], FetchTableData);
 
 	if (status === "fetching" || status === "loading")
-		return <div class="spinner"></div>;
+		return <div className="spinner"></div>;
 	if (status === "error") return `An error has occurred: ${error.message}`;
-	console.log(employeeData);
 
 	return (
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
@@ -63,7 +62,7 @@ export default function EmployeeDataList({
 							// const { id, firstName, lastName, age, sex, phoneNumber } = data;
 							return (
 								<tr
-									className="child-td:py-1 child-td:px-4 child-td:text-center"
+									className="font-semibold child-td:py-1 child-td:px-4 child-td:text-center"
 									key={id}
 								>
 									<td>{id}</td>
