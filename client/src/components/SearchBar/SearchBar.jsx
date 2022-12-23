@@ -1,5 +1,4 @@
-import React from "react";
-import { TextField, Autocomplete, Stack } from "@mui/material/";
+import { TextField, Autocomplete } from "@mui/material/";
 
 export default function SearchBar({ employeeList, setSearchQuery }) {
 	const defaultProps = {
@@ -12,24 +11,18 @@ export default function SearchBar({ employeeList, setSearchQuery }) {
 	};
 
 	return (
-		<Stack spacing={1} sx={{ width: 700 }}>
-			<Autocomplete
-				autoComplete
-				includeInputInList
-				{...defaultProps}
-				id="auto-complete"
-				onChange={(event, value) => {
-					value === null ? setSearchQuery(null) : setSearchQuery(value.id);
-				}}
-				renderInput={(params) => (
-					<TextField
-						{...params}
-						label="Search"
-						variant="outlined"
-						size="small"
-					/>
-				)}
-			/>
-		</Stack>
+		<Autocomplete
+			className="w-full"
+			autoComplete
+			includeInputInList
+			{...defaultProps}
+			id="auto-complete"
+			onChange={(event, value) => {
+				value === null ? setSearchQuery(null) : setSearchQuery(value.id);
+			}}
+			renderInput={(params) => (
+				<TextField {...params} label="Search" variant="outlined" size="small" />
+			)}
+		/>
 	);
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { InsertQuery } from "../../data/Data";
 import CloseIcon from "@mui/icons-material/Close";

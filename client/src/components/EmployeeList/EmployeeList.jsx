@@ -1,4 +1,3 @@
-import React from "react";
 import DeleteBtn from "../Button/DeleteBtn";
 import UpdateBtn from "../Button/UpdateBtn";
 import { useQuery } from "react-query";

@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from "react";
+import { useContext, lazy, Suspense } from "react";
 import { ModalContext } from "../../contexts/Contexts";
 const InsertData = lazy(() => import("../Forms/InsertData"));
 const UpdateData = lazy(() => import("../Forms/UpdateData"));
