@@ -45,7 +45,8 @@ export default function EmployeeDataList({
 		error,
 	} = useQuery(["employees"], FetchTableData);
 
-	if (status === "fetching" || status === "loading") return "Loading";
+	if (status === "fetching" || status === "loading")
+		return <div class="spinner"></div>;
 	if (status === "error") return `An error has occurred: ${error.message}`;
 	console.log(employeeData);
 
