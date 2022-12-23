@@ -1,12 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { GetValueContext } from "../../contexts/Contexts";
+import { useValidate } from "../../hooks/useValidate";
 import { InsertQuery } from "../../data/Data";
+import { useForm } from "react-hook-form";
 import CloseIcon from "@mui/icons-material/Close";
-import {
-	validateString,
-	validateAge,
-	validateNumber,
-} from "../../utilities/validateString";
 import {
 	Button,
 	TextField,
@@ -17,83 +14,26 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import { GetValueContext } from "../../contexts/Contexts";
-
-function InsertData() {
+export default function InsertData() {
 	const { setInsertModal } = useContext(GetValueContext);
-	const { register, handleSubmit, errors } = useForm(),
-		[fNameError, setfNameError] = useState(null),
-		[lNameError, setLNameError] = useState(null),
-		[ageError, setAgeError] = useState(null),
-		[phoneNumError, setPhoneNumError] = useState(null);
+	const { register, handleSubmit } = useForm();
+
+	const [valFname, changeFname, fnameError] = useValidate("firstName");
+	const [valLname, changelname, lnameError] = useValidate("lastName");
+	const [valAge, changeAge, ageError] = useValidate("age");
+	const [valPhone, changePhone, phoneError] = useValidate("phoneNumber");
 
 	function onSubmit(data) {
 		InsertQuery(data);
 		setInsertModal(false);
 	}
 
-	const [values, setValues] = useState({
-		firstName: "",
-		lastName: "",
-		age: "",
-		sex: "",
-		phoneNumber: "",
-	});
-
-	const handleChange = (props) => (event) => {
-		setValues({ ...values, [props]: event.target.value });
-	};
-
-	//* Validate First Name Field
-	useEffect(() => {
-		if (values.firstName.length > 40) {
-			setfNameError("Invalid Input: Characters must not exceed up to 40");
-		} else if (!validateString(values.firstName)) {
-			setfNameError("Invalid Characters");
-		} else {
-			setfNameError(null);
-		}
-	}, [values.firstName, fNameError]);
-
-	//* Validate Last Name Field
-	useEffect(() => {
-		if (values.lastName.length > 40) {
-			setLNameError("Invalid Input: Characters must not exceed up to 40");
-		} else if (!validateString(values.lastName)) {
-			setLNameError("Invalid Characters");
-		} else {
-			setLNameError(null);
-		}
-	}, [values.lastName, lNameError]);
-
-	//* Validate Age Field
-	useEffect(() => {
-		if (!validateAge(values.age)) {
-			setAgeError("Input Out of Range");
-		} else {
-			setAgeError(null);
-		}
-	}, [values.age, ageError]);
-
-	//* Validate Phone Number Field
-	useEffect(() => {
-		if (values.phoneNumber.length > 11) {
-			setPhoneNumError("Input must not exceed up to 11 digits");
-		} else if (!validateNumber(values.phoneNumber)) {
-			setPhoneNumError("Numbers only");
-		} else {
-			setPhoneNumError(null);
-		}
-	}, [values.phoneNumber, phoneNumError]);
-
 	return (
 		<div className="animate-BgModal fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50">
 			<div className="animate-ConModal bg-slate-50 relative flex flex-col p-7 w-[26.25rem] h-[31.25rem] rounded-xl shadow-2xl">
 				<CloseIcon
 					className="absolute z-[5] right-6 top-6 text-[red] cursor-pointer"
-					onClick={() => {
-						setInsertModal(false);
-					}}
+					onClick={() => setInsertModal(false)}
 				/>
 
 				<h1 className="text-xl font-semibold mb-4">Insert Employee</h1>
@@ -103,12 +43,10 @@ function InsertData() {
 					className="flex flex-col h-full"
 				>
 					<TextField
-						required
 						{...register("firstName")}
-						error={
-							values.firstName.length > 40 || !validateString(values.firstName)
-						}
-						helperText={fNameError}
+						required
+						error={fnameError != null}
+						helperText={fnameError}
 						name="firstName"
 						autoFocus
 						autoComplete="off"
@@ -116,15 +54,13 @@ function InsertData() {
 						label="First Name"
 						variant="outlined"
 						size="small"
-						onChange={handleChange("firstName")}
+						onChange={changeFname}
 					/>
 
 					<TextField
 						{...register("lastName", { required: true })}
-						error={
-							values.lastName.length > 40 || !validateString(values.lastName)
-						}
-						helperText={lNameError}
+						error={lnameError != null}
+						helperText={lnameError}
 						required
 						name="lastName"
 						sx={{ my: 1 }}
@@ -132,26 +68,26 @@ function InsertData() {
 						autoComplete="off"
 						variant="outlined"
 						size="small"
-						onChange={handleChange("lastName")}
+						onChange={changelname}
 					/>
 
 					<TextField
 						required
 						name="age"
 						{...register("age", { required: true })}
-						error={!validateAge(values.age)}
+						error={ageError != null}
 						helperText={ageError}
 						sx={{ my: 1 }}
 						label="Age"
 						variant="outlined"
 						autoComplete="off"
 						size="small"
-						onChange={handleChange("age")}
+						onChange={changeAge}
 					/>
 
 					<FormControl sx={{ my: 1 }}>
 						<FormLabel required>Sex</FormLabel>
-						<RadioGroup row name="sex" onChange={handleChange("sex")}>
+						<RadioGroup row name="sex">
 							<FormControlLabel
 								{...register("sex", { required: true })}
 								label="Male"
@@ -170,18 +106,15 @@ function InsertData() {
 					<TextField
 						required
 						{...register("phoneNumber", { required: true })}
-						error={
-							values.phoneNumber.length > 11 ||
-							!validateNumber(values.phoneNumber)
-						}
-						helperText={phoneNumError}
+						error={phoneError != null}
+						helperText={phoneError}
 						name="phoneNumber"
 						sx={{ my: 1 }}
 						label="Phone Number"
 						autoComplete="off"
 						variant="outlined"
 						size="small"
-						onChange={handleChange("phoneNumber")}
+						onChange={changePhone}
 					/>
 
 					<footer className="inline-flex justify-between mt-auto">
@@ -202,8 +135,8 @@ function InsertData() {
 							color="success"
 							type="submit"
 							disabled={
-								Object.values(values).includes("") ||
-								(fNameError || lNameError || ageError || phoneNumError) !== null
+								(valFname && valLname && valAge && valPhone) === "" ||
+								(fnameError || lnameError || ageError || phoneError) !== null
 							}
 						>
 							Confirm
@@ -214,5 +147,3 @@ function InsertData() {
 		</div>
 	);
 }
-
-export default InsertData;
