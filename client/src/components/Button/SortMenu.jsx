@@ -1,18 +1,10 @@
-import React, { useState } from "react";
 import SortIcon from "@mui/icons-material/Sort";
 import { Button, Menu, MenuItem } from "@mui/material";
+import { useToggle } from "../../hooks/useToggle";
 
 export default function SortMenuBtn({ setSortOptions }) {
-	const [anchorEl, setAnchorEl] = useState(null),
-		open = Boolean(anchorEl);
-
-	const handleClick = (e) => setAnchorEl(e.currentTarget);
-
-	const handleClose = (event) => {
-		const sortValue = event.target.getAttribute("value");
-		sortValue !== null ? setSortOptions(sortValue) : null;
-		setAnchorEl(null);
-	};
+	const { anchorEl, open, handleClick, handleClose } =
+		useToggle(setSortOptions);
 
 	return (
 		<>
