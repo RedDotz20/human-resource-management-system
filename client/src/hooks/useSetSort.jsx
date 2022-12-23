@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useToggle(setSortOptions) {
+export function useSetSort(setSortOptions) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 

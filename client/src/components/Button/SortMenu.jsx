@@ -1,10 +1,10 @@
 import SortIcon from "@mui/icons-material/Sort";
 import { Button, Menu, MenuItem } from "@mui/material";
-import { useToggle } from "../../hooks/useToggle";
+import { useSetSort } from "../../hooks/useSetSort";
 
 export default function SortMenuBtn({ setSortOptions }) {
 	const { anchorEl, open, handleClick, handleClose } =
-		useToggle(setSortOptions);
+		useSetSort(setSortOptions);
 
 	return (
 		<>
