@@ -1,12 +1,12 @@
 const { notFound, errorHandler } = require("./middleware/index"),
-	bodyParser = require("body-parser"),
+	{ urlencoded } = require("body-parser"),
 	express = require("express"),
 	cors = require("cors"),
 	app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 
 //* Main Routes
 app.use(require("./routes/read")); //? Show Employees
