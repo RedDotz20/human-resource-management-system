@@ -1,8 +1,7 @@
 import DeleteBtn from "../Button/DeleteBtn";
 import UpdateBtn from "../Button/UpdateBtn";
-import { useQuery } from "react-query";
-import { queryClient } from "../../main";
-import { FetchTableData } from "../../data/Data";
+// import { queryClient } from "../../main";
+// import { FetchTableData } from "../../data/Data";
 
 const TableHeader = () => {
 	return (
@@ -28,9 +27,9 @@ const EmptyTable = () => {
 	);
 };
 
-export const refetchEmployees = async () => {
-	await queryClient.refetchQueries(["employees"], { active: true });
-};
+// export const refetchEmployees = async () => {
+// 	await queryClient.refetchQueries(["employees"], { active: true });
+// };
 
 export default function EmployeeDataList({
 	employees,
@@ -39,15 +38,15 @@ export default function EmployeeDataList({
 	setUpdateId,
 	setUpdateModal,
 }) {
-	const {
-		data: employeeData,
-		status,
-		error,
-	} = useQuery(["employees"], FetchTableData);
+	// const {
+	// 	data: employeeData,
+	// 	status,
+	// 	error,
+	// } = useQuery(["employees"], FetchTableData);
 
-	if (status === "fetching" || status === "loading")
-		return <div className="spinner"></div>;
-	if (status === "error") return `An error has occurred: ${error.message}`;
+	// if (status === "fetching" || status === "loading")
+	// 	return <div className="spinner"></div>;
+	// if (status === "error") return `An error has occurred: ${error.message}`;
 
 	return (
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 text-base w-full shadow-xl child-th:py-1 child-th:px-4 max-h-min">
