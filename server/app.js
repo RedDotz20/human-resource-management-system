@@ -1,12 +1,14 @@
+const express = require("express");
+const app = express();
 const { notFound, errorHandler } = require("./middleware/index"),
 	{ urlencoded } = require("body-parser"),
-	express = require("express"),
-	cors = require("cors"),
-	app = express();
+	cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
+
+const deleteRoute = require("./routes/delete");
 
 //* Main Routes
 app.use(require("./routes/read")); //? Show Employees
