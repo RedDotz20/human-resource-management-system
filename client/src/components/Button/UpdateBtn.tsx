@@ -1,7 +1,14 @@
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-function UpdateBtn({ setUpdateModal, setUpdateId, updateId }: any) {
+interface updateBtnInterface {
+	updateId: number;
+	setUpdateId: React.Dispatch<React.SetStateAction<number>>;
+	setUpdateModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function UpdateBtn(Props: updateBtnInterface) {
+	const { setUpdateModal, setUpdateId, updateId } = Props;
 	return (
 		<IconButton
 			className="edit-btn"

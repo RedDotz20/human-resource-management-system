@@ -2,8 +2,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import muiTheme from "../../theme/theme";
 import { Button } from "@mui/material";
 import Add from "@mui/icons-material/Add";
+import useModal from "../../hooks/useModal";
 
-export function InsertBtn({ setInsertModal }: any) {
+type insertModalInterface = {
+	setInsertModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export function InsertBtn({ setInsertModal }: insertModalInterface) {
+	const [modalState, modalToggles] = useModal();
 	return (
 		<ThemeProvider theme={muiTheme}>
 			<Button
@@ -13,8 +19,11 @@ export function InsertBtn({ setInsertModal }: any) {
 				aria-label="insert-btn"
 				variant="contained"
 				startIcon={<Add />}
+				// onClick={() => {
+				// 	// setInsertModal(true);
+				// }}
 				onClick={() => {
-					setInsertModal(true);
+					modalToggles.insert();
 				}}
 			>
 				Insert

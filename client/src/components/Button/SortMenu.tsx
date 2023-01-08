@@ -4,7 +4,13 @@ import SortIcon from "@mui/icons-material/Sort";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { useSetSort } from "../../hooks/useSetSort";
 
-export default function SortMenuBtn({ setSortOptions }: any) {
+interface sortOptionsInterface {
+	setSortOptions: React.Dispatch<React.SetStateAction<string>>;
+}
+
+// type setSortOptions = React.Dispatch<React.SetStateAction<string>>;
+
+export default function SortMenuBtn({ setSortOptions }: sortOptionsInterface) {
 	const { anchorEl, open, handleClick, handleClose } =
 		useSetSort(setSortOptions);
 

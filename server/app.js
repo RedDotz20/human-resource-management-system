@@ -8,8 +8,6 @@ app.use(cors());
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
-const deleteRoute = require("./routes/delete");
-
 //* Main Routes
 app.use(require("./routes/read")); //? Show Employees
 app.use(require("./routes/insert")); //? Insert Employee
