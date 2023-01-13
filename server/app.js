@@ -1,8 +1,8 @@
 const express = require("express");
+const { notFound, errorHandler } = require("./middleware/index");
+const { urlencoded } = require("body-parser");
+const cors = require("cors");
 const app = express();
-const { notFound, errorHandler } = require("./middleware/index"),
-	{ urlencoded } = require("body-parser"),
-	cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
