@@ -1,21 +1,24 @@
 import { IconButton } from "@mui/material";
+import { useModal } from "../Modal/Modal";
 import EditIcon from "@mui/icons-material/Edit";
 
 interface updateBtnInterface {
 	updateId: number;
 	setUpdateId: React.Dispatch<React.SetStateAction<number>>;
-	setUpdateModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function UpdateBtn(Props: updateBtnInterface) {
-	const { setUpdateModal, setUpdateId, updateId } = Props;
+function UpdateBtn({ updateId, setUpdateId }: updateBtnInterface) {
+	const { setUpdate } = useModal((state) => ({
+		setUpdate: state.setUpdate,
+	}));
+
 	return (
 		<IconButton
 			className="edit-btn"
 			aria-label="edit-btn"
 			size="small"
 			onClick={() => {
-				setUpdateModal(true);
+				setUpdate();
 				setUpdateId(updateId);
 			}}
 		>

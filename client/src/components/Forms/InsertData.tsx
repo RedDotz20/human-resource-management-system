@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { GetValueContext } from "../../contexts/Contexts";
 import { useValidate } from "../../hooks/useValidate";
 import { InsertQuery } from "../../data/Data";
 import { useForm } from "react-hook-form";
@@ -14,8 +12,13 @@ import {
 	FormLabel,
 } from "@mui/material";
 
+import { useModal } from "../Modal/Modal";
+
 export default function InsertData() {
-	const { setInsertModal } = useContext(GetValueContext);
+	const { setInsert } = useModal((state) => ({
+		setInsert: state.setInsert,
+	}));
+
 	const { register, handleSubmit } = useForm();
 
 	const [valFname, changeFname, fnameError] = useValidate("firstName");
@@ -25,7 +28,7 @@ export default function InsertData() {
 
 	function onSubmit(data: any) {
 		InsertQuery(data);
-		setInsertModal(false);
+		setInsert();
 	}
 
 	return (
@@ -33,7 +36,7 @@ export default function InsertData() {
 			<div className="animate-ConModal bg-slate-50 relative flex flex-col p-7 w-[26.25rem] h-[31.25rem] rounded-xl shadow-2xl">
 				<CloseIcon
 					className="absolute z-[5] right-6 top-6 text-[red] cursor-pointer"
-					onClick={() => setInsertModal(false)}
+					onClick={() => setInsert()}
 				/>
 
 				<h1 className="text-xl font-semibold mb-4">Insert Employee</h1>
@@ -122,9 +125,7 @@ export default function InsertData() {
 							className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer "
 							variant="contained"
 							size="small"
-							onClick={() => {
-								setInsertModal(false);
-							}}
+							onClick={() => setInsert()}
 						>
 							Cancel
 						</Button>

@@ -16,11 +16,18 @@ import {
 	FormLabel,
 } from "@mui/material";
 
+import { useModal } from "../Modal/Modal";
 import { GetValueContext } from "../../contexts/Contexts";
 
 function UpdateData({ employeeList }: any) {
-	const { updateId, setUpdateModal } = useContext(GetValueContext),
-		indexId = employeeList.map((values: any) => values.id).indexOf(updateId);
+	const { updateId } = useContext(GetValueContext);
+	const indexId = employeeList
+		.map((values: any) => values.id)
+		.indexOf(updateId);
+
+	const { setUpdate } = useModal((state) => ({
+		setUpdate: state.setUpdate,
+	}));
 
 	const { firstName, lastName, age, sex, phoneNumber } = employeeList[indexId],
 		[values, setValues] = useState({
@@ -87,9 +94,7 @@ function UpdateData({ employeeList }: any) {
 			<div className="animate-ConModal bg-slate-50 relative flex flex-col p-7 w-[26.25rem] h-[31.25rem] rounded-xl shadow-2xl">
 				<CloseIcon
 					className="absolute z-[5] right-6 top-6 text-[red] cursor-pointer"
-					onClick={() => {
-						setUpdateModal(false);
-					}}
+					onClick={() => setUpdate()}
 				/>
 
 				<h1 className="text-xl font-semibold mb-4">Update Employee</h1>
@@ -171,9 +176,7 @@ function UpdateData({ employeeList }: any) {
 						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
 						variant="contained"
 						size="small"
-						onClick={() => {
-							setUpdateModal(false);
-						}}
+						onClick={() => setUpdate()}
 					>
 						Cancel
 					</Button>
@@ -188,7 +191,7 @@ function UpdateData({ employeeList }: any) {
 						}
 						onClick={() => {
 							UpdateQuery(values, updateId);
-							setUpdateModal(false);
+							setUpdate();
 						}}
 					>
 						Confirm

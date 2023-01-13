@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { GetValueContext, ModalContext } from "./contexts/Contexts";
+import { useEffect, useState } from "react";
+import { GetValueContext } from "./contexts/Contexts";
 import { ReadQuery, fetchQuery, sortTable } from "./data/Data";
 import { InsertBtn } from "./components/Button/InsertBtn";
+import { useModal } from "./components/Modal/Modal";
 import EmployeeDataList from "./components/EmployeeList/EmployeeList";
 import SortMenuBtn from "./components/Button/SortMenu";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Modal from "./components/Modal/Modal";
-
-import useModal from "./hooks/useModal";
 
 const App = (): JSX.Element => {
 	const [employeeList, setEmployeeList] = useState([]);
 	const [sortOptions, setSortOptions] = useState("");
 	const [searchQuery, setSearchQuery] = useState(null);
 
-	//? useModal Custom Hook
-	const [modalState, modalToggles] = useModal();
-
-	const [insertModal, setInsertModal] = useState(false);
-	const [deleteModal, setDeleteModal] = useState(false);
-	const [updateModal, setUpdateModal] = useState(false);
-
 	const [deleteId, setDeleteId] = useState(0);
 	const [updateId, setUpdateId] = useState(0);
+
+	const { insertModal, deleteModal, updateModal } = useModal((state) => ({
+		insertModal: state.insertModal,
+		deleteModal: state.deleteModal,
+		updateModal: state.updateModal,
+	}));
 
 	useEffect(() => {
 		if (searchQuery !== null) {
@@ -34,20 +32,8 @@ const App = (): JSX.Element => {
 
 	return (
 		<div className="App h-screen flex flex-col items-center">
-			<GetValueContext.Provider
-				value={{
-					deleteId,
-					updateId,
-					setInsertModal,
-					setDeleteModal,
-					setUpdateModal,
-				}}
-			>
-				<ModalContext.Provider
-					value={{ insertModal, deleteModal, updateModal }}
-				>
-					<Modal employeeList={employeeList} />
-				</ModalContext.Provider>
+			<GetValueContext.Provider value={{ deleteId, updateId }}>
+				<Modal employeeList={employeeList} />
 			</GetValueContext.Provider>
 
 			<h1 className="App-container text-white text-center text-3xl p-8 font-semibold">
@@ -61,15 +47,13 @@ const App = (): JSX.Element => {
 						employeeList={employeeList}
 						setSearchQuery={setSearchQuery}
 					/>
-					<InsertBtn setInsertModal={setInsertModal} />
+					<InsertBtn />
 				</div>
 
 				<EmployeeDataList
 					employees={employeeList}
 					setDeleteId={setDeleteId}
-					setDeleteModal={setDeleteModal}
 					setUpdateId={setUpdateId}
-					setUpdateModal={setUpdateModal}
 				/>
 			</div>
 		</div>

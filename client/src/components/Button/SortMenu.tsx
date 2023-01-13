@@ -1,14 +1,12 @@
-import { ThemeProvider } from "@mui/material/styles";
-import muiTheme from "../../theme/theme";
-import SortIcon from "@mui/icons-material/Sort";
 import { Button, Menu, MenuItem } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { useSetSort } from "../../hooks/useSetSort";
+import SortIcon from "@mui/icons-material/Sort";
+import muiTheme from "../../theme/theme";
 
 interface sortOptionsInterface {
 	setSortOptions: React.Dispatch<React.SetStateAction<string>>;
 }
-
-// type setSortOptions = React.Dispatch<React.SetStateAction<string>>;
 
 export default function SortMenuBtn({ setSortOptions }: sortOptionsInterface) {
 	const { anchorEl, open, handleClick, handleClose } =

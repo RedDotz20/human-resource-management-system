@@ -33,9 +33,7 @@ const EmptyTable = () => {
 export default function EmployeeDataList({
 	employees,
 	setDeleteId,
-	setDeleteModal,
 	setUpdateId,
-	setUpdateModal,
 }: any) {
 	return (
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 w-full text-base shadow-xl child-th:py-1 child-th:px-4 max-h-min">
@@ -59,16 +57,8 @@ export default function EmployeeDataList({
 									<td>{sex}</td>
 									<td>{phoneNumber}</td>
 									<td>
-										<UpdateBtn
-											setUpdateModal={setUpdateModal}
-											setUpdateId={setUpdateId}
-											updateId={id}
-										/>
-										<DeleteBtn
-											setDeleteModal={setDeleteModal}
-											setDeleteId={setDeleteId}
-											deleteId={id}
-										/>
+										<UpdateBtn setUpdateId={setUpdateId} updateId={id} />
+										<DeleteBtn setDeleteId={setDeleteId} deleteId={id} />
 									</td>
 								</tr>
 							);

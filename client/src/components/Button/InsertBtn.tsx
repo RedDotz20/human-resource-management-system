@@ -1,48 +1,27 @@
 import { ThemeProvider } from "@mui/material/styles";
-import muiTheme from "../../theme/theme";
+import { useModal } from "../Modal/Modal";
 import { Button } from "@mui/material";
 import Add from "@mui/icons-material/Add";
-import useModal from "../../hooks/useModal";
+import muiTheme from "../../theme/theme";
 
-type insertModalInterface = {
-	setInsertModal: React.Dispatch<React.SetStateAction<boolean>>;
-};
+export function InsertBtn() {
+	const { setInsert } = useModal((state) => ({
+		setInsert: state.setInsert,
+	}));
 
-export function InsertBtn({ setInsertModal }: insertModalInterface) {
-	const [modalState, modalToggles] = useModal();
 	return (
 		<ThemeProvider theme={muiTheme}>
 			<Button
+				onClick={() => setInsert()}
 				sx={{ width: 150, padding: 1 }}
 				color="primary"
 				className="insert-btn openModalBtn"
 				aria-label="insert-btn"
 				variant="contained"
 				startIcon={<Add />}
-				// onClick={() => {
-				// 	// setInsertModal(true);
-				// }}
-				onClick={() => {
-					modalToggles.insert();
-				}}
 			>
 				Insert
 			</Button>
-
-			{/* <Button
-				sx={{ width: 150, padding: 1 }}
-				color="primary"
-				direction="row"
-				className="insert-btn openModalBtn"
-				aria-label="insert-btn"
-				variant="contained"
-				startIcon={<Add />}
-				onClick={() => {
-					setInsertModal(true);
-				}}
-			>
-				Insert
-			</Button> */}
 		</ThemeProvider>
 	);
 }

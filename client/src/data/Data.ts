@@ -45,7 +45,7 @@ export function UpdateQuery(values: any, id: any) {
 
 //* Delete Query Function
 export function DeleteQuery(id: any) {
-	Axios.delete(`${URL}/delete/${id}`).catch((error) => console.log(error));
+	Axios.delete(`${URL}/delete/?id=${id}`).catch((error) => console.log(error));
 }
 
 //* Fetch Query Function

@@ -1,14 +1,17 @@
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import { useModal } from "../Modal/Modal";
 interface deleteBtnInterface {
 	deleteId: number;
 	setDeleteId: React.Dispatch<React.SetStateAction<number>>;
-	setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function DeleteBtn(Props: deleteBtnInterface) {
-	const { deleteId, setDeleteId, setDeleteModal } = Props;
+function DeleteBtn({ deleteId, setDeleteId }: deleteBtnInterface) {
+	const { setDelete } = useModal((state) => ({
+		setDelete: state.setDelete,
+	}));
+
 	return (
 		<IconButton
 			className="delete-btn"
@@ -16,7 +19,7 @@ function DeleteBtn(Props: deleteBtnInterface) {
 			color="error"
 			size="small"
 			onClick={() => {
-				setDeleteModal(true);
+				setDelete();
 				setDeleteId(deleteId);
 			}}
 		>
