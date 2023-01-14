@@ -8,7 +8,7 @@ import SortMenuBtn from "./components/Button/SortMenu";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Modal from "./components/Modal/Modal";
 
-const App = (): JSX.Element => {
+export default function App() {
 	const [employeeList, setEmployeeList] = useState([]);
 	const [sortOptions, setSortOptions] = useState("");
 	const [searchQuery, setSearchQuery] = useState(null);
@@ -58,6 +58,4 @@ const App = (): JSX.Element => {
 			</div>
 		</div>
 	);
-};
-
-export default App;
+}

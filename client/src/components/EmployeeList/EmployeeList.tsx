@@ -1,35 +1,6 @@
 import DeleteBtn from "../Button/DeleteBtn";
 import UpdateBtn from "../Button/UpdateBtn";
 
-const TableHeader = () => {
-	const Thead: string[] = [
-		"ID",
-		"FIRST NAME",
-		"LAST NAME",
-		"AGE",
-		"SEX",
-		"PHONE NUMBER",
-		"ACTIONS",
-	];
-	return (
-		<thead>
-			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#0876b8] text-white font-extrabold text-center w-full">
-				{Thead.map((name: string, key: number) => {
-					return <td key={key}>{name}</td>;
-				})}
-			</tr>
-		</thead>
-	);
-};
-
-const EmptyTable = () => {
-	return (
-		<tr className="text-3xl font-extrabold absolute grid items-center text-center h-64">
-			<td>EMPTY TABLE</td>
-		</tr>
-	);
-};
-
 export default function EmployeeDataList({
 	employees,
 	setDeleteId,
@@ -67,5 +38,34 @@ export default function EmployeeDataList({
 				</tbody>
 			</table>
 		</div>
+	);
+}
+
+function TableHeader() {
+	const Thead: string[] = [
+		"ID",
+		"FIRST NAME",
+		"LAST NAME",
+		"AGE",
+		"SEX",
+		"PHONE NUMBER",
+		"ACTIONS",
+	];
+	return (
+		<thead>
+			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#0876b8] text-white font-extrabold text-center w-full">
+				{Thead.map((name: string, key: number) => {
+					return <td key={key}>{name}</td>;
+				})}
+			</tr>
+		</thead>
+	);
+}
+
+function EmptyTable() {
+	return (
+		<tr className="text-3xl font-extrabold absolute grid items-center text-center h-64">
+			<td>EMPTY TABLE</td>
+		</tr>
 	);
 }

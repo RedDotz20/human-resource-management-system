@@ -5,7 +5,7 @@ import {
 	validateString,
 	validateAge,
 	validateNumber,
-} from "../../utilities/validateString";
+} from "../../utilities/formatString";
 import {
 	Button,
 	TextField,

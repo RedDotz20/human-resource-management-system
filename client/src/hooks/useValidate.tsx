@@ -3,7 +3,7 @@ import {
 	validateString,
 	validateAge,
 	validateNumber,
-} from "../utilities/validateString";
+} from "../utilities/formatString";
 
 const error = {
 	fieldLimit: "Invalid Input: Characters must not exceed up to 40",
