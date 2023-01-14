@@ -61,13 +61,13 @@ npm install
 
 ## Run the Server
 
-#### Development Server
+#### Development Build
 
 ```console
 npm run dev
 ```
 
-#### Preview Server
+#### Production Build
 
 ```console
 npm run build
