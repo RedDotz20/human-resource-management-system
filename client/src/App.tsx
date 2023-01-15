@@ -12,7 +12,6 @@ export default function App() {
 	const [employeeList, setEmployeeList] = useState([]);
 	const [sortOptions, setSortOptions] = useState("");
 	const [searchQuery, setSearchQuery] = useState(null);
-
 	const [deleteId, setDeleteId] = useState(0);
 	const [updateId, setUpdateId] = useState(0);
 
@@ -51,7 +50,7 @@ export default function App() {
 				</div>
 
 				<EmployeeDataList
-					employees={employeeList}
+					employeeList={employeeList}
 					setDeleteId={setDeleteId}
 					setUpdateId={setUpdateId}
 				/>

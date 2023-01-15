@@ -1,11 +1,17 @@
 import { useState, useEffect, useContext } from "react";
+import {
+	employeePropsInterface,
+	employeeInterface,
+} from "../../interface/employeeInterface";
+import { GetValueContext } from "../../contexts/Contexts";
 import { UpdateQuery } from "../../data/Data";
-import CloseIcon from "@mui/icons-material/Close";
+import { useModal } from "../Modal/Modal";
 import {
 	validateString,
 	validateAge,
 	validateNumber,
 } from "../../utilities/formatString";
+import CloseIcon from "@mui/icons-material/Close";
 import {
 	Button,
 	TextField,
@@ -16,13 +22,10 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import { useModal } from "../Modal/Modal";
-import { GetValueContext } from "../../contexts/Contexts";
-
-function UpdateData({ employeeList }: any) {
+function UpdateData({ employeeList }: employeePropsInterface) {
 	const { updateId } = useContext(GetValueContext);
 	const indexId = employeeList
-		.map((values: any) => values.id)
+		.map((values: employeeInterface) => values.id)
 		.indexOf(updateId);
 
 	const { setUpdate } = useModal((state) => ({
@@ -38,9 +41,10 @@ function UpdateData({ employeeList }: any) {
 			phoneNumber: phoneNumber,
 		});
 
-	const handleChange = (props: any) => (event: any) => {
-		setValues({ ...values, [props]: event.target.value });
-	};
+	const handleChange =
+		(props: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+			setValues({ ...values, [props]: event.target.value });
+		};
 
 	const [fNameError, setfNameError] = useState<string | null>(null);
 	const [lNameError, setLNameError] = useState<string | null>(null);
@@ -71,7 +75,7 @@ function UpdateData({ employeeList }: any) {
 
 	//* Validate Age Field
 	useEffect(() => {
-		if (!validateAge(values.age)) {
+		if (!validateAge(values.age.toString())) {
 			setAgeError("Input Out of Range");
 		} else {
 			setAgeError(null);
@@ -131,7 +135,7 @@ function UpdateData({ employeeList }: any) {
 
 				<TextField
 					sx={{ my: 1 }}
-					error={!validateAge(values.age)}
+					error={!validateAge(values.age.toString())}
 					helperText={ageError}
 					label="Age"
 					variant="outlined"

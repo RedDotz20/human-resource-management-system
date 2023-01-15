@@ -1,10 +1,9 @@
+import { GetValueContext } from "../../contexts/Contexts";
 import { useContext } from "react";
 import { DeleteQuery } from "../../data/Data";
 import { Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-
-import { GetValueContext } from "../../contexts/Contexts";
 import { useModal } from "../Modal/Modal";
+import CloseIcon from "@mui/icons-material/Close";
 
 function DeleteData() {
 	const { deleteId } = useContext(GetValueContext);

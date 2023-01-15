@@ -1,20 +1,21 @@
+import { employeeDataInterface } from "../../interface/employeeInterface";
 import DeleteBtn from "../Button/DeleteBtn";
 import UpdateBtn from "../Button/UpdateBtn";
 
 export default function EmployeeDataList({
-	employees,
+	employeeList,
 	setDeleteId,
 	setUpdateId,
-}: any) {
+}: employeeDataInterface) {
 	return (
 		<div className="overflow-y-scroll overflow-x-hidden scroll-width h-[18.5rem] border-collapse my-8 w-full text-base shadow-xl child-th:py-1 child-th:px-4 max-h-min">
 			<table className="w-full">
 				<TableHeader />
 				<tbody className="b-bottom b-color-even b-color-last relative">
-					{employees.length <= 0 ? (
+					{employeeList.length <= 0 ? (
 						<EmptyTable />
 					) : (
-						employees.map((values: any) => {
+						employeeList.map((values) => {
 							const { id, firstName, lastName, age, sex, phoneNumber } = values;
 							return (
 								<tr
@@ -54,7 +55,7 @@ function TableHeader() {
 	return (
 		<thead>
 			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#0876b8] text-white font-extrabold text-center w-full">
-				{Thead.map((name: string, key: number) => {
+				{Thead.map((name, key) => {
 					return <td key={key}>{name}</td>;
 				})}
 			</tr>

@@ -1,6 +1,7 @@
 import { useValidate } from "../../hooks/useValidate";
 import { InsertQuery } from "../../data/Data";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
+import { useModal } from "../Modal/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import {
 	Button,
@@ -11,8 +12,6 @@ import {
 	FormControlLabel,
 	FormLabel,
 } from "@mui/material";
-
-import { useModal } from "../Modal/Modal";
 
 export default function InsertData() {
 	const { setInsert } = useModal((state) => ({
@@ -26,7 +25,8 @@ export default function InsertData() {
 	const [valAge, changeAge, ageError] = useValidate("age");
 	const [valPhone, changePhone, phoneError] = useValidate("phoneNumber");
 
-	function onSubmit(data: any) {
+	function onSubmit(data: FieldValues) {
+		console.log(data);
 		InsertQuery(data);
 		setInsert();
 	}
