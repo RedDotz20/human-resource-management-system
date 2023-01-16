@@ -22,6 +22,10 @@ export function useValidate(fieldName: string) {
 		setValue(event.target.value);
 	};
 
+	const setDefault = (defaultValue: string) => {
+		setValue(defaultValue);
+	};
+
 	useEffect(() => {
 		switch (fieldName) {
 			case "firstName":
@@ -52,6 +56,14 @@ export function useValidate(fieldName: string) {
 				}
 				break;
 
+			case "sex":
+				if (value !== ("M" || "F")) {
+					setHandleError(error.invalid);
+				} else {
+					setHandleError(null);
+				}
+				break;
+
 			case "phoneNumber":
 				if (value.length > 11) {
 					setHandleError(error.digitLimit);
@@ -64,5 +76,5 @@ export function useValidate(fieldName: string) {
 		}
 	}, [value]);
 
-	return [value, handleChange, handleError];
+	return [value, handleChange, handleError, setDefault];
 }

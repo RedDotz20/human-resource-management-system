@@ -48,7 +48,7 @@ export default function InsertData() {
 					<TextField
 						{...register("firstName")}
 						required
-						error={fnameError != null}
+						error={fnameError !== null}
 						helperText={fnameError}
 						name="firstName"
 						autoFocus
@@ -62,7 +62,7 @@ export default function InsertData() {
 
 					<TextField
 						{...register("lastName", { required: true })}
-						error={lnameError != null}
+						error={lnameError !== null}
 						helperText={lnameError}
 						required
 						name="lastName"
@@ -78,7 +78,7 @@ export default function InsertData() {
 						{...register("age", { required: true })}
 						required
 						name="age"
-						error={ageError != null}
+						error={ageError !== null}
 						helperText={ageError}
 						sx={{ my: 1 }}
 						label="Age"
@@ -109,7 +109,7 @@ export default function InsertData() {
 					<TextField
 						required
 						{...register("phoneNumber", { required: true })}
-						error={phoneError != null}
+						error={phoneError !== null}
 						helperText={phoneError}
 						name="phoneNumber"
 						sx={{ my: 1 }}

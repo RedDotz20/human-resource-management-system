@@ -6,11 +6,11 @@ import {
 import { GetValueContext } from "../../contexts/Contexts";
 import { UpdateQuery } from "../../data/Data";
 import { useModal } from "../Modal/Modal";
-import {
-	validateString,
-	validateAge,
-	validateNumber,
-} from "../../utilities/formatString";
+// import {
+// 	validateString,
+// 	validateAge,
+// 	validateNumber,
+// } from "../../utilities/formatString";
 import CloseIcon from "@mui/icons-material/Close";
 import {
 	Button,
@@ -22,6 +22,10 @@ import {
 	FormLabel,
 } from "@mui/material";
 
+import { useValidate } from "../../hooks/useValidate";
+
+import { FieldValues, useForm } from "react-hook-form";
+
 function UpdateData({ employeeList }: employeePropsInterface) {
 	const { updateId } = useContext(GetValueContext);
 	const indexId = employeeList
@@ -32,66 +36,32 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 		setUpdate: state.setUpdate,
 	}));
 
-	const { firstName, lastName, age, sex, phoneNumber } = employeeList[indexId],
-		[values, setValues] = useState({
-			firstName: firstName,
-			lastName: lastName,
-			age: age,
-			sex: sex,
-			phoneNumber: phoneNumber,
-		});
+	const { register, handleSubmit } = useForm();
 
-	const handleChange =
-		(props: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-			setValues({ ...values, [props]: event.target.value });
-		};
+	const [valFname, changeFname, fnameError, fnameDefault] =
+		useValidate("firstName");
+	const [valLname, changelname, lnameError, lnameDefault] =
+		useValidate("lastName");
+	const [valAge, changeAge, ageError, ageDefault] = useValidate("age");
+	const [valSex, changeSex, sexError, sexDefault] = useValidate("sex");
+	const [valPhone, changePhone, phoneError, phoneDefault] =
+		useValidate("phoneNumber");
 
-	const [fNameError, setfNameError] = useState<string | null>(null);
-	const [lNameError, setLNameError] = useState<string | null>(null);
-	const [ageError, setAgeError] = useState<string | null>(null);
-	const [phoneNumError, setPhoneNumError] = useState<string | null>(null);
+	function onSubmit(data: FieldValues) {
+		console.log(data);
+		UpdateQuery(data, updateId);
+		setUpdate();
+	}
 
-	//* Validate First Name Field
+	const { firstName, lastName, age, sex, phoneNumber } = employeeList[indexId];
+
 	useEffect(() => {
-		if (values.firstName.length > 40) {
-			setfNameError("Invalid Input: Characters must not exceed up to 40");
-		} else if (!validateString(values.firstName)) {
-			setfNameError("Invalid Characters");
-		} else {
-			setfNameError(null);
-		}
-	}, [values.firstName, fNameError]);
-
-	//* Validate Last Name Field
-	useEffect(() => {
-		if (values.lastName.length > 40) {
-			setLNameError("Invalid Input: Characters must not exceed up to 40");
-		} else if (!validateString(values.lastName)) {
-			setLNameError("Invalid Characters");
-		} else {
-			setLNameError(null);
-		}
-	}, [values.lastName, lNameError]);
-
-	//* Validate Age Field
-	useEffect(() => {
-		if (!validateAge(values.age.toString())) {
-			setAgeError("Input Out of Range");
-		} else {
-			setAgeError(null);
-		}
-	}, [values.age, ageError]);
-
-	//* Validate Phone Number Field
-	useEffect(() => {
-		if (values.phoneNumber.length > 11) {
-			setPhoneNumError("Input must not exceed up to 11 digits");
-		} else if (!validateNumber(values.phoneNumber)) {
-			setPhoneNumError("Numbers only");
-		} else {
-			setPhoneNumError(null);
-		}
-	}, [values.phoneNumber, phoneNumError]);
+		fnameDefault(firstName);
+		lnameDefault(lastName);
+		ageDefault(age.toString());
+		sexDefault(sex);
+		phoneDefault(phoneNumber);
+	}, []);
 
 	return (
 		<div className="animate-BgModal fixed z-10 flex justify-center items-center w-screen h-screen bg-black/50">
@@ -103,104 +73,119 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 
 				<h1 className="text-xl font-semibold mb-4">Update Employee</h1>
 
-				<TextField
-					sx={{ my: 1 }}
-					error={
-						values.firstName.length > 40 || !validateString(values.firstName)
-					}
-					helperText={fNameError}
-					label="First Name"
-					variant="outlined"
-					size="small"
-					name="firstName"
-					autoComplete="off"
-					defaultValue={employeeList[indexId].firstName}
-					onChange={handleChange("firstName")}
-				/>
-
-				<TextField
-					sx={{ my: 1 }}
-					error={
-						values.lastName.length > 40 || !validateString(values.lastName)
-					}
-					helperText={lNameError}
-					label="Last Name"
-					name="lastName"
-					variant="outlined"
-					size="small"
-					autoComplete="off"
-					defaultValue={employeeList[indexId].lastName}
-					onChange={handleChange("lastName")}
-				/>
-
-				<TextField
-					sx={{ my: 1 }}
-					error={!validateAge(values.age.toString())}
-					helperText={ageError}
-					label="Age"
-					variant="outlined"
-					name="age"
-					size="small"
-					autoComplete="off"
-					defaultValue={employeeList[indexId].age}
-					onChange={handleChange("age")}
-				/>
-
-				<FormControl sx={{ my: 1 }}>
-					<FormLabel>Sex</FormLabel>
-					<RadioGroup
-						row
-						name="sex"
-						defaultValue={employeeList[indexId].sex}
-						onChange={handleChange("sex")}
-					>
-						<FormControlLabel label="Male" value="M" control={<Radio />} />
-						<FormControlLabel label="Female" value="F" control={<Radio />} />
-					</RadioGroup>
-				</FormControl>
-
-				<TextField
-					sx={{ my: 1 }}
-					error={
-						values.phoneNumber.length > 11 ||
-						!validateNumber(values.phoneNumber)
-					}
-					helperText={phoneNumError}
-					label="Phone Number"
-					variant="outlined"
-					name="phoneNumber"
-					size="small"
-					autoComplete="off"
-					defaultValue={employeeList[indexId].phoneNumber}
-					onChange={handleChange("phoneNumber")}
-				/>
-
-				<footer className="inline-flex justify-between mt-auto">
-					<Button
-						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
-						variant="contained"
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className="flex flex-col h-full"
+				>
+					<TextField
+						{...register("firstName", { required: true })}
+						name="firstName"
+						sx={{ my: 1 }}
+						error={fnameError !== null}
+						helperText={fnameError}
+						label="First Name"
+						variant="outlined"
 						size="small"
-						onClick={() => setUpdate()}
-					>
-						Cancel
-					</Button>
-					<Button
-						className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
-						variant="contained"
+						autoComplete="off"
+						defaultValue={employeeList[indexId].firstName}
+						onChange={changeFname}
+					/>
+
+					<TextField
+						{...register("lastName", { required: true })}
+						name="lastName"
+						sx={{ my: 1 }}
+						error={lnameError !== null}
+						helperText={lnameError}
+						label="Last Name"
+						variant="outlined"
 						size="small"
-						color="success"
-						disabled={
-							Object.values(values).includes("") ||
-							(fNameError || lNameError || ageError || phoneNumError) !== null
-						}
-						onClick={() => {
-							UpdateQuery(values, updateId);
-							setUpdate();
-						}}
-					>
-						Confirm
-					</Button>
-				</footer>
+						autoComplete="off"
+						defaultValue={employeeList[indexId].lastName}
+						onChange={changelname}
+					/>
+
+					<TextField
+						{...register("age", { required: true })}
+						name="age"
+						sx={{ my: 1 }}
+						error={ageError !== null}
+						helperText={ageError}
+						label="Age"
+						variant="outlined"
+						size="small"
+						autoComplete="off"
+						defaultValue={employeeList[indexId].age}
+						onChange={changeAge}
+					/>
+
+					<FormControl sx={{ my: 1 }}>
+						<FormLabel>Sex</FormLabel>
+						<RadioGroup
+							row
+							name="sex"
+							defaultValue={employeeList[indexId].sex}
+							onChange={changeSex}
+						>
+							<FormControlLabel
+								{...register("sex", { required: true })}
+								label="Male"
+								value="M"
+								control={<Radio />}
+							/>
+							<FormControlLabel
+								{...register("sex", { required: true })}
+								label="Female"
+								value="F"
+								control={<Radio />}
+							/>
+						</RadioGroup>
+					</FormControl>
+
+					<TextField
+						{...register("phoneNumber", { required: true })}
+						sx={{ my: 1 }}
+						error={phoneError !== null}
+						helperText={phoneError}
+						label="Phone Number"
+						variant="outlined"
+						name="phoneNumber"
+						size="small"
+						autoComplete="off"
+						defaultValue={employeeList[indexId].phoneNumber}
+						onChange={changePhone}
+					/>
+
+					<footer className="inline-flex justify-between mt-auto">
+						<Button
+							className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
+							variant="contained"
+							size="small"
+							onClick={() => setUpdate()}
+						>
+							Cancel
+						</Button>
+						<Button
+							className="w-[49%] h-9 text-2xl text-[#fff] rounded-lg cursor-pointer"
+							variant="contained"
+							size="small"
+							color="success"
+							type="submit"
+							disabled={
+								// Object.values(values).includes("") ||
+								// (fNameError || lNameError || ageError || phoneNumError) !== null
+								(valFname && valLname && valAge && valPhone) === "" ||
+								(fnameError || lnameError || ageError || phoneError) !== null
+							}
+							// onClick={() => {
+							// 	UpdateQuery(values, updateId);
+							// 	setUpdate();
+							// }}
+						>
+							Confirm
+						</Button>
+					</footer>
+				</form>
 			</div>
 		</div>
 	);
