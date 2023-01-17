@@ -1,16 +1,10 @@
-import { useState, useEffect, useContext } from "react";
-import {
-	employeePropsInterface,
-	employeeInterface,
-} from "../../interface/employeeInterface";
+import { useEffect, useContext } from "react";
+import { employeePropsInterface } from "../../interface/employeeInterface";
 import { GetValueContext } from "../../contexts/Contexts";
 import { UpdateQuery } from "../../data/Data";
 import { useModal } from "../Modal/Modal";
-// import {
-// 	validateString,
-// 	validateAge,
-// 	validateNumber,
-// } from "../../utilities/formatString";
+import { useValidate } from "../../hooks/useValidate";
+import { FieldValues, useForm } from "react-hook-form";
 import CloseIcon from "@mui/icons-material/Close";
 import {
 	Button,
@@ -22,21 +16,14 @@ import {
 	FormLabel,
 } from "@mui/material";
 
-import { useValidate } from "../../hooks/useValidate";
-
-import { FieldValues, useForm } from "react-hook-form";
-
 function UpdateData({ employeeList }: employeePropsInterface) {
+	const { register, handleSubmit } = useForm();
 	const { updateId } = useContext(GetValueContext);
-	const indexId = employeeList
-		.map((values: employeeInterface) => values.id)
-		.indexOf(updateId);
+	const indexId = employeeList.map((values) => values.id).indexOf(updateId);
 
 	const { setUpdate } = useModal((state) => ({
 		setUpdate: state.setUpdate,
 	}));
-
-	const { register, handleSubmit } = useForm();
 
 	const [valFname, changeFname, fnameError, fnameDefault] =
 		useValidate("firstName");
@@ -53,9 +40,9 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 		setUpdate();
 	}
 
-	const { firstName, lastName, age, sex, phoneNumber } = employeeList[indexId];
-
 	useEffect(() => {
+		const { firstName, lastName, age, sex, phoneNumber } =
+			employeeList[indexId];
 		fnameDefault(firstName);
 		lnameDefault(lastName);
 		ageDefault(age.toString());
@@ -172,15 +159,9 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 							color="success"
 							type="submit"
 							disabled={
-								// Object.values(values).includes("") ||
-								// (fNameError || lNameError || ageError || phoneNumError) !== null
 								(valFname && valLname && valAge && valPhone) === "" ||
 								(fnameError || lnameError || ageError || phoneError) !== null
 							}
-							// onClick={() => {
-							// 	UpdateQuery(values, updateId);
-							// 	setUpdate();
-							// }}
 						>
 							Confirm
 						</Button>

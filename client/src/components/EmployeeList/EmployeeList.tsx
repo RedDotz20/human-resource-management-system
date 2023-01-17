@@ -43,21 +43,16 @@ export default function EmployeeDataList({
 }
 
 function TableHeader() {
-	const Thead: string[] = [
-		"ID",
-		"FIRST NAME",
-		"LAST NAME",
-		"AGE",
-		"SEX",
-		"PHONE NUMBER",
-		"ACTIONS",
-	];
 	return (
 		<thead>
-			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#0876b8] text-white font-extrabold text-center w-full">
-				{Thead.map((name, key) => {
-					return <td key={key}>{name}</td>;
-				})}
+			<tr className="sticky top-0 z-[1] child-td:py-1 child-td:px-4 bg-[#0876b8] text-white font-extrabold text-center">
+				<td>ID</td>
+				<td>FIRST NAME</td>
+				<td>LAST NAME</td>
+				<td>AGE</td>
+				<td>SEX</td>
+				<td>PHONE NUMBER</td>
+				<td>ACTIONS</td>
 			</tr>
 		</thead>
 	);
@@ -65,7 +60,7 @@ function TableHeader() {
 
 function EmptyTable() {
 	return (
-		<tr className="text-3xl font-extrabold absolute grid items-center text-center h-64">
+		<tr className="text-3xl font-extrabold absolute grid items-center text-center w-full h-64">
 			<td>EMPTY TABLE</td>
 		</tr>
 	);
