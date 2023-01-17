@@ -4,12 +4,14 @@ import Axios from "axios";
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
 
+import { readQueryType, queryInterface } from "../interface/apiInterface";
+
 export async function FetchTableData() {
 	return await Axios.get(`${URL}/showemployees`).then((res) => res.data);
 }
 
 //* Read/Select Table Query Function
-export function ReadQuery(setEmployeeList: any) {
+export function ReadQuery(setEmployeeList: readQueryType) {
 	async function fetchData() {
 		await Axios.get(`${URL}/showemployees`)
 			.then((response) => {
@@ -21,7 +23,7 @@ export function ReadQuery(setEmployeeList: any) {
 }
 
 //* Create/Insert Query Function
-export function InsertQuery(values: any) {
+export function InsertQuery(values: queryInterface) {
 	Axios.post(`${URL}/insert`, {
 		firstName: formatPascalCase(values.firstName),
 		lastName: formatPascalCase(values.lastName),
@@ -32,7 +34,7 @@ export function InsertQuery(values: any) {
 }
 
 //* Update Query Function
-export function UpdateQuery(values: any, id: any) {
+export function UpdateQuery(values: queryInterface, id: string) {
 	Axios.put(`${URL}/update`, {
 		firstName: formatPascalCase(values.firstName),
 		lastName: formatPascalCase(values.lastName),
@@ -44,12 +46,12 @@ export function UpdateQuery(values: any, id: any) {
 }
 
 //* Delete Query Function
-export function DeleteQuery(id: any) {
+export function DeleteQuery(id: number) {
 	Axios.delete(`${URL}/delete/?id=${id}`).catch((error) => console.log(error));
 }
 
 //* Fetch Query Function
-export function fetchQuery(query: any, setEmployeeList: any) {
+export function fetchQuery(query: string, setEmployeeList: readQueryType) {
 	Axios.get(`${URL}/searchquery`, {
 		params: {
 			value: query,
@@ -60,7 +62,7 @@ export function fetchQuery(query: any, setEmployeeList: any) {
 }
 
 //* Sort Query Function
-export function sortTable(sortOption: any, setEmployeeList: any) {
+export function sortTable(sortOption: string, setEmployeeList: readQueryType) {
 	async function fetchData() {
 		await Axios.get(`${URL}/${sortOption}`)
 			.then((response) => {
