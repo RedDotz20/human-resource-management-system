@@ -18,3 +18,14 @@ export interface employeeDataInterface {
 	setDeleteId: Dispatch<SetStateAction<number>>;
 	setUpdateId: Dispatch<SetStateAction<number>>;
 }
+
+export interface searchBarInterface {
+	employeeList: employeeInterface[];
+	setSearchQuery: Dispatch<SetStateAction<string | number | null>>;
+}
+
+export interface searchOptionInterface {
+	id: number;
+	firstName: string;
+	lastName: string;
+}

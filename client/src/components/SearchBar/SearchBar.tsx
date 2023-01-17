@@ -1,19 +1,20 @@
 import { TextField, Autocomplete } from "@mui/material/";
+import {
+	searchBarInterface,
+	searchOptionInterface,
+} from "../../interface/employeeInterface";
 
-interface optionInterface {
-	id: number;
-	firstName: string;
-	lastName: string;
-}
-
-export default function SearchBar({ employeeList, setSearchQuery }: any) {
+export default function SearchBar({
+	employeeList,
+	setSearchQuery,
+}: searchBarInterface) {
 	const defaultProps = {
-		options: employeeList.map((option: optionInterface) => ({
+		options: employeeList.map((option: searchOptionInterface) => ({
 			id: option.id,
 			firstName: option.firstName,
 			lastName: option.lastName,
 		})),
-		getOptionLabel: (option: optionInterface) =>
+		getOptionLabel: (option: searchOptionInterface) =>
 			`${option.firstName} ${option.lastName}`,
 	};
 
