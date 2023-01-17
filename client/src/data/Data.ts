@@ -1,4 +1,4 @@
-import { readQueryType, queryInterface } from "../interface/apiInterface";
+import { readQueryType, queryType } from "../interface/apiInterface";
 import { formatPascalCase } from "../utilities/formatString";
 import Axios from "axios";
 
@@ -22,7 +22,7 @@ export function ReadQuery(setEmployeeList: readQueryType) {
 }
 
 //* Create/Insert Query Function
-export function InsertQuery(values: queryInterface) {
+export function InsertQuery(values: queryType) {
 	Axios.post(`${URL}/insert`, {
 		firstName: formatPascalCase(values.firstName),
 		lastName: formatPascalCase(values.lastName),
@@ -33,7 +33,7 @@ export function InsertQuery(values: queryInterface) {
 }
 
 //* Update Query Function
-export function UpdateQuery(values: queryInterface, id: string) {
+export function UpdateQuery(values: queryType, id: string) {
 	Axios.put(`${URL}/update`, {
 		firstName: formatPascalCase(values.firstName),
 		lastName: formatPascalCase(values.lastName),

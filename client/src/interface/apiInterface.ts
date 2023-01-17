@@ -1,18 +1,9 @@
 import { employeeInterface } from "./employeeInterface";
 import { Dispatch, SetStateAction } from "react";
-
-// export type readQueryType = Dispatch<
-// 	SetStateAction<employeeInterface[]> | SetStateAction<never[]>
-// >;
+import { FieldValues } from "react-hook-form";
 
 export type readQueryType =
 	| Dispatch<SetStateAction<employeeInterface[]>>
 	| Dispatch<SetStateAction<never[]>>;
 
-export interface queryInterface {
-	firstName: string;
-	lastName: string;
-	age: string;
-	sex: string;
-	phoneNumber: string;
-}
+export type queryType = FieldValues;
