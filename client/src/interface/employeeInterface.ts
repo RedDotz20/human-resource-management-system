@@ -21,7 +21,9 @@ export interface employeeDataInterface {
 
 export interface searchBarInterface {
 	employeeList: employeeInterface[];
-	setSearchQuery: Dispatch<SetStateAction<string | number | null>>;
+	setSearchQuery:
+		| Dispatch<SetStateAction<string>>
+		| Dispatch<SetStateAction<null>>;
 }
 
 export interface searchOptionInterface {

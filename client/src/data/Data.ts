@@ -1,10 +1,9 @@
+import { readQueryType, queryInterface } from "../interface/apiInterface";
 import { formatPascalCase } from "../utilities/formatString";
 import Axios from "axios";
 
 const PORT = 3000;
 const URL = `http://localhost:${PORT}`;
-
-import { readQueryType, queryInterface } from "../interface/apiInterface";
 
 export async function FetchTableData() {
 	return await Axios.get(`${URL}/showemployees`).then((res) => res.data);
