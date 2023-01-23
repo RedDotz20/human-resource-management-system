@@ -15,7 +15,7 @@ const error = {
 };
 
 export function useValidate(fieldName: string) {
-	const [value, setValue] = useState<string>("");
+	const [value, setValue] = useState("");
 	const [handleError, setHandleError] = useState<any>(null);
 
 	const handleChange = (event: any) => {
