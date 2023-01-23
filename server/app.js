@@ -9,13 +9,13 @@ app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
 //* Main Routes
-app.use(require("./routes/read")); //? Show Employees
+app.use(require("./routes/read")); //? Read | Display Employees
 app.use(require("./routes/insert")); //? Insert Employee
 app.use(require("./routes/update")); //? Update Employee
 app.use(require("./routes/delete")); //? Delete Employee
 
 app.use(require("./routes/query")); //? Search Query
-app.use(require("./routes/sort")); //? Sort Table
+app.use(require("./routes/sort")); //? Sort Employees Table
 
 //! Error Handling
 app.use(notFound);

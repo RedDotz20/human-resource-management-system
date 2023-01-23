@@ -1,14 +1,14 @@
-function notFound(req, res, next) {
-	res.status(404);
+function notFound(request, response, next) {
+	response.status(404);
 	const error = new Error("Not Found", req.originalUrl);
 	next(error);
 }
 
-function errorHandler(err, req, res, next) {
-	res.status(res.statusCode || 500);
-	res.json({
-		message: err.message,
-		stack: err.stack,
+function errorHandler(error, request, response, next) {
+	response.status(response.statusCode || 500);
+	response.json({
+		message: error.message,
+		stack: error.stack,
 	});
 }
 
