@@ -1,0 +1,28 @@
+{
+	"name": "im24_db_hrms-system",
+	"version": "1.0.0",
+	"description": "A project requirement in accordance with IM24 Subject",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"client:dev": "npm run dev --prefix client",
+		"client:build": "npm run build --prefix client",
+		"client:preview": "npm run preview --prefix client",
+		"server": "npm run server --prefix server",
+		"dev": "concurrently \"npm run server\" \"sleep 3 && npm run client:dev\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/RedDotz20/IM24_db_HRMS-System.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/RedDotz20/IM24_db_HRMS-System/issues"
+	},
+	"homepage": "https://github.com/RedDotz20/IM24_db_HRMS-System#readme",
+	"dependencies": {
+		"concurrently": "^7.6.0"
+	}
+}
