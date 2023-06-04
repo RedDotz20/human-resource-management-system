@@ -4,10 +4,11 @@ const connection = require('./dbConnection');
 const deleteEmployee = asyncHandler(async (req, res) => {
 	const sql = 'DELETE FROM employees WHERE id=?';
 	connection.query(sql, [req.query.id], (error) => {
-		if (error) throw error;
-		console.log('Data Deleted Successfully');
-		res.send('Data Deleted Successfully');
-		res.end();
+		if (err) {
+			console.error('Error loading data:', err);
+			return res.status(500).send('Internal Server Error');
+		}
+		res.status(201).send('Data Deleted Successfully');
 	});
 });
 
@@ -18,29 +19,32 @@ const insertEmployee = asyncHandler(async (req, res) => {
 		'INSERT INTO employees (firstName,lastName,age,sex,phoneNumber) ' +
 		'VALUES(?,?,?,?,?)';
 	connection.query(sql, [...data], (error) => {
-		if (error) throw error;
-		console.log('Inserted Successfully');
-		res.send('Inserted Successfully');
-		res.end();
+		if (err) {
+			console.error('Error loading data:', err);
+			return res.status(500).send('Internal Server Error');
+		}
+		res.status(201).send('Inserted Successfully');
 	});
 });
 
 const searchEmployee = asyncHandler(async (req, res) => {
 	const sql = `SELECT * FROM employees WHERE id=?`;
 	connection.query(sql, req.query.value, (err, rows) => {
-		if (err) throw err;
-		console.log('Queries loaded Successfully');
-		res.send(rows);
-		res.end();
+		if (err) {
+			console.error('Error loading data:', err);
+			return res.status(500).send('Internal Server Error');
+		}
+		res.status(200).send(rows);
 	});
 });
 
 const showEmployees = asyncHandler(async (req, res) => {
 	connection.query('SELECT * FROM employees', (err, rows) => {
-		if (err) throw err;
-		console.log('Data loaded Successfully');
-		res.send(rows);
-		res.end();
+		if (err) {
+			console.error('Error loading data:', err);
+			return res.status(500).send('Internal Server Error');
+		}
+		res.status(200).send(rows);
 	});
 });
 
@@ -51,12 +55,12 @@ const updateEmployees = asyncHandler(async (req, res) => {
 		'UPDATE employees ' +
 		'SET firstName=?,lastName=?,age=?,sex=?,phoneNumber=? ' +
 		'WHERE id=?';
-
 	connection.query(sql, [...data], (error) => {
-		if (error) throw error;
-		console.log('Data Updated Successfully');
-		res.send('Data Updated Successfully');
-		res.end();
+		if (err) {
+			console.error('Error loading data:', err);
+			return res.status(500).send('Internal Server Error');
+		}
+		res.status(201).send('Data Updated Successfully');
 	});
 });
 
