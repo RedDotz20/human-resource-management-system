@@ -3,7 +3,7 @@ const connection = require('./dbConnection');
 
 const deleteEmployee = asyncHandler(async (req, res) => {
 	const sql = 'DELETE FROM employees WHERE id=?';
-	connection.query(sql, [req.query.id], (error) => {
+	connection.query(sql, [req.query.id], (err) => {
 		if (err) {
 			console.error('Error loading data:', err);
 			return res.status(500).send('Internal Server Error');
@@ -18,7 +18,7 @@ const insertEmployee = asyncHandler(async (req, res) => {
 	const sql =
 		'INSERT INTO employees (firstName,lastName,age,sex,phoneNumber) ' +
 		'VALUES(?,?,?,?,?)';
-	connection.query(sql, [...data], (error) => {
+	connection.query(sql, [...data], (err) => {
 		if (err) {
 			console.error('Error loading data:', err);
 			return res.status(500).send('Internal Server Error');
@@ -55,7 +55,7 @@ const updateEmployees = asyncHandler(async (req, res) => {
 		'UPDATE employees ' +
 		'SET firstName=?,lastName=?,age=?,sex=?,phoneNumber=? ' +
 		'WHERE id=?';
-	connection.query(sql, [...data], (error) => {
+	connection.query(sql, [...data], (err) => {
 		if (err) {
 			console.error('Error loading data:', err);
 			return res.status(500).send('Internal Server Error');
