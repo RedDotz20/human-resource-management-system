@@ -7,6 +7,8 @@ const hpp = require('hpp');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const { initializeTable } = require('./src/model');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -25,7 +27,8 @@ app.use(router);
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, (error) => {
+app.listen(PORT, async (error) => {
 	if (error) throw error;
+	await initializeTable().catch((err) => console.error(err));
 	console.log(`Runniing on http://localhost:${PORT}`);
 });
