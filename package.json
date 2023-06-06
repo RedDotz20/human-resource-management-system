@@ -5,11 +5,18 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"client:dev": "npm run dev --prefix client",
-		"client:build": "npm run build --prefix client",
-		"client:preview": "npm run preview --prefix client",
-		"server": "npm run server --prefix server",
-		"dev": "concurrently \"npm run server\" \"sleep 3 && npm run client:dev\""
+		"start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+		"start:client": "cd client && npm run dev",
+		"start:server": "cd server && npm run server"
+	},
+	"workspaces": {
+		"packages": [
+			"client",
+			"server"
+		],
+		"nohoist": [
+			"**"
+		]
 	},
 	"repository": {
 		"type": "git",
@@ -22,7 +29,7 @@
 		"url": "https://github.com/RedDotz20/IM24_db_HRMS-System/issues"
 	},
 	"homepage": "https://github.com/RedDotz20/IM24_db_HRMS-System#readme",
-	"dependencies": {
-		"concurrently": "^7.6.0"
+	"devDependencies": {
+		"concurrently": "^8.1.0"
 	}
 }

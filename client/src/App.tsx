@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { GetValueContext } from "./contexts/Contexts";
-import { ReadQuery, fetchQuery, sortTable } from "./data/Data";
-import { InsertBtn } from "./components/Button/InsertBtn";
-import { useModal } from "./components/Modal/Modal";
-import EmployeeDataList from "./components/EmployeeList/EmployeeList";
-import SortMenuBtn from "./components/Button/SortMenu";
-import SearchBar from "./components/SearchBar/SearchBar";
-import Modal from "./components/Modal/Modal";
+import { useEffect, useState } from 'react';
+import { InsertBtn } from './components/Button/InsertBtn';
+import SortMenuBtn from './components/Button/SortMenu';
+import EmployeeDataList from './components/EmployeeList/EmployeeList';
+import Modal, { useModal } from './components/Modal/Modal';
+import SearchBar from './components/SearchBar/SearchBar';
+import { GetValueContext } from './contexts/Contexts';
+import { ReadQuery, fetchQuery, sortTable } from './data/Data';
 
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]);
-	const [sortOptions, setSortOptions] = useState("");
+	const [sortOptions, setSortOptions] = useState('');
 	const [searchQuery, setSearchQuery] = useState(null);
 	const [deleteId, setDeleteId] = useState(0);
 	const [updateId, setUpdateId] = useState(0);
@@ -24,7 +23,7 @@ export default function App() {
 	useEffect(() => {
 		if (searchQuery !== null) {
 			fetchQuery(searchQuery, setEmployeeList);
-		} else if (sortOptions !== "") {
+		} else if (sortOptions !== '') {
 			sortTable(sortOptions, setEmployeeList);
 		} else ReadQuery(setEmployeeList);
 	}, [insertModal, deleteModal, updateModal, sortOptions, searchQuery]);
