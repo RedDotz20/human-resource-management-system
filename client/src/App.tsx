@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
+import { ReadQuery, fetchQuery, sortTable } from './api/Data';
 import { InsertBtn } from './components/Button/InsertBtn';
 import SortMenuBtn from './components/Button/SortMenu';
 import EmployeeDataList from './components/EmployeeList/EmployeeList';
 import Modal, { useModal } from './components/Modal/Modal';
 import SearchBar from './components/SearchBar/SearchBar';
 import { GetValueContext } from './contexts/Contexts';
-import { ReadQuery, fetchQuery, sortTable } from './data/Data';
 
 export default function App() {
 	const [employeeList, setEmployeeList] = useState([]);

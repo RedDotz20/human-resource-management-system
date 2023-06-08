@@ -1,20 +1,20 @@
-import { useEffect, useContext } from "react";
-import { employeePropsInterface } from "../../interface/employeeInterface";
-import { GetValueContext } from "../../contexts/Contexts";
-import { UpdateQuery } from "../../data/Data";
-import { useModal } from "../Modal/Modal";
-import { useValidate } from "../../hooks/useValidate";
-import { FieldValues, useForm } from "react-hook-form";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from '@mui/icons-material/Close';
 import {
 	Button,
-	TextField,
-	Radio,
-	RadioGroup,
 	FormControl,
 	FormControlLabel,
 	FormLabel,
-} from "@mui/material";
+	Radio,
+	RadioGroup,
+	TextField,
+} from '@mui/material';
+import { useContext, useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { UpdateQuery } from '../../api/Data';
+import { GetValueContext } from '../../contexts/Contexts';
+import { useValidate } from '../../hooks/useValidate';
+import { employeePropsInterface } from '../../interface/employeeInterface';
+import { useModal } from '../Modal/Modal';
 
 function UpdateData({ employeeList }: employeePropsInterface) {
 	const { register, handleSubmit } = useForm();
@@ -26,13 +26,13 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 	}));
 
 	const [valFname, changeFname, fnameError, fnameDefault] =
-		useValidate("firstName");
+		useValidate('firstName');
 	const [valLname, changelname, lnameError, lnameDefault] =
-		useValidate("lastName");
-	const [valAge, changeAge, ageError, ageDefault] = useValidate("age");
-	const [valSex, changeSex, sexError, sexDefault] = useValidate("sex");
+		useValidate('lastName');
+	const [valAge, changeAge, ageError, ageDefault] = useValidate('age');
+	const [valSex, changeSex, sexError, sexDefault] = useValidate('sex');
 	const [valPhone, changePhone, phoneError, phoneDefault] =
-		useValidate("phoneNumber");
+		useValidate('phoneNumber');
 
 	function onSubmit(data: FieldValues) {
 		console.log(data);
@@ -65,7 +65,7 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 					className="flex flex-col h-full"
 				>
 					<TextField
-						{...register("firstName", { required: true })}
+						{...register('firstName', { required: true })}
 						name="firstName"
 						sx={{ my: 1 }}
 						error={fnameError !== null}
@@ -79,7 +79,7 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 					/>
 
 					<TextField
-						{...register("lastName", { required: true })}
+						{...register('lastName', { required: true })}
 						name="lastName"
 						sx={{ my: 1 }}
 						error={lnameError !== null}
@@ -93,7 +93,7 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 					/>
 
 					<TextField
-						{...register("age", { required: true })}
+						{...register('age', { required: true })}
 						name="age"
 						sx={{ my: 1 }}
 						error={ageError !== null}
@@ -115,13 +115,13 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 							onChange={changeSex}
 						>
 							<FormControlLabel
-								{...register("sex", { required: true })}
+								{...register('sex', { required: true })}
 								label="Male"
 								value="M"
 								control={<Radio />}
 							/>
 							<FormControlLabel
-								{...register("sex", { required: true })}
+								{...register('sex', { required: true })}
 								label="Female"
 								value="F"
 								control={<Radio />}
@@ -130,7 +130,7 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 					</FormControl>
 
 					<TextField
-						{...register("phoneNumber", { required: true })}
+						{...register('phoneNumber', { required: true })}
 						sx={{ my: 1 }}
 						error={phoneError !== null}
 						helperText={phoneError}
@@ -159,7 +159,7 @@ function UpdateData({ employeeList }: employeePropsInterface) {
 							color="success"
 							type="submit"
 							disabled={
-								(valFname && valLname && valAge && valPhone) === "" ||
+								(valFname && valLname && valAge && valPhone) === '' ||
 								(fnameError || lnameError || ageError || phoneError) !== null
 							}
 						>

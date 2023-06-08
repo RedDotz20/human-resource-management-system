@@ -1,9 +1,9 @@
-import { create } from "zustand";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense } from 'react';
+import { create } from 'zustand';
 
-const InsertData = lazy(() => import("../Forms/InsertData"));
-const UpdateData = lazy(() => import("../Forms/UpdateData"));
-const DeleteData = lazy(() => import("../Forms/DeleteData"));
+const InsertData = lazy(() => import('../Forms/InsertData'));
+const UpdateData = lazy(() => import('../Forms/UpdateData'));
+const DeleteData = lazy(() => import('../Forms/DeleteData'));
 
 interface modalInterface {
 	insertModal: boolean;

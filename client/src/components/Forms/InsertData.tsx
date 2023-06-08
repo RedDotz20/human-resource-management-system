@@ -1,17 +1,17 @@
-import { useValidate } from "../../hooks/useValidate";
-import { InsertQuery } from "../../data/Data";
-import { FieldValues, useForm } from "react-hook-form";
-import { useModal } from "../Modal/Modal";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from '@mui/icons-material/Close';
 import {
 	Button,
-	TextField,
-	Radio,
-	RadioGroup,
 	FormControl,
 	FormControlLabel,
 	FormLabel,
-} from "@mui/material";
+	Radio,
+	RadioGroup,
+	TextField,
+} from '@mui/material';
+import { FieldValues, useForm } from 'react-hook-form';
+import { InsertQuery } from '../../api/Data';
+import { useValidate } from '../../hooks/useValidate';
+import { useModal } from '../Modal/Modal';
 
 export default function InsertData() {
 	const { setInsert } = useModal((state) => ({
@@ -20,10 +20,10 @@ export default function InsertData() {
 
 	const { register, handleSubmit } = useForm();
 
-	const [valFname, changeFname, fnameError] = useValidate("firstName");
-	const [valLname, changelname, lnameError] = useValidate("lastName");
-	const [valAge, changeAge, ageError] = useValidate("age");
-	const [valPhone, changePhone, phoneError] = useValidate("phoneNumber");
+	const [valFname, changeFname, fnameError] = useValidate('firstName');
+	const [valLname, changelname, lnameError] = useValidate('lastName');
+	const [valAge, changeAge, ageError] = useValidate('age');
+	const [valPhone, changePhone, phoneError] = useValidate('phoneNumber');
 
 	function onSubmit(data: FieldValues) {
 		console.log(data);
@@ -46,7 +46,7 @@ export default function InsertData() {
 					className="flex flex-col h-full"
 				>
 					<TextField
-						{...register("firstName")}
+						{...register('firstName')}
 						required
 						error={fnameError !== null}
 						helperText={fnameError}
@@ -61,7 +61,7 @@ export default function InsertData() {
 					/>
 
 					<TextField
-						{...register("lastName", { required: true })}
+						{...register('lastName', { required: true })}
 						error={lnameError !== null}
 						helperText={lnameError}
 						required
@@ -75,7 +75,7 @@ export default function InsertData() {
 					/>
 
 					<TextField
-						{...register("age", { required: true })}
+						{...register('age', { required: true })}
 						required
 						name="age"
 						error={ageError !== null}
@@ -90,15 +90,18 @@ export default function InsertData() {
 
 					<FormControl sx={{ my: 1 }}>
 						<FormLabel required>Sex</FormLabel>
-						<RadioGroup row name="sex">
+						<RadioGroup
+							row
+							name="sex"
+						>
 							<FormControlLabel
-								{...register("sex", { required: true })}
+								{...register('sex', { required: true })}
 								label="Male"
 								value="M"
 								control={<Radio />}
 							/>
 							<FormControlLabel
-								{...register("sex", { required: true })}
+								{...register('sex', { required: true })}
 								label="Female"
 								value="F"
 								control={<Radio />}
@@ -108,7 +111,7 @@ export default function InsertData() {
 
 					<TextField
 						required
-						{...register("phoneNumber", { required: true })}
+						{...register('phoneNumber', { required: true })}
 						error={phoneError !== null}
 						helperText={phoneError}
 						name="phoneNumber"
@@ -136,7 +139,7 @@ export default function InsertData() {
 							color="success"
 							type="submit"
 							disabled={
-								(valFname && valLname && valAge && valPhone) === "" ||
+								(valFname && valLname && valAge && valPhone) === '' ||
 								(fnameError || lnameError || ageError || phoneError) !== null
 							}
 						>
