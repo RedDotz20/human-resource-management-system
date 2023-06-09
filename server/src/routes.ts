@@ -1,5 +1,5 @@
-const express = require('express');
-const {
+import express, { Router } from 'express';
+import {
 	deleteEmployee,
 	insertEmployee,
 	searchEmployee,
@@ -11,9 +11,9 @@ const {
 	sortLnameASC,
 	sortLnameDESC,
 	updateEmployees,
-} = require('./controller');
+} from './controller';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.delete('/delete/', deleteEmployee);
 router.post('/insert/', insertEmployee);
@@ -28,4 +28,4 @@ router.get('/lnameDESC', sortLnameDESC);
 router.get('/ageASC', sortAgeASC);
 router.get('/ageDESC', sortAgeDESC);
 
-module.exports = router;
+export default router;

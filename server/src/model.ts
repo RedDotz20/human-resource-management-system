@@ -1,4 +1,4 @@
-const connection = require('./dbConnection');
+import connection from './dbConnection';
 
 const employeesTable =
 	'CREATE TABLE IF NOT EXISTS `employees` (\n' +
@@ -11,7 +11,7 @@ const employeesTable =
 	'  PRIMARY KEY (id)\n' +
 	');\n';
 
-async function initializeTable() {
+export async function initializeTable() {
 	try {
 		connection.execute(employeesTable);
 		console.log(`Table Sucessfully Synced`);
@@ -19,5 +19,3 @@ async function initializeTable() {
 		console.error(`Error executing SQL file:`, err);
 	}
 }
-
-module.exports = { initializeTable };
