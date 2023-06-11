@@ -22,7 +22,7 @@ export const insertEmployee = asyncHandler(
 		const sql =
 			'INSERT INTO employees (firstName,lastName,age,sex,phoneNumber) ' +
 			'VALUES(?,?,?,?,?)';
-		connection.query(sql, [...data], (err) => {
+		connection.query(sql, [...data], (err: any) => {
 			if (err) {
 				console.error('Error loading data:', err);
 				return res.status(500).send('Internal Server Error');
@@ -35,7 +35,7 @@ export const insertEmployee = asyncHandler(
 export const searchEmployee = asyncHandler(
 	async (req: Request, res: Response) => {
 		const sql = `SELECT * FROM employees WHERE id=?`;
-		connection.query(sql, req.query.value, (err, rows) => {
+		connection.query(sql, req.query.value, (err: any, rows: any) => {
 			if (err) {
 				console.error('Error loading data:', err);
 				return res.status(500).send('Internal Server Error');
