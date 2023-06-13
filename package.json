@@ -40,5 +40,8 @@
 	"homepage": "https://github.com/RedDotz20/IM24_db_HRMS-System#readme",
 	"devDependencies": {
 		"concurrently": "^8.1.0"
+	},
+	"dependencies": {
+		"framer-motion": "^10.12.16"
 	}
 }
