@@ -53,8 +53,6 @@ touch .env
 
 ## Install Dependencies
 
-Open a terminal then go to `client` and `server` folder then run `npm install`
-
 ```console
 npm install
 ```
