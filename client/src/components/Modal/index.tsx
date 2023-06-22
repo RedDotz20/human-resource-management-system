@@ -1,59 +1,68 @@
 import { motion } from 'framer-motion';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { zoomInOut } from './Variants';
+
 interface ModalProps {
 	handleClose: () => void;
 	children: React.ReactNode;
 	className?: string;
 }
 
-const zoomInOut = {
-	hidden: {
-		scale: 0.4,
-		opacity: 0,
-	},
-	visible: {
-		scale: 1,
-		opacity: 1,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut',
-			type: 'spring',
-			damping: 25,
-			stiffness: 500,
-		},
-	},
-	exit: {
-		scale: 0.8,
-		opacity: 0,
-		transition: {
-			duration: 0.3,
-			ease: 'easeInOut',
-			type: 'spring',
-			damping: 25,
-			stiffness: 500,
-		},
-	},
-};
+function ModalPortal({ children }: { children: React.ReactNode }) {
+	const modalRoot = document.getElementById('modal-root') as HTMLElement;
+	return ReactDOM.createPortal(children, modalRoot);
+}
 
-export default function Modal({ children, ...rest }: ModalProps) {
+function Backdrop({ children, handleClose }: ModalProps) {
 	return (
 		<motion.div
-			onClick={(e) => e.stopPropagation()}
-			variants={zoomInOut}
-			initial="hidden"
-			animate="visible"
-			exit="exit"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			onClick={handleClose}
 			style={{
-				position: 'relative',
-				backgroundColor: '#fff',
-				padding: '2rem',
-				margin: '0rem 2rem',
-				borderRadius: '0.5rem',
+				position: 'absolute',
+				zIndex: 99,
+				top: 0,
+				backgroundColor: '#0000007f',
+				left: 0,
+				height: '100vh',
+				width: '100vw',
 				display: 'flex',
-				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'center',
 			}}
-			{...rest}
 		>
 			{children}
 		</motion.div>
+	);
+}
+
+export default function Modal({ children, handleClose, ...rest }: ModalProps) {
+	return (
+		<ModalPortal>
+			<Backdrop handleClose={handleClose}>
+				<motion.div
+					onClick={(event) => event.stopPropagation()}
+					variants={zoomInOut}
+					initial="hidden"
+					animate="visible"
+					exit="exit"
+					style={{
+						position: 'relative',
+						backgroundColor: '#fff',
+						padding: '1.25rem',
+						// margin: '0rem 2rem',
+						borderRadius: '0.5rem',
+						display: 'flex',
+						flexDirection: 'column',
+					}}
+					{...rest}
+				>
+					{children}
+				</motion.div>
+			</Backdrop>
+		</ModalPortal>
 	);
 }
