@@ -42,6 +42,6 @@
 		"concurrently": "^8.2.1"
 	},
 	"dependencies": {
-		"framer-motion": "^10.16.1"
+		"framer-motion": "^10.17.9"
 	}
 }
