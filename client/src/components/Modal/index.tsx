@@ -44,7 +44,9 @@ export default function Modal({ children, handleClose, ...rest }: ModalProps) {
 		<ModalPortal>
 			<Backdrop handleClose={handleClose}>
 				<motion.div
-					onClick={(event) => event.stopPropagation()}
+					onClick={(event: { stopPropagation: () => any }) =>
+						event.stopPropagation()
+					}
 					variants={zoomInOut}
 					initial="hidden"
 					animate="visible"

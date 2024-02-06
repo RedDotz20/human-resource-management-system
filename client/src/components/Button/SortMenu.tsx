@@ -1,9 +1,9 @@
-import { Button, Menu, MenuItem } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { useSetSort } from "../../hooks/useSetSort";
-import SortIcon from "@mui/icons-material/Sort";
-import muiTheme from "../../theme/theme";
-import { sortOptionsInterface } from "../../interface/buttonInterface";
+import { Button, Menu, MenuItem } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { useSetSort } from '../../hooks/useSetSort';
+import SortIcon from '@mui/icons-material/Sort';
+import muiTheme from '../../theme/theme';
+import { sortOptionsInterface } from '../../interface/buttonInterface';
 
 export default function SortMenuBtn({ setSortOptions }: sortOptionsInterface) {
 	const { anchorEl, open, handleClick, handleClose } =
@@ -18,8 +18,8 @@ export default function SortMenuBtn({ setSortOptions }: sortOptionsInterface) {
 				startIcon={<SortIcon />}
 				variant="contained"
 				color="primary"
-				aria-controls={open ? "basic-menu" : undefined}
-				aria-expanded={open ? "true" : undefined}
+				aria-controls={open ? 'basic-menu' : undefined}
+				aria-expanded={open ? 'true' : undefined}
 				aria-haspopup="true"
 				onClick={handleClick}
 			>
@@ -31,22 +31,40 @@ export default function SortMenuBtn({ setSortOptions }: sortOptionsInterface) {
 				open={open}
 				onClose={handleClose}
 			>
-				<MenuItem onClick={handleClose} value="fnameASC">
+				<MenuItem
+					onClick={handleClose}
+					value="fnameASC"
+				>
 					First Name (ASC) A-Z
 				</MenuItem>
-				<MenuItem onClick={handleClose} value="fnameDESC">
+				<MenuItem
+					onClick={handleClose}
+					value="fnameDESC"
+				>
 					First Name (DESC) Z-A
 				</MenuItem>
-				<MenuItem onClick={handleClose} value="lnameASC">
+				<MenuItem
+					onClick={handleClose}
+					value="lnameASC"
+				>
 					Last Name (ASC) A-Z
 				</MenuItem>
-				<MenuItem onClick={handleClose} value="lnameDESC">
+				<MenuItem
+					onClick={handleClose}
+					value="lnameDESC"
+				>
 					Last Name (DESC) Z-A
 				</MenuItem>
-				<MenuItem onClick={handleClose} value="ageASC">
+				<MenuItem
+					onClick={handleClose}
+					value="ageASC"
+				>
 					Age (ASC) 1-99
 				</MenuItem>
-				<MenuItem onClick={handleClose} value="ageDESC">
+				<MenuItem
+					onClick={handleClose}
+					value="ageDESC"
+				>
 					Age (DESC) 99-1
 				</MenuItem>
 			</Menu>

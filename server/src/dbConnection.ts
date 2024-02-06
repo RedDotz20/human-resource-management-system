@@ -2,10 +2,10 @@
 // require('dotenv').config();
 
 import dotenv from 'dotenv';
-import { createPool } from 'mysql2';
+import { createConnection } from 'mysql2';
 dotenv.config();
 
-const connection = createPool({
+const connection = createConnection({
 	host: process.env.HOST,
 	user: process.env.USER,
 	password: process.env.PASSWORD,

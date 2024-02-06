@@ -7,17 +7,17 @@ export async function FetchTableData() {
 }
 
 //* Read/Select Table Query Function
-export async function ReadQuery(setEmployeeList: readQueryType) {
+export const ReadQuery = async (setEmployeeList: readQueryType) => {
 	await axiosInstance
 		.get(`/showemployees`)
 		.then((response) => {
 			setEmployeeList(() => response.data);
 		})
 		.catch((error) => console.log(error));
-}
+};
 
 //* Create/Insert Query Function
-export async function InsertQuery(values: queryType) {
+export const InsertQuery = async (values: queryType) => {
 	await axiosInstance
 		.post(`/insert`, {
 			firstName: formatPascalCase(values.firstName),
@@ -27,10 +27,10 @@ export async function InsertQuery(values: queryType) {
 			phoneNumber: values.phoneNumber,
 		})
 		.catch((error) => console.log(error));
-}
+};
 
 //* Update Query Function
-export async function UpdateQuery(values: queryType, id: string) {
+export const UpdateQuery = async (values: queryType, id: string) => {
 	await axiosInstance
 		.put(`/update`, {
 			firstName: formatPascalCase(values.firstName),
@@ -41,20 +41,20 @@ export async function UpdateQuery(values: queryType, id: string) {
 			id: parseInt(id),
 		})
 		.catch((error) => console.log(error));
-}
+};
 
 //* Delete Query Function
-export async function DeleteQuery(id: number) {
+export const DeleteQuery = async (id: number) => {
 	await axiosInstance
 		.delete(`/delete/?id=${id}`)
 		.catch((error) => console.log(error));
-}
+};
 
 //* Fetch Query Function
-export async function fetchQuery(
+export const fetchQuery = async (
 	query: string,
 	setEmployeeList: readQueryType
-) {
+) => {
 	await axiosInstance
 		.get(`/searchquery`, {
 			params: {
@@ -63,17 +63,17 @@ export async function fetchQuery(
 		})
 		.then((response) => setEmployeeList(() => response.data))
 		.catch((error) => console.log(error));
-}
+};
 
 //* Sort Query Function
-export async function sortTable(
+export const sortTable = async (
 	sortOption: string,
 	setEmployeeList: readQueryType
-) {
+) => {
 	await axiosInstance
 		.get(`/${sortOption}`)
 		.then((response) => {
 			setEmployeeList(() => response.data);
 		})
 		.catch((error) => console.log(error));
-}
+};

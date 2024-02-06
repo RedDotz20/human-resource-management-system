@@ -1,8 +1,8 @@
-import { TextField, Autocomplete } from "@mui/material/";
+import { TextField, Autocomplete } from '@mui/material/';
 import {
 	searchBarInterface,
 	searchOptionInterface,
-} from "../../interface/employeeInterface";
+} from '../../interface/employeeInterface';
 
 export default function SearchBar({
 	employeeList,
@@ -29,7 +29,12 @@ export default function SearchBar({
 				value === null ? setSearchQuery(null) : setSearchQuery(value.id);
 			}}
 			renderInput={(params) => (
-				<TextField {...params} label="Search" variant="outlined" size="small" />
+				<TextField
+					{...params}
+					label="Search"
+					variant="outlined"
+					size="small"
+				/>
 			)}
 		/>
 	);
