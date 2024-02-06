@@ -18,7 +18,7 @@
 		"@emotion/styled": "^11.10.5",
 		"@mui/icons-material": "^5.14.9",
 		"@mui/material": "^5.14.8",
-		"@mui/styled-engine-sc": "^5.14.6",
+		"@mui/styled-engine-sc": "^6.0.0-alpha.14",
 		"axios": "^1.5.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
@@ -33,6 +33,6 @@
 		"postcss": "^8.4.31",
 		"tailwindcss": "^3.2.4",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.9"
+		"vite": "^5.0.12"
 	}
 }
