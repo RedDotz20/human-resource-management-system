@@ -11,7 +11,7 @@ import {
 	sortLnameASC,
 	sortLnameDESC,
 	updateEmployees,
-} from './controller';
+} from '../controllers/employeeController';
 
 const router: Router = express.Router();
 

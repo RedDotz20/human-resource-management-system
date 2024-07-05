@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import connection from './dbConnection';
+import connection from '../config/dbConnection';
 
 export const deleteEmployee = asyncHandler(
 	async (req: Request, res: Response) => {

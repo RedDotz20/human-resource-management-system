@@ -39,6 +39,6 @@
   },
   "homepage": "https://github.com/RedDotz20/IM24_db_HRMS-System#readme",
   "devDependencies": {
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.2"
   }
 }
